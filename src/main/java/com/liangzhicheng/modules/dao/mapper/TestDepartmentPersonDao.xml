@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzhicheng.modules.dao.ITestDepartmentPersonDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.liangzhicheng.modules.entity.TestDepartmentPersonEntity">
+        <id column="id" property="id" />
+        <result column="dept_id" property="deptId"/>
+        <result column="person_id" property="personId"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+    </resultMap>
+
+    <select id="getDepartmentPersonList" resultType="java.util.Map">
+        SELECT deptperson.person_id AS personId
+        FROM test_department dept, test_department_person deptperson
+        WHERE dept.id = deptperson.dept_id
+        <if test="deptId != null and deptId != ''">
+          AND deptperson.dept_id = #{deptId}
+        </if>
+    </select>
+
+</mapper>

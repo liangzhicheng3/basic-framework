@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzhicheng.modules.dao.ITestPersonDao">
+
+    <select id="getCountUserNo" resultType="java.lang.Long">
+        select count(1) as count from test_person
+    </select>
+
+    <select id="getRankUserNo" resultType="java.lang.String">
+        select coalesce(max(user_no), '000001') as max from test_person
+    </select>
+
+</mapper>
