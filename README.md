@@ -29,4 +29,4 @@ SpringBoot基础框架搭建
 
 代码生成
  找到generator包下的CodeGenerator类，generate()函数，修改自己所需要的参数(数据库参数，路径参数)，并右键直接运行即可(注释在代码中有体现)
- resources下提供了用于测试的表test_person.sql
+ resources下提供了用于测试的表test_person.sqla
