@@ -7,18 +7,15 @@ import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.utils.SysCacheUtil;
-import com.liangzhicheng.common.utils.SysSmsUtil;
-import com.liangzhicheng.common.utils.SysTokenUtil;
-import com.liangzhicheng.common.utils.SysToolUtil;
+import com.liangzhicheng.common.push.xinge.XingePush;
+import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
+import com.liangzhicheng.modules.entity.dto.TestLoginDto;
+import com.liangzhicheng.modules.entity.dto.TestLoginWeChatDto;
 import io.swagger.annotations.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -40,30 +37,103 @@ import java.util.Map;
  * @author liangzhicheng
  * @since 2020-08-06
  */
-@Api(value="Client-LoginClientController", description="登录相关控制器-客户端")
+@Api(value="Client-LoginClientController", tags={"【客户端】登录相关控制器"})
 @RestController
 @RequestMapping("/client/loginClientController")
-public class LoginClientController extends BaseController implements Constants {
+public class LoginClientController extends BaseController {
+
+    @ApiOperation(value = "获取短信验证码，不需要token")
+    @PostMapping(value = "/sendSMS")
+    @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.email", "dto.vcode"})
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
+    public WebResult sendSMS(@RequestBody TestLoginDto dto){
+        String phone = dto.getPhone();
+        if(SysToolUtil.isBlank(phone)){
+            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
+        }
+        if(!SysToolUtil.isPhone(phone)){
+            return buildFailedInfo(ApiConstant.PARAM_PHONE_ERROR);
+        }
+        String vcode = SysToolUtil.random().substring(2);
+        try{
+            SysSmsUtil.sendSMS(Constants.SMS_ACCOUNT_SID, Constants.SMS_AUTH_TOKEN, Constants.SMS_APP_ID, Constants.SMS_TEMPLATE_ID, Constants.SMS_URL, phone, vcode);
+        }catch(Exception e){
+            e.printStackTrace();
+            return buildFailedInfo(ApiConstant.BASE_FAIL_CODE, "发送失败！");
+        }
+        SysCacheUtil.set(phone, vcode);
+        //测试展示到缓存Map
+        SysCacheUtil.hset("SMS_TEST_MAP", phone, vcode);
+        SysCacheUtil.expire("SMS_TEST_MAP", 5*60);
+        return buildSuccessInfo("发送成功！");
+    }
+
+    @ApiOperation(value = "获取邮箱验证码，不需要token")
+    @PostMapping(value = "/sendEmailCode")
+    @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.phone", "dto.vcode"})
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
+    public WebResult sendEmailCode(@RequestBody TestLoginDto dto) {
+        String email = dto.getEmail();
+        if(SysToolUtil.isBlank(email)){
+            //throw new TransactionException(ApiConstant.PARAM_ERROR);
+            return buildFailedInfo(ApiConstant.PARAM_ERROR);
+        }
+        if(!SysToolUtil.isEmail(email)){
+            //throw new TransactionException(ApiConstant.EMAIL_FORMAT_ERROR);
+            return buildFailedInfo(ApiConstant.PARAM_EMAIL_ERROR);
+        }
+        String vcode = SysToolUtil.random();
+        SysEmailCodeUtil.sendEmailCode(email, vcode);
+        SysCacheUtil.set(email, vcode, 5*60);
+        return buildSuccessInfo(null);
+    }
+
+    @ApiOperation(value = "APP手机号码登录，不需要token")
+    @PostMapping(value = "/loginPhone")
+    @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.email"})
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
+    public WebResult loginPhone(@RequestBody TestLoginDto dto){
+        String phone = dto.getPhone();
+        String vcode = dto.getVcode();
+        if(SysToolUtil.isBlank(phone, vcode)){
+            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
+        }
+        if(!SysToolUtil.isPhone(phone)){
+            return buildFailedInfo(ApiConstant.PARAM_PHONE_ERROR);
+        }
+        String existVcode = (String) SysCacheUtil.get(phone);
+        if(SysToolUtil.isBlank(existVcode) || !existVcode.equals(vcode)){
+            return buildFailedInfo(ApiConstant.PARAM_VCODE_ERROR);
+        }
+        //同一台设备登录推送下线通知 (deviceToken:'设备号 必传',appType:'IOS或ANDROID 必传')
+        //XingePush.updateTokenByLogout(user.getUserId(), deviceToken, appType);
+        //生成JSON Web Token
+        Date expireTime = SysToolUtil.dateAdd(new Date(), 1);
+        String token = SysTokenUtil.createTokenAPP("6688", expireTime);
+        SysTokenUtil.updateTokenAPP("6688", token);
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("user", "user");
+        resultMap.put("token", token);
+        return buildSuccessInfo(resultMap);
+    }
 
     @ApiOperation(value = "小程序授权登录，不需要token")
-    @RequestMapping(value = "/loginCode", method = RequestMethod.POST)
+    @PostMapping(value = "/loginMINI")
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginCode(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                               BindingResult bindingResult
-            /*@ApiParam(value = "授权登录的code") @RequestParam(required = true) String code,
-            @ApiParam(value = "用户信息密文") @RequestParam(required = true) String encryptedData,
-            @ApiParam(value = "解密算法初始向量") @RequestParam(required = true) String iv*/){
+    public WebResult loginMINI(@RequestBody TestLoginWeChatDto dto){
         SysToolUtil.info("--- loginCode come start ///", LoginClientController.class);
-        JSONObject json = JSON.parseObject(param);
-        String code = json.getString("code");
-        String encryptedData = json.getString("encryptedData");
-        String iv = json.getString("iv");
+        String code = dto.getCode();
+        String encryptedData = dto.getEncryptedData();
+        String iv = dto.getIv();
+        if(SysToolUtil.isBlank(code, encryptedData, iv)){
+            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
+        }
         Map<String, Object> miniMap = new HashMap<String, Object>();
-        miniMap.put("appid", WECHAT_MINI_APP_ID);
-        miniMap.put("secret", WECHAT_MINI_APP_SECRET);
+        miniMap.put("appid", Constants.WECHAT_MINI_APP_ID);
+        miniMap.put("secret", Constants.WECHAT_MINI_APP_SECRET);
         miniMap.put("js_code", code);
-        miniMap.put("grant_type", WECHAT_MINI_GRANT_TYPE);
-        json = JSON.parseObject(SysToolUtil.post(WECHAT_MINI_URL, miniMap));
+        miniMap.put("grant_type", Constants.WECHAT_MINI_GRANT_TYPE);
+        JSONObject json = JSON.parseObject(SysToolUtil.sendPost(Constants.WECHAT_MINI_URL, miniMap));
         String sessionKey = json.getString("session_key");
         JSONObject userInfo = this.getUserInfo(sessionKey, encryptedData, iv);
         String avatar = userInfo.getString("avatarUrl");
@@ -89,69 +159,19 @@ public class LoginClientController extends BaseController implements Constants {
         return buildSuccessInfo(resultMap);
     }
 
-    @ApiOperation(value = "获取短信验证码，不需要token")
-    @RequestMapping(value = "/sendSMS", method = RequestMethod.POST)
-    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult sendSMS(@ApiParam(name = "param", value = "手机号码", required = true) @RequestBody @Valid String param,
-                             BindingResult bindingResult){
-        JSONObject json = JSON.parseObject(param);
-        String phone = json.getString("phone");
-        if(SysToolUtil.isBlank(phone)){
-            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
-        }
-        if(!SysToolUtil.isPhone(phone)){
-            return buildFailedInfo(ApiConstant.PARAM_PHONE_ERROR);
-        }
-        String vcode = SysToolUtil.random().substring(2);
-        try{
-            SysSmsUtil.sendSMS(SMS_ACCOUNT_SID, SMS_AUTH_TOKEN, SMS_APP_ID, SMS_TEMPLATE_ID, SMS_URL, phone, vcode);
-        }catch(Exception e){
-            e.printStackTrace();
-            return buildFailedInfo(ApiConstant.BASE_FAIL_CODE, "发送失败！");
-        }
-        SysCacheUtil.set(phone, vcode);
-        //测试展示到缓存Map
-        SysCacheUtil.hset("SMS_TEST_MAP", phone, vcode);
-        SysCacheUtil.expire("SMS_TEST_MAP", 5*60);
-        return buildSuccessInfo("发送成功！");
-    }
-
-    @ApiOperation(value = "APP手机号码登录，不需要token")
-    @RequestMapping(value = "/loginPhone", method = RequestMethod.POST)
-    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginPhone(@ApiParam(name = "param", value = "手机号码,短信验证码", required = true) @RequestBody @Valid String param,
-                                BindingResult bindingResult){
-        JSONObject json = JSON.parseObject(param);
-        String phone = json.getString("phone");
-        String vcode = json.getString("vcode");
-        if(SysToolUtil.isBlank(phone, vcode)){
-            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
-        }
-        if(!SysToolUtil.isPhone(phone)){
-            return buildFailedInfo(ApiConstant.PARAM_PHONE_ERROR);
-        }
-        String existVcode = (String) SysCacheUtil.get(phone);
-        if(SysToolUtil.isBlank(existVcode) || !existVcode.equals(vcode)){
-            return buildFailedInfo(ApiConstant.PARAM_VCODE_ERROR);
-        }
-        //生成JSON Web Token
-        Date expireTime = SysToolUtil.dateAdd(new Date(), 1);
-        String token = SysTokenUtil.createTokenAPP("6688", expireTime);
-        SysTokenUtil.updateTokenAPP("6688", token);
-        Map<String, Object> resultMap = new HashMap<String, Object>();
-        resultMap.put("user", "user");
-        resultMap.put("token", token);
-        return buildSuccessInfo(resultMap);
-    }
-
     @ApiOperation(value = "APP微信登录")
-    @RequestMapping(value = "/loginWeChat", method = RequestMethod.POST)
+    @PostMapping(value = "/loginAPP")
+    @ApiOperationSupport(ignoreParameters = {"dto.encryptedData", "dto.iv"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginWeChat(@ApiParam(name = "param", value = "openId", required = true) @RequestBody @Valid String param,
-                                 BindingResult bindingResult){
-        JSONObject json = JSON.parseObject(param);
-        String openId = json.getString("openId");
-        //根据openId判断用户是否存在，存在直接返回用户信息，不存在新增用户信息
+    public WebResult loginAPP(@RequestBody TestLoginWeChatDto dto){
+        String code = dto.getCode();
+        /**
+         * 1.根据code获取用户信息
+         * 2.根据openId判断用户是否存在，存在直接返回用户信息，不存在新增用户信息
+         */
+        String result = SysWeChatUtil.getUserInfoByCode(code);
+        JSONObject userInfo = JSON.parseObject(result);
+
         Date expireTime = SysToolUtil.dateAdd(new Date(), 1);
         String token = SysTokenUtil.createTokenAPP("6688", expireTime);
         SysTokenUtil.updateTokenAPP("6688", token);
@@ -163,13 +183,16 @@ public class LoginClientController extends BaseController implements Constants {
 
     @LoginClientValidate
     @ApiOperation(value = "APP退出登录")
-    @RequestMapping(value = "/logOutAPP", method = RequestMethod.POST)
+    @PostMapping(value = "/logOutAPP")
+    @ApiOperationSupport(ignoreParameters = {"dto.phone", "dto.email", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult logOutAPP(@ApiParam(name = "param", value = "用户id", required = true) @RequestBody @Valid String param,
-                               BindingResult bindingResult){
-        JSONObject json = JSON.parseObject(param);
-        String userId = json.getString("userId");
+    public WebResult logOutAPP(@RequestBody TestLoginDto dto){
+        String userId = dto.getUserId();
         //判断用户是否存在
+        // TODO user
+        //清除缓存中账号及设备登录类型
+        //XingePush.clearTokenByLogout(userId);
+        //XingePush.clearTypeByLogout(userId);
         SysTokenUtil.clearTokenAPP(userId);
         return buildSuccessInfo("退出成功！");
     }

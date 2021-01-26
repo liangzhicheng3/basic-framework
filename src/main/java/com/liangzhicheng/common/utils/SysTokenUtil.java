@@ -16,7 +16,7 @@ import java.util.Date;
  * @author liangzhicheng
  * @since 2020-08-10
  */
-public class SysTokenUtil implements Constants {
+public class SysTokenUtil {
 
     /**
      * @description 生成用户JSON Web Token(MINI)
@@ -25,7 +25,7 @@ public class SysTokenUtil implements Constants {
      * @return String
      */
     public static String createTokenMINI(String userId, Date expireTime){
-        return createToken(userId + USER_ID_SUFFIX_MINI, expireTime);
+        return createToken(userId + Constants.USER_ID_SUFFIX_MINI, expireTime);
     }
 
     /**
@@ -35,7 +35,7 @@ public class SysTokenUtil implements Constants {
      * @return String
      */
     public static String createTokenAPP(String userId, Date expireTime){
-        return createToken(userId + USER_ID_SUFFIX_APP, expireTime);
+        return createToken(userId + Constants.USER_ID_SUFFIX_APP, expireTime);
     }
 
     /**
@@ -44,7 +44,7 @@ public class SysTokenUtil implements Constants {
      * @param token
      */
     public static void updateTokenMINI(String userId, String token){
-        updateToken(userId + USER_ID_SUFFIX_MINI, token);
+        updateToken(userId + Constants.USER_ID_SUFFIX_MINI, token);
     }
 
     /**
@@ -53,7 +53,7 @@ public class SysTokenUtil implements Constants {
      * @param token
      */
     public static void updateTokenAPP(String userId, String token){
-        updateToken(userId + USER_ID_SUFFIX_APP, token);
+        updateToken(userId + Constants.USER_ID_SUFFIX_APP, token);
     }
 
     /**
@@ -62,7 +62,7 @@ public class SysTokenUtil implements Constants {
      * @return String
      */
     public static String clearTokenMINI(String userId){
-        return clearToken(userId + USER_ID_SUFFIX_MINI);
+        return clearToken(userId + Constants.USER_ID_SUFFIX_MINI);
     }
 
     /**
@@ -71,7 +71,7 @@ public class SysTokenUtil implements Constants {
      * @return String
      */
     public static String clearTokenAPP(String userId){
-        return clearToken(userId + USER_ID_SUFFIX_APP);
+        return clearToken(userId + Constants.USER_ID_SUFFIX_APP);
     }
 
     /**
@@ -82,7 +82,7 @@ public class SysTokenUtil implements Constants {
      */
     private static String createToken(String userId, Date expireTime){
         try{
-            Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(Constants.JWT_SECRET);
             return JWT.create().withExpiresAt(expireTime).withIssuer(userId).sign(algorithm);
         }catch(JWTCreationException e){
             SysToolUtil.info("--- JWTCreationException : " + e.getMessage(), SysTokenUtil.class);
@@ -98,7 +98,7 @@ public class SysTokenUtil implements Constants {
      */
     private static void updateToken(String userId, String token){
         clearToken(userId);
-        SysCacheUtil.hset(TOKEN_KEY_MAP, userId, token);
+        SysCacheUtil.hset(Constants.TOKEN_KEY_MAP, userId, token);
     }
 
     /**
@@ -107,8 +107,8 @@ public class SysTokenUtil implements Constants {
      * @return String
      */
     private static String clearToken(String userId){
-        String oldKey = (String) SysCacheUtil.hget(TOKEN_KEY_MAP, userId);
-        SysCacheUtil.hdel(TOKEN_KEY_MAP, userId);
+        String oldKey = (String) SysCacheUtil.hget(Constants.TOKEN_KEY_MAP, userId);
+        SysCacheUtil.hdel(Constants.TOKEN_KEY_MAP, userId);
         return oldKey;
     }
 
@@ -119,7 +119,7 @@ public class SysTokenUtil implements Constants {
      * @return boolean
      */
     public static boolean isLoginMINI(String userId, String token){
-        return isLogin(userId + USER_ID_SUFFIX_MINI, token);
+        return isLogin(userId + Constants.USER_ID_SUFFIX_MINI, token);
     }
 
     /**
@@ -129,7 +129,7 @@ public class SysTokenUtil implements Constants {
      * @return boolean
      */
     public static boolean isLoginAPP(String userId, String token){
-        return isLogin(userId + USER_ID_SUFFIX_APP, token);
+        return isLogin(userId + Constants.USER_ID_SUFFIX_APP, token);
     }
 
     /**
@@ -141,12 +141,12 @@ public class SysTokenUtil implements Constants {
     public static boolean loginDispose(String userId, String token){
         if(SysToolUtil.isNotBlank(userId)) {
             if(SysToolUtil.isNotBlank(token)) {
-                String existValue = (String) SysCacheUtil.hget(TOKEN_KEY_MAP, userId);
+                String existValue = (String) SysCacheUtil.hget(Constants.TOKEN_KEY_MAP, userId);
                 if(SysToolUtil.isNotBlank(existValue) && existValue.equals(token)) {
                     boolean isLogin = verifyToken(userId, token);
                     if(!isLogin){
                         SysToolUtil.info("--- isLogin userId:"+userId+",token:"+token+",existValue:"+existValue+",verifyToken:"+isLogin, SysTokenUtil.class);
-                        SysCacheUtil.hdel(TOKEN_KEY_MAP, userId);
+                        SysCacheUtil.hdel(Constants.TOKEN_KEY_MAP, userId);
                     }
                     return isLogin;
                 }
@@ -174,7 +174,7 @@ public class SysTokenUtil implements Constants {
     public static boolean verifyToken(String userId, String token){
         boolean active = true;
         try {
-            Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(Constants.JWT_SECRET);
             JWTVerifier verifier = JWT.require(algorithm).withIssuer(userId).build();
             verifier.verify(token);
         } catch (TokenExpiredException exception){

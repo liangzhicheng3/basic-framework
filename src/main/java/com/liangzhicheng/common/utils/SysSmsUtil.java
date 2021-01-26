@@ -1,6 +1,7 @@
 package com.liangzhicheng.common.utils;
 
-import net.sf.json.JSONObject;
+
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @description 云之讯短信获取工具类
@@ -15,16 +16,17 @@ public class SysSmsUtil {
             for(String str : vcodes){
                 content += (str + ",");
             }
-            content = content.substring(0,content.length()-1);
+            content = content.substring(0,content.length() - 1);
         }
         JSONObject json = new JSONObject();
-        json.element("sid", accountSid);
-        json.element("token", authToken);
-        json.element("appid", appId);
-        json.element("templateid", templateId);
-        json.element("mobile", phone);
-        json.element("param", content);
-        String result = SysToolUtil.post(url, json.toString());
+        json.put("sid", accountSid);
+        json.put("token", authToken);
+        json.put("appid", appId);
+        json.put("templateid", templateId);
+        json.put("mobile", phone);
+        json.put("param", content);
+        json.put("uid", null);
+        String result = SysToolUtil.sendPost(url, json.toJSONString(), null);
         SysToolUtil.info("--- sendSms 调用成功 : \nphone : " + phone + ", content : " + content + " \nresult : " + result, SysSmsUtil.class);
         return result;
     }

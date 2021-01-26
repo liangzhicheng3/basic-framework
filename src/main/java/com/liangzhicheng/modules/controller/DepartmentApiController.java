@@ -32,7 +32,7 @@ import java.util.Map;
 @Api(value="api-DepartmentApiController",description="测试部门")
 @RestController
 @RequestMapping("/api/departmentApiController")
-public class DepartmentApiController extends BaseController implements Constants {
+public class DepartmentApiController extends BaseController {
 
     @Resource
     private ITestDepartmentService testDepartmentService;

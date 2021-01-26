@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@EnableScheduling
 @SpringBootApplication
 public class Run {
+
     public static void main(String[] args) {
         SpringApplication.run(Run.class, args);
     }

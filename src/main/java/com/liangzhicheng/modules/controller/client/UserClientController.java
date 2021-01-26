@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @author liangzhicheng
  * @since 2020-08-06
  */
-@Api(value="Client-UserClientController", description="用户相关控制器-客户端")
+@Api(value="Client-UserClientController", tags={"【客户端】用户相关控制器"})
 @RestController
 @RequestMapping("/client/userClientController")
-public class UserClientController extends BaseController implements Constants {
+public class UserClientController extends BaseController {
 
 
 

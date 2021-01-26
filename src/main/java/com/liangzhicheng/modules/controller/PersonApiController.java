@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value="Api-PersonApiController", description="测试人员")
 @RestController
 @RequestMapping("/api/personApiController")
-public class PersonApiController extends BaseController implements Constants {
+public class PersonApiController extends BaseController {
 
     @Resource
     private ITestPersonService testPersonService;

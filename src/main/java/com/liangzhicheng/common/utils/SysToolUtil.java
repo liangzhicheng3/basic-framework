@@ -1,6 +1,14 @@
 package com.liangzhicheng.common.utils;
 
+import com.liangzhicheng.config.http.HttpConnectionManager;
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -137,6 +145,20 @@ public class SysToolUtil {
         Pattern p = Pattern.compile("^((13[0-9])|(14[0-9])|(17[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
         Matcher m = p.matcher(phone);
         return m.matches();
+    }
+
+    /**
+     * @description 判断是否邮箱格式
+     * @param email
+     * @return boolean
+     */
+    public static boolean isEmail(String email) {
+        Pattern emailPattern = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+        Matcher matcher = emailPattern.matcher(email);
+        if (matcher.find()) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -1002,12 +1024,50 @@ public class SysToolUtil {
     }
 
     /**
+     * @description 向指定Url发送Post方法的请求，String方式
+     * @param url
+     * @param param
+     * @param charset
+     * @return String
+     */
+    public static String sendPost(String url, String param, String charset) {
+        String result = "";
+        if (charset == null) {
+            charset = "UTF-8";
+        }
+        CloseableHttpClient httpClient = null;
+        HttpPost httpPost = null;
+        try {
+            httpClient = HttpConnectionManager.getInstance().getHttpClient();
+            httpPost = new HttpPost(url);
+            // 设置连接超时,设置读取超时
+            RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(10000).setSocketTimeout(10000).build();
+            httpPost.setConfig(requestConfig);
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-Type", "application/json;charset=utf-8");
+            // 设置参数
+            StringEntity se = new StringEntity(param, charset);
+            httpPost.setEntity(se);
+            HttpResponse response = httpClient.execute(httpPost);
+            if (response != null) {
+                HttpEntity resEntity = response.getEntity();
+                if (resEntity != null) {
+                    result = EntityUtils.toString(resEntity, charset);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    /**
      * @description 向指定Url发送Post方法的请求，map方式
      * @param url
      * @param map
      * @return String
      */
-    public static String post(String url, Map<String, ?> map){
+    public static String sendPost(String url, Map<String, ?> map){
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";
@@ -1065,7 +1125,7 @@ public class SysToolUtil {
      * @param xml
      * @return String
      */
-    public static String post(String url, String xml) {
+    public static String sendPost(String url, String xml) {
         try {
             //发送POST请求
             URL realUrl = new URL(url);
@@ -1098,6 +1158,40 @@ public class SysToolUtil {
             e.printStackTrace(System.out);
         }
         return "";
+    }
+
+    /**
+     * @description 向指定Url发送Get方法的请求，String方式
+     * @param url
+     * @return String
+     */
+    public static String sendGet(String url) {
+        try {
+            //发送get请求
+            URL getUrl = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) getUrl.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setUseCaches(false);
+            conn.setDoOutput(true);
+            //获取响应状态
+            if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                SysToolUtil.info("--- get() : connect failed");
+                return "";
+            }
+            //获取响应内容体
+            String line, result = "";
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"));
+            while ((line = in.readLine()) != null) {
+                result += line + "\n";
+            }
+            in.close();
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

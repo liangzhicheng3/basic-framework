@@ -11,7 +11,7 @@ import java.util.SortedMap;
  * @author liangzhicheng
  * @since 2020-08-12
  */
-public class SignUtil implements Constants {
+public class SignUtil {
 
 	/**
 	 * @description 小程序支付签名

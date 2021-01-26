@@ -23,10 +23,10 @@ import javax.validation.Valid;
  * @author liangzhicheng
  * @since 2020-08-06
  */
-@Api(value="Server-LoginServerController", description="登录相关控制器-服务端")
+@Api(value="Server-LoginServerController", tags={"【服务端】登录相关控制器"})
 @RestController
 @RequestMapping("/server/loginServerController")
-public class LoginServerController extends BaseController implements Constants {
+public class LoginServerController extends BaseController {
 
     @ApiOperation(value = "注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -60,7 +60,7 @@ public class LoginServerController extends BaseController implements Constants {
         }
         //判断账号是否存在，不存在抛出不存在信息
         //账号存在，获取账号密码与当前传过来的密码进行判断
-        request.getSession().setAttribute(LOGIN_USER_ID, "userId");
+        request.getSession().setAttribute(Constants.LOGIN_USER_ID, "userId");
         return buildSuccessInfo("登录成功！");
     }
 

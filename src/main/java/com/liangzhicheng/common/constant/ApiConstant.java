@@ -79,6 +79,11 @@ public class ApiConstant {
 	 */
 	public static final int PARAM_VCODE_ERROR = 41010;
 	/**
+	 * 邮箱格式有误
+	 */
+	public static final int PARAM_EMAIL_ERROR = 41011;
+
+	/**
 	 * 用户不存在
 	 */
 	public static final int USER_NOT_EXIST = 43001;
@@ -121,6 +126,7 @@ public class ApiConstant {
 		map.put(PARAM_JSON_ERROR, "json参数格式或类型有误");
 		map.put(PARAM_FORMAT_ERROR, "参数格式有误");
 		map.put(PARAM_VCODE_ERROR, "验证码有误");
+		map.put(PARAM_EMAIL_ERROR, "邮箱格式有误");
 
 		map.put(USER_NOT_EXIST, "用户不存在");
 		map.put(USER_EXIST, "用户已存在");

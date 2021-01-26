@@ -11,7 +11,7 @@ import java.util.Set;
  * @author liangzhicheng
  * @since 2020-08-10
  */
-public class SysCacheUtil implements Constants {
+public class SysCacheUtil {
 
     private static SysRedisUtil redis = SpringContextHolder.getBean(SysRedisUtil.class);
 
@@ -162,8 +162,8 @@ public class SysCacheUtil implements Constants {
         map.put(INIT_COOPERATION_AISLE, "13856985541");
         expire(map.toString(), (int) SysToolUtil.dateAdd(new Date(), 1).getTime());*/
         //expire(INIT_PHONE_SERVICE, (int) SysToolUtil.dateAdd(new Date(), 1).getTime());
-        set(INIT_PHONE_SERVICE, INIT_PHONE_SERVICE);
-        set(INIT_COOPERATION_AISLE, INIT_COOPERATION_AISLE);
+        set(Constants.INIT_PHONE_SERVICE, Constants.INIT_PHONE_SERVICE);
+        set(Constants.INIT_COOPERATION_AISLE, Constants.INIT_COOPERATION_AISLE);
     }
 
 }

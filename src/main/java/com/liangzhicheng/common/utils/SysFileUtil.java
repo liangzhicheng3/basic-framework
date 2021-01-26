@@ -21,6 +21,8 @@ public class SysFileUtil {
     public static String getProjectPath(){
         String jarPath = FileUtil.getAbsolutePath("").replace("!/BOOT-INF/classes!/","");
         String dir = jarPath.substring(0,jarPath.lastIndexOf("/"));
+//        String path = "/usr/workspace/idea-show/";
+//        String dir = path.substring(0, path.lastIndexOf("/"));
         return dir;
     }
 

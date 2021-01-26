@@ -24,7 +24,7 @@ import java.util.Map;
 @Api(value="Api-TestController", description="测试接口（仅供后台调试使用）")
 @RestController
 @RequestMapping("/api/testApiController")
-public class TestApiController extends BaseController implements Constants {
+public class TestApiController extends BaseController {
 
     @ApiOperation(value = "AES加密、解密测试")
     @RequestMapping(value = "/testAES", method = RequestMethod.POST)
@@ -88,7 +88,7 @@ public class TestApiController extends BaseController implements Constants {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = Boolean.class)})
     public WebResult login(@ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId,
                            HttpServletRequest request){
-        request.getSession().setAttribute(LOGIN_USER_ID, userId);
+        request.getSession().setAttribute(Constants.LOGIN_USER_ID, userId);
         return buildSuccessInfo("登录成功！");
     }
 
@@ -111,8 +111,8 @@ public class TestApiController extends BaseController implements Constants {
     @RequestMapping(value = "/testInitData", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
     public WebResult testInitData(){
-        String phone = (String) SysCacheUtil.get(INIT_PHONE_SERVICE);
-        String cooperation = (String) SysCacheUtil.get(INIT_COOPERATION_AISLE);
+        String phone = (String) SysCacheUtil.get(Constants.INIT_PHONE_SERVICE);
+        String cooperation = (String) SysCacheUtil.get(Constants.INIT_COOPERATION_AISLE);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("phone", phone);
         map.put("cooperation", cooperation);

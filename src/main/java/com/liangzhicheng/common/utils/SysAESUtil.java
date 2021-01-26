@@ -16,7 +16,7 @@ import java.util.Map;
  * @author liangzhicheng
  * @since 2020-08-14
  */
-public class SysAESUtil implements Constants {
+public class SysAESUtil {
 
     /**
      * @description AES加密
@@ -25,7 +25,7 @@ public class SysAESUtil implements Constants {
      */
     public static String aesEncrypt(String content) {
         try {
-            return aesEncrypt(content, AES_KEY);
+            return aesEncrypt(content, Constants.AES_KEY);
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -39,7 +39,7 @@ public class SysAESUtil implements Constants {
      */
     public static String aesDecrypt(String encrypt) {
         try {
-            return aesDecrypt(encrypt, AES_KEY);
+            return aesDecrypt(encrypt, Constants.AES_KEY);
         } catch (Exception e) {
             e.printStackTrace();
             return "";
@@ -73,7 +73,7 @@ public class SysAESUtil implements Constants {
     public static Map<String, String> signToMap(String sign) {
         try {
             Map<String, String> map = new HashMap<String, String>();
-            String string = aesDecrypt(sign, AES_KEY);
+            String string = aesDecrypt(sign, Constants.AES_KEY);
             String[] str = string.split("&");
             for (int i = 0; i < str.length; i++) {
                 String key = str[i].substring(0, str[i].indexOf("="));
@@ -138,7 +138,7 @@ public class SysAESUtil implements Constants {
     public static byte[] aesEncryptToBytes(String content, String encryptKey) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
         kgen.init(128);
-        Cipher cipher = Cipher.getInstance(AES_ALGORITHMSTR);
+        Cipher cipher = Cipher.getInstance(Constants.AES_ALGORITHMSTR);
         cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(encryptKey.getBytes(), "AES"));
 
         return cipher.doFinal(content.getBytes("utf-8"));
@@ -154,7 +154,7 @@ public class SysAESUtil implements Constants {
     public static String aesDecryptByBytes(byte[] encryptBytes, String decryptKey) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
         kgen.init(128);
-        Cipher cipher = Cipher.getInstance(AES_ALGORITHMSTR);
+        Cipher cipher = Cipher.getInstance(Constants.AES_ALGORITHMSTR);
         cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(decryptKey.getBytes(), "AES"));
         byte[] decryptBytes = cipher.doFinal(encryptBytes);
         return new String(decryptBytes);

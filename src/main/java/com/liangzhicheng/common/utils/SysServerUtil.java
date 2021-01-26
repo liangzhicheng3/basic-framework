@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author liangzhicheng
  * @since 2020-08-14
  */
-public class SysServerUtil implements Constants {
+public class SysServerUtil {
 
     /**
      * @description 用户登录处理
@@ -21,7 +21,7 @@ public class SysServerUtil implements Constants {
         if(SysToolUtil.isBlank(userId) || request == null){
             return false;
         }
-        String sessionUserId = (String) request.getSession().getAttribute(LOGIN_USER_ID);
+        String sessionUserId = (String) request.getSession().getAttribute(Constants.LOGIN_USER_ID);
         if(SysToolUtil.isBlank(sessionUserId) || (!sessionUserId.equals(userId))){
             return false;
         }

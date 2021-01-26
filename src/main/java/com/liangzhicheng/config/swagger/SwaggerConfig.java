@@ -1,5 +1,6 @@
 package com.liangzhicheng.config.swagger;
 
+import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @since 2020-07-28
  */
 @EnableSwagger2
+@EnableSwaggerBootstrapUI
 @Configuration
 public class SwaggerConfig {
 

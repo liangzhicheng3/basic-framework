@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
+import com.liangzhicheng.common.exception.BusinessException;
+import com.liangzhicheng.common.exception.TransactionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
@@ -104,6 +106,30 @@ public class SysControllerAdvice extends BaseController {
             message = "非法参数 -> " + m.group(1);
         }
         return buildFailedInfo(ApiConstant.getMessage(ApiConstant.PARAM_JSON_ERROR) + " : " + message);
+    }
+
+    /**
+     * @description 事务异常信息
+     * @param ex
+     * @return WebResult
+     */
+    @ExceptionHandler({TransactionException.class})
+    @ResponseBody
+    public WebResult transactionException(TransactionException ex){
+        logger.error("TransactionException Output : " + ex.getMessage());
+        return buildFailedInfo(ex.getCode());
+    }
+
+    /**
+     * @description 自定义异常信息
+     * @param ex
+     * @return WebResult
+     */
+    @ExceptionHandler({BusinessException.class})
+    @ResponseBody
+    public WebResult businessException(BusinessException ex){
+        logger.error("BusinessException Output : " + ex.getMessage());
+        return buildFailedInfo(ex.getCode(), ex.getMessage());
     }
 
 }

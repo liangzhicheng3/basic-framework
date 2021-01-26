@@ -19,7 +19,7 @@ import java.io.InputStream;
  * @author liangzhicheng
  * @since 2020-08-20
  */
-public class SysQiniuUtil implements Constants {
+public class SysQiniuUtil {
 
     /**
      * @description 生成上传token
@@ -27,7 +27,7 @@ public class SysQiniuUtil implements Constants {
      * @return String
      */
     public static String generateToken(String bucket) {
-        Auth auth = Auth.create(QINIU_APP_KEY, QINIU_APP_SECRECT);
+        Auth auth = Auth.create(Constants.QINIU_APP_KEY, Constants.QINIU_APP_SECRECT);
         return auth.uploadToken(bucket);
     }
 
@@ -104,14 +104,14 @@ public class SysQiniuUtil implements Constants {
         try{
             if(file != null && file.getSize() > 0){
                 if("1".equals(type)){ //上传图片->type=1
-                    fileName = upload(QINIU_BUCKET_IMAGE, file.getBytes());
+                    fileName = upload(Constants.QINIU_BUCKET_IMAGE, file.getBytes());
                     if(SysToolUtil.isNotBlank(fileName)){
-                        return QINIU_PREFIX_IMAGE + fileName;
+                        return Constants.QINIU_PREFIX_IMAGE + fileName;
                     }
                 }else if("2".equals(type)){ //上传视频->type=2
-                    fileName = upload(QINIU_BUCKET_VIDEO, file.getBytes());
+                    fileName = upload(Constants.QINIU_BUCKET_VIDEO, file.getBytes());
                     if(SysToolUtil.isNotBlank(fileName)){
-                        return QINIU_PREFIX_VIDEO + fileName;
+                        return Constants.QINIU_PREFIX_VIDEO + fileName;
                     }
                 }
             }

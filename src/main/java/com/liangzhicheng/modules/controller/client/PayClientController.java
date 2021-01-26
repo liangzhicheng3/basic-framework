@@ -41,10 +41,10 @@ import java.util.*;
  * @author liangzhicheng
  * @since 2020-08-12
  */
-@Api(value="Client-PayClientController", description="支付相关控制器-客户端")
+@Api(value="Client-PayClientController", tags={"【客户端】支付相关控制器"})
 @RestController
 @RequestMapping("/client/payClientController")
-public class PayClientController extends BaseController implements Constants {
+public class PayClientController extends BaseController {
 
     @ApiOperation(value = "微信小程序支付")
     @RequestMapping(value = "/weChatMiniPay", method = RequestMethod.POST)
@@ -62,8 +62,8 @@ public class PayClientController extends BaseController implements Constants {
              * 统一下单接口需要的参数
              */
             SortedMap<String, Object> sp = new TreeMap<String, Object>();
-            sp.put("appid", WECHAT_MINI_APP_ID);
-            sp.put("mch_id", WECHAT_MINI_MCH_ID);
+            sp.put("appid", Constants.WECHAT_MINI_APP_ID);
+            sp.put("mch_id", Constants.WECHAT_MINI_MCH_ID);
             sp.put("nonce_str", MD5Util.encryptString(String.valueOf(new Date().getTime() / 1000).toString(), true));
             sp.put("body", "idea show");
             sp.put("out_trade_no", "order.getOrderNo()");
@@ -71,10 +71,10 @@ public class PayClientController extends BaseController implements Constants {
             sp.put("total_fee", "total_fee");
             //sp.put("total_fee", 1);
             sp.put("spbill_create_ip", request.getRemoteAddr());
-            sp.put("notify_url", MINI_NOTIFY_URL);
+            sp.put("notify_url", Constants.MINI_NOTIFY_URL);
             sp.put("trade_type", "JSAPI");
             sp.put("openid", "user.getOpenId()");
-            sp.put("sign", SignUtil.signMini(sp, WECHAT_MINI_APP_SECRET));
+            sp.put("sign", SignUtil.signMini(sp, Constants.WECHAT_MINI_APP_SECRET));
             /*
              * 把参数转成xml格式
              */
@@ -84,7 +84,7 @@ public class PayClientController extends BaseController implements Constants {
              * 请求微信统一下单Url
              */
             String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-            String responseStr = SysToolUtil.post(url, xml);
+            String responseStr = SysToolUtil.sendPost(url, xml);
             SysToolUtil.info("------ miniPay() : 统一下单返回结果：\n" + responseStr);
             Document d = XmlUtil.parseXMLDocument(responseStr);
             String return_code = d.getElementsByTagName("return_code").item(0).getFirstChild().getNodeValue();
@@ -94,12 +94,12 @@ public class PayClientController extends BaseController implements Constants {
                     String prepay_id = d.getElementsByTagName("prepay_id").item(0).getFirstChild().getNodeValue();
                     SysToolUtil.info("------ miniPay() : 获取到的预支付id prepay_id(本次交易的流水号)是：" + prepay_id);
                     SortedMap<String, Object> map = new TreeMap<String, Object>();
-                    map.put("appId", WECHAT_MINI_APP_ID);
+                    map.put("appId", Constants.WECHAT_MINI_APP_ID);
                     map.put("timeStamp", System.currentTimeMillis() / 1000 + "");
                     map.put("nonceStr", UUID.randomUUID().toString().replace("-", "").substring(10));
                     map.put("package", "prepay_id=" + prepay_id);
                     map.put("signType", "MD5");
-                    map.put("paySign", SignUtil.signMini(map, WECHAT_MINI_APP_SECRET).toUpperCase());
+                    map.put("paySign", SignUtil.signMini(map, Constants.WECHAT_MINI_APP_SECRET).toUpperCase());
                     map.put("prepayId", prepay_id);
                     map.put("orderId", "order.getOrderId()");
                     return buildSuccessInfo(map);
@@ -129,8 +129,8 @@ public class PayClientController extends BaseController implements Constants {
              */
             String nonceStr = MD5Util.encryptString(String.valueOf(new Date().getTime() / 1000).toString(), true);
             SortedMap<String, Object> sp = new TreeMap<String, Object>();
-            sp.put("appid", WECHAT_APP_APP_ID);
-            sp.put("mch_id", WECHAT_APP_MCH_ID);
+            sp.put("appid", Constants.WECHAT_APP_APP_ID);
+            sp.put("mch_id", Constants.WECHAT_APP_MCH_ID);
             sp.put("nonce_str", nonceStr);
             sp.put("body", "idea show");
             sp.put("out_trade_no", "order.getOrderNo()");
@@ -138,9 +138,9 @@ public class PayClientController extends BaseController implements Constants {
             //sp.put("total_fee", total_fee);
             sp.put("total_fee", 1); //1分钱
             sp.put("spbill_create_ip", request.getRemoteAddr());
-            sp.put("notify_url", APP_NOTIFY_URL);
+            sp.put("notify_url", Constants.APP_NOTIFY_URL);
             sp.put("trade_type", "APP");
-            sp.put("sign", SignUtil.signApp(sp, WECHAT_APP_SECRET));
+            sp.put("sign", SignUtil.signApp(sp, Constants.WECHAT_APP_SECRET));
             /*
              * 把参数转成xml格式
              */
@@ -150,7 +150,7 @@ public class PayClientController extends BaseController implements Constants {
              * 请求微信统一下单Url
              */
             String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
-            String responseStr = SysToolUtil.post(url, xml);
+            String responseStr = SysToolUtil.sendPost(url, xml);
             SysToolUtil.info("--------------- appPay : 统一下单返回结果：" + responseStr);
             Document d = XmlUtil.parseXMLDocument(responseStr);
             //如果订单已支付
@@ -169,13 +169,13 @@ public class PayClientController extends BaseController implements Constants {
                     SysToolUtil.info("------ appPay() : 获取到的预支付id prepay_id(本次交易的流水号)是：" + prepay_id);
                     //返回结果给APP前端
                     SortedMap<String,Object> map = new TreeMap<String,Object>();
-                    map.put("appId", WECHAT_APP_APP_ID);
+                    map.put("appId", Constants.WECHAT_APP_APP_ID);
                     map.put("nonceStr", nonceStr);
                     map.put("package", "Sign=WXPay");
-                    map.put("partnerId", WECHAT_APP_MCH_ID);
+                    map.put("partnerId", Constants.WECHAT_APP_MCH_ID);
                     map.put("prepayId", prepay_id);
                     map.put("timestamp", System.currentTimeMillis() / 1000);
-                    map.put("sign", SignUtil.signApp(map, WECHAT_APP_SECRET));
+                    map.put("sign", SignUtil.signApp(map, Constants.WECHAT_APP_SECRET));
                     map.put("outTradeNo", sp.get("out_trade_no"));
                     map.put("total", sp.get("total_fee"));
                     return buildSuccessInfo(map);
@@ -199,7 +199,8 @@ public class PayClientController extends BaseController implements Constants {
         if (json.containsKey("orderId")) {
             orderId = json.getString("orderId");
         }
-        String result = FeeUtil.weChatRefund(WECHAT_APP_APP_ID, WECHAT_APP_MCH_ID, /*order.getOrderNo()*/null, System.currentTimeMillis() + "", /*order.getAppPay()*/0, /*order.getAppPay()*/0, WECHAT_APP_SECRET, PATH_CERT);
+        String result = FeeUtil.weChatRefund(Constants.WECHAT_APP_APP_ID, Constants.WECHAT_APP_MCH_ID, /*order.getOrderNo()*/null,
+                System.currentTimeMillis() + "", /*order.getAppPay()*/0, /*order.getAppPay()*/0, Constants.WECHAT_APP_SECRET, Constants.PATH_CERT);
         Document d = XmlUtil.parseXMLDocument(result);
         String return_code = d.getElementsByTagName("return_code").item(0).getFirstChild().getNodeValue();
         if(SysToolUtil.isNotBlank(return_code) && return_code.equals("SUCCESS")){
@@ -226,7 +227,8 @@ public class PayClientController extends BaseController implements Constants {
         if (json.containsKey("orderId")) {
             orderId = json.getString("orderId");
         }
-        AlipayClient alipayClient = new DefaultAlipayClient(ALIPAY_URL, ALIPAY_APP_APP_ID, ALIPAY_PRIVATE_KEY, INPUT_FORMAT, INPUT_CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE_APP);
+        AlipayClient alipayClient = new DefaultAlipayClient(Constants.ALIPAY_URL, Constants.ALIPAY_APP_APP_ID,
+                Constants.ALIPAY_PRIVATE_KEY, Constants.INPUT_FORMAT, Constants.INPUT_CHARSET, Constants.ALIPAY_PUBLIC_KEY, Constants.SIGN_TYPE_APP);
         AlipayTradeAppPayRequest req = new AlipayTradeAppPayRequest();
         AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
         model.setBody("idea show");
@@ -236,7 +238,7 @@ public class PayClientController extends BaseController implements Constants {
         //model.setTotalAmount(order.getPayAlipay() + ""); //金额（元）
         model.setTotalAmount("0.01");//金额（元）
         req.setBizModel(model);
-        req.setNotifyUrl(ALIPAY_APP_NOTIFY_URL);
+        req.setNotifyUrl(Constants.ALIPAY_APP_NOTIFY_URL);
         try {
             //这里和普通的接口调用不同，使用的是sdkExecute
             AlipayTradeAppPayResponse response = alipayClient.sdkExecute(req);
@@ -259,7 +261,8 @@ public class PayClientController extends BaseController implements Constants {
         if (json.containsKey("orderId")) {
             orderId = json.getString("orderId");
         }
-        AlipayTradeRefundResponse refundResponse = FeeUtil.alipayRefund(ALIPAY_URL, ALIPAY_APP_APP_ID, ALIPAY_PRIVATE_KEY, INPUT_FORMAT, INPUT_CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE_APP/*, order*/);
+        AlipayTradeRefundResponse refundResponse = FeeUtil.alipayRefund(Constants.ALIPAY_URL, Constants.ALIPAY_APP_APP_ID,
+                Constants.ALIPAY_PRIVATE_KEY, Constants.INPUT_FORMAT, Constants.INPUT_CHARSET, Constants.ALIPAY_PUBLIC_KEY, Constants.SIGN_TYPE_APP/*, order*/);
         if(refundResponse.isSuccess()){
             SysToolUtil.info("--- FeeUtil alipayRefund调用->退款成功 ///");
             //修改用户信息
@@ -379,7 +382,7 @@ public class PayClientController extends BaseController implements Constants {
         }
         SysToolUtil.info("--- Iterator params : "+ JSONObject.fromObject(params).toString());
         try {
-            boolean flag = AlipaySignature.rsaCheckV1(params, ALIPAY_PUBLIC_KEY, INPUT_CHARSET, SIGN_TYPE_APP);
+            boolean flag = AlipaySignature.rsaCheckV1(params, Constants.ALIPAY_PUBLIC_KEY, Constants.INPUT_CHARSET, Constants.SIGN_TYPE_APP);
             if(flag) {
                 SysToolUtil.info("--- 支付成功！");
                 String out_trade_no = params.get("out_trade_no"); //APP订单号
