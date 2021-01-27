@@ -2,6 +2,7 @@ package com.liangzhicheng.common.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ReflectUtil;
+import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,22 @@ import java.util.List;
  * @since 2020-07-28
  */
 public class SysBeanUtil {
+
+    /**
+     * @description 拷贝单个entity
+     * @param entity
+     * @param cls
+     * @param <T>
+     * @return
+     */
+    public static<T> T copyEntity(Object entity, Class<T> cls){
+        T target = null;
+        if(entity != null){
+            target = ReflectUtil.newInstance(cls);
+            BeanUtils.copyProperties(entity, target);
+        }
+        return target;
+    }
 
     /**
      * @description 拷贝整个list，由于hutool只有单个bean的拷贝，没有整个List的拷贝，需要封装一个list的拷贝

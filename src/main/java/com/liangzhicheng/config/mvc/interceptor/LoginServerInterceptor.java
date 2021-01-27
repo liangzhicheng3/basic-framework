@@ -27,20 +27,18 @@ public class LoginServerInterceptor extends HandlerInterceptorAdapter {
 			LoginServerValidate loginServerValidate = handlerMethod.getMethodAnnotation(LoginServerValidate.class);
 			if(loginServerValidate != null && loginServerValidate.validate() == true){
 				boolean isLogin = false;
-				String userId = request.getParameter("userId");
-				SysToolUtil.info("--- server request userId : " + userId);
-				if(SysToolUtil.isNotBlank(userId)){
-					isLogin = SysServerUtil.isLogin(userId, request);
+				String accountId = request.getHeader("accountId");
+				String token = request.getHeader("token");
+				SysToolUtil.info("--- server request accountId : " + accountId);
+				SysToolUtil.info("--- server request token : " + token);
+				if(SysToolUtil.isNotBlank(accountId, token)){
+					isLogin = SysServerUtil.isLogin(accountId, token);
 				}
 				/*
 				 * 如果没有登录，返回false拦截请求
 				 */
-				if(isLogin){
-					int code = ApiConstant.NO_LOGIN;
-					if(SysToolUtil.isBlank(userId)){
-						code = ApiConstant.PARAM_IS_NULL;
-					}
-					WebResult result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(code), null);
+				if(!isLogin){
+					WebResult result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(ApiConstant.NO_LOGIN), null);
 					JSONObject json = JSONObject.fromObject(result);
 					response.setCharacterEncoding("UTF-8");
 					response.setContentType("application/json");

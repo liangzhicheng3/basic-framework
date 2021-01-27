@@ -5,6 +5,7 @@ import com.liangzhicheng.config.context.SpringContextHolder;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @description 缓存工具类
@@ -14,6 +15,7 @@ import java.util.Set;
 public class SysCacheUtil {
 
     private static SysRedisUtil redis = SpringContextHolder.getBean(SysRedisUtil.class);
+    private static SysStringRedisUtil stringRedis = SpringContextHolder.getBean(SysStringRedisUtil.class);
 
     /**
      * @description key操作，设置某个key的存活时间
@@ -58,6 +60,16 @@ public class SysCacheUtil {
     }
 
     /**
+     * @description 写操作，可设置存活秒数
+     * @param key
+     * @param second
+     */
+    public static void set(String key, String value, long second , TimeUnit timeUnit) {
+        stringRedis.set(key, value, second, timeUnit);
+        SysToolUtil.info("--- SysCacheUtil set with second : " + "key=" + key + ", value=" + value + ", second=" + second + ", timeUnit=" + timeUnit, SysCacheUtil.class);
+    }
+
+    /**
      * @description 写操作，向名称为key的set中添加元素member
      * @param key
      * @param obj
@@ -91,6 +103,15 @@ public class SysCacheUtil {
      */
     public static Object get(String key) {
         return redis.get(key);
+    }
+
+    /**
+     * @description 读操作
+     * @param key
+     * @return String
+     */
+    public static String getByKey(String key) {
+        return stringRedis.get(key);
     }
 
     /**

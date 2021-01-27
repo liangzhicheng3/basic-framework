@@ -4,12 +4,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @description 登录相关数据传输对象
+ * @description 【客户端】登录相关数据传输对象
  * @author liangzhicheng
  * @since 2021-01-26
  */
 @Data
-public class TestLoginDto {
+public class TestLoginClientDto {
 
     @ApiModelProperty(value = "用户id", required = true)
     private String userId;

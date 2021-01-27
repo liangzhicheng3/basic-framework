@@ -45,15 +45,7 @@ public class LoginClientInterceptor extends HandlerInterceptorAdapter {
 				 * 如果没有登录，返回false拦截请求
 				 */
 				if(isLogin){
-					/*Map<String,Object> map = new HashMap<>();
-					map.put("mini",TokenUtil.isLoginMINI(userId,tokenMINI));
-					map.put("app",TokenUtil.isLoginAPP(userId,tokenAPP));
-					Tool.info("--- noLogin:"+JSONObject.fromObject(map).toString(),LoginClientInterceptor.class);*/
-					int code = ApiConstant.NO_LOGIN;
-					if(SysToolUtil.isBlank(userId)){
-						code = ApiConstant.PARAM_IS_NULL;
-					}
-					WebResult result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(code), null);
+					WebResult result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(ApiConstant.NO_LOGIN), null);
 					JSONObject json = JSONObject.fromObject(result);
 					response.setCharacterEncoding("UTF-8");
 					response.setContentType("application/json");

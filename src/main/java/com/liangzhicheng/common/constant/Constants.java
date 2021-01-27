@@ -16,6 +16,17 @@ public abstract class Constants {
     public static final String KEY_SESSION_SYS_USER_PERMS = "KEY_SESSION_SYS_USER_PERMS";
 
     /**
+     * 将用户id放入到session中
+     */
+    public static final String LOGIN_USER_ID = "login_user_id";
+
+    //登录令牌
+    public static final String LOGIN_TOKEN_SERVER = "login_token_server";
+
+    //登录有效期
+    public static final Long LOGIN_TOKEN_EXPIRE_TIME_SERVER = 1L;
+
+    /**
      * 初始化相关常量
      */
     public static final String INIT_PHONE_SERVICE = "400-0000-0000"; //电话客服
@@ -118,11 +129,6 @@ public abstract class Constants {
     public static final String USER_ID_SUFFIX_MINI = "-MINI";
     public static final String TOKEN_KEY_MAP = "token_key_map";
     public static final String JWT_SECRET = "3MZq0BYyGcXYoXjhS4QbAM+2YdlLCwKRr2gvVJOJ+LIANGZHICHENG"; //JWT生成token时加密密文
-
-    /**
-     * 将用户id放入到session中
-     */
-    public static final String LOGIN_USER_ID = "login_user_id";
 
     /**
      * 云之讯短信相关常量

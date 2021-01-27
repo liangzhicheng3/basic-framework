@@ -7,14 +7,12 @@ import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.push.xinge.XingePush;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
-import com.liangzhicheng.modules.entity.dto.TestLoginDto;
+import com.liangzhicheng.modules.entity.dto.TestLoginClientDto;
 import com.liangzhicheng.modules.entity.dto.TestLoginWeChatDto;
 import io.swagger.annotations.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.crypto.BadPaddingException;
@@ -23,7 +21,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.security.*;
 import java.security.spec.InvalidParameterSpecException;
@@ -46,7 +43,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/sendSMS")
     @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.email", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult sendSMS(@RequestBody TestLoginDto dto){
+    public WebResult sendSMS(@RequestBody TestLoginClientDto dto){
         String phone = dto.getPhone();
         if(SysToolUtil.isBlank(phone)){
             return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
@@ -72,7 +69,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/sendEmailCode")
     @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.phone", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult sendEmailCode(@RequestBody TestLoginDto dto) {
+    public WebResult sendEmailCode(@RequestBody TestLoginClientDto dto) {
         String email = dto.getEmail();
         if(SysToolUtil.isBlank(email)){
             //throw new TransactionException(ApiConstant.PARAM_ERROR);
@@ -92,7 +89,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/loginPhone")
     @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.email"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginPhone(@RequestBody TestLoginDto dto){
+    public WebResult loginPhone(@RequestBody TestLoginClientDto dto){
         String phone = dto.getPhone();
         String vcode = dto.getVcode();
         if(SysToolUtil.isBlank(phone, vcode)){
@@ -186,7 +183,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/logOutAPP")
     @ApiOperationSupport(ignoreParameters = {"dto.phone", "dto.email", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult logOutAPP(@RequestBody TestLoginDto dto){
+    public WebResult logOutAPP(@RequestBody TestLoginClientDto dto){
         String userId = dto.getUserId();
         //判断用户是否存在
         // TODO user
