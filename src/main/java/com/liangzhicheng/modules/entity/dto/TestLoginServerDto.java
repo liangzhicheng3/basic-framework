@@ -11,10 +11,16 @@ import lombok.Data;
 @Data
 public class TestLoginServerDto {
 
+    @ApiModelProperty(value = "账号id", required = true)
+    private String accountId;
+
     @ApiModelProperty(value = "账号", required = true)
     private String username;
 
     @ApiModelProperty(value = "密码", required = true)
     private String password;
+
+    @ApiModelProperty(value = "新密码", required = true)
+    private String newPassword;
 
 }

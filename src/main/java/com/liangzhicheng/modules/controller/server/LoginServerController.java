@@ -45,15 +45,12 @@ public class LoginServerController extends BaseController {
 
     @ApiOperation(value = "注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ApiOperationSupport(ignoreParameters = {"dto.accountId", "dto.newPassword"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult register(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                              BindingResult bindingResult){
-        JSONObject json = JSON.parseObject(param);
-        String username = json.getString("username");
-        String password = json.getString("password");
-        String address = json.getString("address");
-        String vcode = json.getString("vcode");
-        if(SysToolUtil.isBlank(username, password, address, vcode)){
+    public WebResult register(@RequestBody TestLoginServerDto dto){
+        String username = dto.getUsername();
+        String password = dto.getPassword();
+        if(SysToolUtil.isBlank(username, password)){
             return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
         }
         //判断短信验证码是否存在，是否与传过来的vcode相等
@@ -139,17 +136,16 @@ public class LoginServerController extends BaseController {
     @LoginServerValidate
     @ApiOperation(value = "重置密码")
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    @ApiOperationSupport(ignoreParameters = {"dto.username"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult resetPassword(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                                   BindingResult bindingResult){
-        JSONObject json = JSON.parseObject(param);
-        String userId = json.getString("userId");
-        String oldPassword = json.getString("oldPassword");
-        String newPassword = json.getString("newPassword");
-        if(SysToolUtil.isBlank(userId, oldPassword, newPassword)){
+    public WebResult resetPassword(@RequestBody TestLoginServerDto dto){
+        String accountId = dto.getAccountId();
+        String password = dto.getPassword();
+        String newPassword = dto.getNewPassword();
+        if(SysToolUtil.isBlank(accountId, password, newPassword)){
             return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
         }
-        if(!oldPassword.equals(/*user.getPassword()*/"")){
+        if(!password.equals(/*user.getPassword()*/"")){
             return buildFailedInfo(ApiConstant.PASSWORD_ERROR);
         }
         //重置密码保存
@@ -159,15 +155,14 @@ public class LoginServerController extends BaseController {
     @LoginServerValidate
     @ApiOperation(value = "退出登录")
     @RequestMapping(value = "/logOut", method = RequestMethod.POST)
+    @ApiOperationSupport(ignoreParameters = {"dto.username", "dto.password", "dto.newPassword"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult logOut(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                            BindingResult bindingResult, HttpServletRequest request){
-        JSONObject json = JSON.parseObject(param);
-        String userId = json.getString("userId");
-        if(SysToolUtil.isBlank(userId)){
+    public WebResult logOut(@RequestBody TestLoginServerDto dto, HttpServletRequest request){
+        String accountId = dto.getAccountId();
+        if(SysToolUtil.isBlank(accountId)){
             return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
         }
-        request.getSession().removeAttribute("userId");
+        request.getSession().removeAttribute("accountId");
         return buildSuccessInfo("退出成功！");
     }
 
