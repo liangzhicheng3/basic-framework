@@ -261,6 +261,13 @@
       <artifactId>spring-boot-starter-log4j2</artifactId>
     </dependency>
 
+    <!-- yml -->
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+      <version>1.25</version>
+    </dependency>
+
     <!-- junit -->
     <dependency>
       <groupId>junit</groupId>
