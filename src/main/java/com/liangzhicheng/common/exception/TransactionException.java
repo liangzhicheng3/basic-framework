@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @description 事务异常
- * @author lizhixiong
+ * @author liangzhicheng
  * @since 2021-01-26
  */
 @Data
