@@ -1,6 +1,5 @@
 package com.liangzhicheng.common.enums;
 
-
 import com.liangzhicheng.common.constant.Constants;
 import lombok.Getter;
 
