@@ -4,12 +4,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * @description 基础参数
+ * @description 基础数据传输对象
  * @author liangzhicheng
  * @since 2021-01-26
  */
 @Data
-public class BaseParam {
+public class BaseDto {
 
     @ApiModelProperty(value = "页码", required = true)
     private int page;
