@@ -1,5 +1,7 @@
 package com.liangzhicheng.common.utils;
 
+import com.liangzhicheng.common.constant.ApiConstant;
+import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.config.http.HttpConnectionManager;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
@@ -24,6 +26,11 @@ import java.net.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -412,38 +419,125 @@ public class SysToolUtil {
     }
 
     /**
-     * @description Date日期格式化成String字符串
      * @param date
      * @param format 传null默认为 yyyy-MM-dd HH:mm:ss
      * @return String
+     * @description Date日期格式化成String字符串
      */
-    public static String formatDate(Date date, String format){
+    public static String dateToString(Date date, String format) {
         SimpleDateFormat sf = null;
-        if(isBlank(format)){
+        if (isBlank(format)) {
             sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        }else{
+        } else {
             sf = new SimpleDateFormat(format);
         }
         return sf.format(date);
     }
 
     /**
-     * @description String字符串格式化成Date日期
      * @param str
      * @param format
      * @return Date
      * @throws ParseException Date
+     * @description String字符串格式化成Date日期
      */
-    public static Date toDate(String str, String format) throws ParseException {
-        if(isBlank(str)){
+    public static Date stringToDate(String str, String format) {
+        if (isBlank(str)) {
             return null;
         }
-        if(isBlank(format)){
+        if (isBlank(format)) {
             format = "yyyy-MM-dd HH:mm:ss";
         }
         SimpleDateFormat sf = new SimpleDateFormat(format);
-        Date date = sf.parse(str);
+        Date date = null;
+        try {
+            date = sf.parse(str);
+        } catch (ParseException e) {
+            throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+        }
         return date;
+    }
+
+    /**
+     * @param date
+     * @return LocalDateTime
+     * @throws ParseException
+     * @description Date日期格式转化成LocalDateTime格式
+     */
+    public static LocalDateTime dateToLocalDateTime(Date date) {
+        LocalDateTime localDateTime = null;
+        if(date != null){
+            try{
+                Instant instant = date.toInstant();
+                ZoneId zoneId = ZoneId.systemDefault();
+                localDateTime = instant.atZone(zoneId).toLocalDateTime();
+            }catch(Exception e){
+                throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+            }
+        }
+        return localDateTime;
+    }
+
+    /**
+     * @param str
+     * @param format
+     * @return LocalDateTime
+     * @throws ParseException
+     * @description String字符串格式转化成LocalDateTime格式
+     */
+    public static LocalDateTime stringToLocalDateTime(String str, String format) {
+        if (isBlank(format)) {
+            format = "yyyy-MM-dd HH:mm:ss";
+        }
+        LocalDateTime localDateTime = null;
+        try{
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+            localDateTime = LocalDateTime.parse(str, dtf);
+        }catch(Exception e){
+            throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+        }
+        return localDateTime;
+    }
+
+    /**
+     * @param localDateTime
+     * @return Date
+     * @throws ParseException
+     * @description LocalDateTime格式转化成Date日期格式
+     */
+    public static Date localDateTimeToDate(LocalDateTime localDateTime) {
+        Date date = null;
+        try{
+            ZoneId zoneId = ZoneId.systemDefault();
+            ZonedDateTime zdt = localDateTime.atZone(zoneId);
+            date = Date.from(zdt.toInstant());
+        }catch(Exception e){
+            throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+        }
+        return date;
+    }
+
+    /**
+     * @param localDateTime
+     * @param format
+     * @return String
+     * @throws ParseException
+     * @description LocalDateTime格式转化成String字符串格式
+     */
+    public static String localDateTimeToString(LocalDateTime localDateTime, String format) throws ParseException {
+        DateTimeFormatter dtf = null;
+        if(isBlank(format)){
+            dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        }else{
+            dtf = DateTimeFormatter.ofPattern(format);
+        }
+        String dateStr = "";
+        try{
+            dateStr = localDateTime.format(dtf);
+        }catch(Exception e){
+            throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+        }
+        return dateStr;
     }
 
     /**
