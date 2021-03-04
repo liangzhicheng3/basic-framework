@@ -183,8 +183,8 @@ public class SysCacheUtil {
         map.put(INIT_COOPERATION_AISLE, "13856985541");
         expire(map.toString(), (int) SysToolUtil.dateAdd(new Date(), 1).getTime());*/
         //expire(INIT_PHONE_SERVICE, (int) SysToolUtil.dateAdd(new Date(), 1).getTime());
-        set(Constants.INIT_PHONE_SERVICE, Constants.INIT_PHONE_SERVICE);
-        set(Constants.INIT_COOPERATION_AISLE, Constants.INIT_COOPERATION_AISLE);
+//        set(Constants.INIT_PHONE_SERVICE, Constants.INIT_PHONE_SERVICE);
+//        set(Constants.INIT_COOPERATION_AISLE, Constants.INIT_COOPERATION_AISLE);
     }
 
 }
