@@ -19,9 +19,21 @@ spring:
     port: 6379
 #    password: 011556ffd7b644589e796a368a122d57
 
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+  #处理第一次请求访问延迟问题
+  mvc:
+    servlet:
+      load-on-startup: 1
+
 mvc:
   static:
     dirs: /css,/js,/upload
     prefix: http://127.0.0.1:${server.port}${server.servlet.context-path}
+
+environment: master
 
 
