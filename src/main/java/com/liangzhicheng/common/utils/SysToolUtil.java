@@ -1,15 +1,23 @@
 package com.liangzhicheng.common.utils;
 
+import com.alibaba.fastjson.JSON;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.config.http.HttpConnectionManager;
+import com.liangzhicheng.config.http.HttpDeleteRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.dom4j.Document;
@@ -1286,6 +1294,122 @@ public class SysToolUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * @description 向指定Url发送Get方法的请求，String请求体参数方式与Map请求头参数方式
+     * @param url
+     * @param map
+     * @return String
+     */
+    public static String sendGet(String url, Map<String, Object> map) {
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+        HttpGet httpGet = new HttpGet(url);
+        //配置请求的超时设置
+        RequestConfig requestConfig = RequestConfig.custom()
+                .setConnectionRequestTimeout(3000)
+                .setConnectTimeout(3000)
+                .setSocketTimeout(3000).build();
+        httpGet.setConfig(requestConfig);
+        httpGet.setHeader("Content-Type", map.get("contentType") + "");
+        CloseableHttpResponse response = null;
+        String result = null;
+        try {
+            response = httpClient.execute(httpGet); //发送请求
+            SysToolUtil.info("StatusCode -> " + response.getStatusLine().getStatusCode());
+            HttpEntity entity = response.getEntity();
+            result = EntityUtils.toString(entity,"utf-8");
+            SysToolUtil.info("------ get request : " + result);
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally{
+            httpGet.releaseConnection();
+        }
+        return result;
+    }
+
+    /**
+     * @description 向指定Url发送Put方法的请求，String请求体参数方式与Map请求头参数方式
+     * @param urlPath
+     * @param param json参数
+     * @param map
+     * @return String
+     */
+    public static String sendPut(String urlPath, Object param, Map<String, Object> map) {
+        //创建连接
+        String encode = "utf-8";
+        //HttpClients.createDefault()等价于 HttpClientBuilder.create().build();
+        CloseableHttpClient closeableHttpClient = HttpClients.createDefault();
+        HttpPut httpput = new HttpPut(urlPath);
+        /**header中通用属性*/
+        httpput.setHeader("Accept","*/*");
+        httpput.setHeader("Accept-Encoding","gzip, deflate");
+        httpput.setHeader("Cache-Control","no-cache");
+        httpput.setHeader("Connection", "keep-alive");
+        /**业务参数*/
+        httpput.setHeader("Content-Type", map.get("contentType") + "");
+        //组织请求参数
+        StringEntity stringEntity = new StringEntity(JSON.toJSONString(param), encode);
+        httpput.setEntity(stringEntity);
+        String content = null;
+        CloseableHttpResponse  httpResponse = null;
+        try {
+            //响应信息
+            httpResponse = closeableHttpClient.execute(httpput);
+            HttpEntity entity = httpResponse.getEntity();
+            content = EntityUtils.toString(entity, encode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                httpResponse.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            closeableHttpClient.close();  //关闭连接、释放资源
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return content;
+    }
+
+    /**
+     * @description 向指定Url发送Delete方法的请求，String请求体参数方式与Map请求头参数方式
+     * @param url
+     * @param param
+     * @param map
+     * @return String
+     */
+    public static String sendDelete(String url, String param, Map<String, Object> map) {
+        CloseableHttpClient client = null;
+        HttpDeleteRequest httpDelete = null;
+        String result = null;
+        try {
+            client = HttpClients.createDefault();
+            httpDelete = new HttpDeleteRequest(url);
+            httpDelete.addHeader("Content-Type", map.get("contentType") + "");
+            httpDelete.setHeader("Accept", "application/json; charset=utf-8");
+            httpDelete.setEntity(new StringEntity(param));
+            CloseableHttpResponse response = client.execute(httpDelete);
+            HttpEntity entity = response.getEntity();
+            result = EntityUtils.toString(entity);
+            if (200 == response.getStatusLine().getStatusCode()) {
+                info("DELETE方式请求远程调用成功.msg={" + result + "}");
+            }
+        } catch (Exception e) {
+            error("DELETE方式请求远程调用失败,errorMsg={" + e.getMessage() + "}", SysToolUtil.class);
+        } finally {
+            try {
+                client.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
     /**
