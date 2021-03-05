@@ -1,6 +1,7 @@
 package com.liangzhicheng.common.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.config.http.HttpConnectionManager;
@@ -60,12 +61,33 @@ public class SysToolUtil {
     }
 
     /**
-     * @description 返回项目路径+端口，没有/ (图片前缀)
+     * @description 生成用户昵称
+     * @return String
+     */
+    public static String generateNickname() {
+        String nickname = "";
+        Random random = new Random();
+        //参数length，表示生成几位随机数
+        for (int i = 0; i < 8; i++) {
+            String str = random.nextInt(2) % 2 == 0 ? "char" : "num";
+            //输出字母还是数字
+            if ("char".equalsIgnoreCase(str)) {
+                int temp = random.nextInt(2) % 2 == 0 ? 65 : 97;
+                nickname += (char) (random.nextInt(26) + temp);
+            } else if ("num".equalsIgnoreCase(str)) {
+                nickname += String.valueOf(random.nextInt(10));
+            }
+        }
+        return "用户_" + nickname;
+    }
+
+    /**
+     * @description 获取访问地址前缀
      * @param request
      * @return String
      */
-    public static String getImgPrefix(HttpServletRequest request){
-        return "http://" + request.getServerName() + ":" + request.getServerPort();
+    public static String getAccessUrl(HttpServletRequest request) {
+        return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     }
 
     /**
@@ -424,6 +446,25 @@ public class SysToolUtil {
      */
     public static String toLength(int number, int length){
         return String.format("%0" + length + "d", number);
+    }
+
+    /**
+     * @description 判断字符串长度，中文为2，字母为1
+     * @param value
+     * @return int
+     */
+    public static int stringToLength(String value) {
+        int valueLength = 0;
+        String chinese = "[\u4e00-\u9fa5]";
+        for (int i = 0; i < value.length(); i++) {
+            String temp = value.substring(i, i + 1);
+            if (temp.matches(chinese)) {
+                valueLength += 2;
+            } else {
+                valueLength += 1;
+            }
+        }
+        return valueLength;
     }
 
     /**
@@ -914,6 +955,39 @@ public class SysToolUtil {
             }
         }
         return list;
+    }
+
+    /**
+     * @description 获取两个List的交集
+     * @param firstList
+     * @param secondList
+     * @return List<String>
+     */
+//    public static List<String> getListBoth(List<String> firstList, List<String> secondList) {
+//        List<String> resultList = new ArrayList<String>();
+//        LinkedList<String> result = new LinkedList<String>(firstList); //大集合用LinkedList
+//        HashSet<String> othHash = new HashSet<String>(secondList); //小集合用HashSet
+//        Iterator<String> iter = result.iterator(); //Iterator迭代器进行数据操作
+//        while(iter.hasNext()) {
+//            if(!othHash.contains(iter.next())) {
+//                iter.remove();
+//            }
+//        }
+//        resultList = new ArrayList<String>(result);
+//        return resultList;
+//    }
+    public static List<String> getListBoth(List<String> firstList, List<String> secondList) {
+        List<String> resultList = Lists.newArrayList();
+        LinkedList<String> first = Lists.newLinkedList(firstList); //大集合用LinkedList
+        HashSet<String> second = new HashSet<String>(secondList); //小集合用HashSet
+        Iterator<String> iterator = first.iterator(); //Iterator迭代器进行数据操作
+        while(iterator.hasNext()) {
+            if(!second.contains(iterator.next())) {
+                iterator.remove();
+            }
+        }
+        resultList = Lists.newArrayList(first);
+        return resultList;
     }
 
     /**
@@ -1524,6 +1598,15 @@ public class SysToolUtil {
             }
         }
         return result.toString();
+    }
+
+    /**
+     * @description 敏感词过滤，替换为*
+     * @param content
+     * @return String
+     */
+    public static String replaceContent(String content) {
+        return SysContent1Util.getInstance().replaceSensitiveWord(content, 2, "*");
     }
 
     /**

@@ -33,6 +33,12 @@ public abstract class Constants {
     public static final String INIT_COOPERATION_AISLE = "13856985541"; //合作专属通道
 
     /**
+     * 工具累相关常量
+     */
+    public static final String CONTENT_FILTER_FILEPATH = "D:\\censorwords.txt"; //本地敏感词文件地址
+    //public static final String CONTENT_FILTER_FILEPATH = "/usr/workspace/xxx/content-filter/censorwords.txt"; //线上敏感词文件地址
+
+    /**
      * WeChat小程序获取用户信息相关常量
      */
     public static final String WECHAT_MINI_URL = "https://api.weixin.qq.com/sns/jscode2session";
