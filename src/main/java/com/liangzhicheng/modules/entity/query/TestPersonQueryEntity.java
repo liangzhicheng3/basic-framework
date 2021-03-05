@@ -23,9 +23,9 @@ public class TestPersonQueryEntity extends BaseQueryEntity {
      */
     private String keyword;
     /**
-     * 点赞数
+     * 年龄
      */
-    private String praiseNum;
+    private String age;
     /**
      * 开始时间
      */
@@ -41,9 +41,9 @@ public class TestPersonQueryEntity extends BaseQueryEntity {
         if(SysToolUtil.isNotBlank(keyword)) {
             this.keyword = keyword;
         }
-        String praiseNum = personDto.getPraiseNum();
-        if(SysToolUtil.isNotBlank(praiseNum) && "1".equals(praiseNum)) {
-            this.praiseNum = praiseNum;
+        String age = personDto.getAge();
+        if(SysToolUtil.isNotBlank(age) && "1".equals(age)) {
+            this.age = age;
         }
         String dateStartStr = personDto.getDateStart();
         if(SysToolUtil.isNotBlank(dateStartStr)) {

@@ -12,19 +12,19 @@ import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
+import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
+import com.liangzhicheng.modules.entity.dto.TestPersonDto;
 import com.liangzhicheng.modules.entity.vo.TestPersonVO;
 import com.liangzhicheng.modules.service.ITestPersonService;
 import io.swagger.annotations.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.RestController;
 
 @Api(value="Api-PersonApiController", description="测试人员")
 @RestController
@@ -34,10 +34,10 @@ public class PersonApiController extends BaseController {
     @Resource
     private ITestPersonService testPersonService;
 
-    @ApiOperation(value = "分页查询")
-    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    @ApiOperation(value = "分页查询1")
+    @RequestMapping(value = "/page1", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult page(@ApiParam(value = "页码，1为第一页") @RequestParam(required = true) Integer page,
+    public WebResult page1(@ApiParam(value = "页码，1为第一页") @RequestParam(required = true) Integer page,
                           @ApiParam(value = "每页数量") @RequestParam(required = true) Integer pageSize,
                           @ApiParam(value = "头像") @RequestParam(required=false)  String avatar,
                           @ApiParam(value = "姓名") @RequestParam(required=false)  String name,
@@ -71,6 +71,14 @@ public class PersonApiController extends BaseController {
         List<TestPersonVO> voList = SysBeanUtil.copyList(result.getRecords(), TestPersonVO.class);
         result.setRecords(voList);
         return buildSuccessInfo(result);
+    }
+
+    @ApiOperation(value = "分页查询2")
+    @RequestMapping(value = "/page2", method = RequestMethod.POST)
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
+    public WebResult page2(@RequestBody TestPersonDto personDto){
+        PageResult resultList = testPersonService.page2(personDto);
+        return buildSuccessInfo(resultList);
     }
 
     @ApiOperation(value = "保存")

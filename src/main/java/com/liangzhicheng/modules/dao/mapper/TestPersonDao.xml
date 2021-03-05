@@ -10,4 +10,44 @@
         select coalesce(max(user_no), '000001') as max from test_person
     </select>
 
+    <select id="getPersonCount" resultType="java.lang.Long">
+        SELECT COUNT(person.id) AS total
+        FROM test_person person
+        <where>
+            person.gender = 1
+            <if test="keyword != null and keyword != ''">
+                AND (person.avatar LIKE CONCAT('%', #{keyword}, '%') OR person.name LIKE CONCAT('%', #{keyword},'%'))
+            </if>
+            <if test="dateStart != null and dateStart != '' and dateEnd != null and dateEnd != ''">
+                AND person.create_date BETWEEN #{dateStart} AND #{dateEnd}
+            </if>
+        </where>
+    </select>
+
+    <select id="getPersonList" resultType="com.liangzhicheng.modules.entity.vo.TestPersonVO">
+        SELECT person.avatar AS avatar,
+               person.name AS name,
+               person.password AS password,
+               person.age AS age
+        FROM test_person person
+        <where>
+            person.gender = 1
+            <if test="keyword != null and keyword != ''">
+                AND (person.avatar LIKE CONCAT('%', #{keyword}, '%') OR person.name LIKE CONCAT('%', #{keyword},'%'))
+            </if>
+            <if test="dateStart != null and dateStart != '' and dateEnd != null and dateEnd != ''">
+                AND person.create_date BETWEEN #{dateStart} AND #{dateEnd}
+            </if>
+        </where>
+        <choose>
+            <when test="age != null and age != ''">
+                ORDER BY person.age DESC
+            </when>
+            <otherwise>
+                ORDER BY person.create_date DESC
+            </otherwise>
+        </choose>
+        LIMIT #{page}, #{pageSize}
+    </select>
+
 </mapper>

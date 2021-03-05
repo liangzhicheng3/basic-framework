@@ -9,8 +9,8 @@ public class TestPersonDto extends BaseDto {
     @ApiModelProperty(value = "关键字(昵称，手机号)")
     private String keyword;
 
-    @ApiModelProperty(value = "点赞数")
-    private String praiseNum;
+    @ApiModelProperty(value = "年龄")
+    private String age;
 
     @ApiModelProperty(value = "开始时间")
     private String dateStart;
