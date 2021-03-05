@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzhicheng.modules.dao.ITestAreaNameDao">
+
+    <select id="getAreaInfo" resultType="java.util.Map">
+        SELECT an1.area_name AS areaName,
+               an1.area_code AS areaCode
+        FROM test_area_name an1,
+             test_area_name an2
+        WHERE an1.area_code = an2.area_code
+        AND (an2.area_name = #{country} OR an2.area_name = #{province} OR an2.area_name = #{city})
+        AND an1.lang = 'zh_CN';
+    </select>
+
+</mapper>

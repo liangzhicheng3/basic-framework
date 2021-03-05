@@ -9,12 +9,15 @@ import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
+import com.liangzhicheng.modules.entity.TestAreaNameEntity;
 import com.liangzhicheng.modules.entity.dto.TestLoginClientDto;
 import com.liangzhicheng.modules.entity.dto.TestLoginWeChatDto;
+import com.liangzhicheng.modules.service.ITestAreaNameService;
 import io.swagger.annotations.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -24,10 +27,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.security.*;
 import java.security.spec.InvalidParameterSpecException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @description 登录相关控制器-客户端
@@ -38,6 +38,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/client/loginClientController")
 public class LoginClientController extends BaseController {
+
+    @Resource
+    private ITestAreaNameService areaNameService;
 
     @ApiOperation(value = "获取短信验证码，不需要token")
     @PostMapping(value = "/sendSMS")
@@ -145,6 +148,33 @@ public class LoginClientController extends BaseController {
          * 2.根据openId查询用户信息记录是否存在，不存在则新增
          */
         String openId = json.getString("openid");
+
+        //地区处理
+        TestAreaNameEntity entity = new TestAreaNameEntity();
+        entity.setCountry(country);
+        entity.setProvince(province);
+        entity.setCity(city);
+        List<Map<String, Object>> resultList = areaNameService.getAreaInfo(entity);
+        String areaName = "";
+        String areaCode = "";
+        if (resultList != null && resultList.size() > 0) {
+            areaName = (String) resultList.get(0).get("areaName");
+            areaCode = ((String) resultList.get(0).get("areaCode")).substring(5);
+//            user.setCountryName(areaName);
+//            user.setCountryId(areaCode);
+            if (resultList.size() > 1) {
+                areaName = (String) resultList.get(1).get("areaName");
+                areaCode = ((String) resultList.get(1).get("areaCode")).substring(5);
+//                user.setProvinceName(areaName);
+//                user.setProvinceId(areaCode);
+            }
+            if (resultList.size() > 2) {
+                areaName = (String) resultList.get(2).get("areaName");
+                areaCode = ((String) resultList.get(2).get("areaCode")).substring(5);
+//                user.setCityName(areaName);
+//                user.setCityId(areaCode);
+            }
+        }
 
         //生成JSON Web Token
         Date expireTime = SysToolUtil.dateAdd(new Date(), 1);

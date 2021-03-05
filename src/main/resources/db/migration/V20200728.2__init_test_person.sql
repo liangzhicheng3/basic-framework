@@ -13,7 +13,7 @@ CREATE TABLE `test_person` (
   `create_date` datetime NOT NULL COMMENT '创建时间',
   `update_date` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1052 DEFAULT CHARSET=utf8 COMMENT='测试人员';
+) ENGINE=InnoDB AUTO_INCREMENT=1052 DEFAULT CHARSET=utf8mb4 COMMENT='测试人员';
 
 
 INSERT INTO `test_person` VALUES ('386', 'avatar-0', 'name-0', 'password-0', '0', '', '19:29:47', '2018-12-27 19:29:47', '2018-12-27', 'intro-0', '2018-12-27 19:29:47', '2018-12-27 19:29:47');

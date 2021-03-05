@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 /**
  * @description 个人查询实体类
  * @author liangzhicheng
- * @since 2021-01-26
+ * @since 2021-03-04
  */
 @Data
 @NoArgsConstructor
