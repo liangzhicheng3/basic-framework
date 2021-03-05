@@ -37,7 +37,7 @@ public class SysContent2Util {
     private Set<String> readSensitiveWordFile() {
         Set<String> wordSet = null;
         //敏感词库
-        File file = new File(Constants.CONTENT_FILTER_FILEPATH);
+        File file = new File(Constants.UTIL_CONTENT_FILTER_PATH);
         try {
             //读取文件输入流
             InputStreamReader read = new InputStreamReader(new FileInputStream(file), Constants.INPUT_CHARSET);

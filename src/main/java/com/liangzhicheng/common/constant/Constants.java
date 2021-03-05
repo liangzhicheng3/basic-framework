@@ -33,10 +33,14 @@ public abstract class Constants {
     public static final String INIT_COOPERATION_AISLE = "13856985541"; //合作专属通道
 
     /**
-     * 工具累相关常量
+     * 工具类相关常量
      */
-    public static final String CONTENT_FILTER_FILEPATH = "D:\\censorwords.txt"; //本地敏感词文件地址
-    //public static final String CONTENT_FILTER_FILEPATH = "/usr/workspace/xxx/content-filter/censorwords.txt"; //线上敏感词文件地址
+    public static final String UTIL_PDF_PREFIX = "D:\\data\\pdf\\"; //本地pdf路径前缀
+    public static final String UTIL_PDF_PATH = "D:\\data\\wkhtmltopdf.exe"; //本地pdf工具路径
+    public static final String UTIL_CONTENT_FILTER_PATH = "D:\\censorwords.txt"; //本地敏感词文件地址
+//    public static final String UTIL_PDF_PREFIX = "/usr/workspace/idea-show/pdf/"; //线上pdf路径前缀
+//    public static final String UTIL_PDF_PATH = "/usr/workspace/xxx/pdfutil/wkhtmltopdf"; //线上pdf工具路径
+//    public static final String UTIL_CONTENT_FILTER_PATH = "/usr/workspace/xxx/content-filter/censorwords.txt"; //线上敏感词文件路径
 
     /**
      * WeChat小程序获取用户信息相关常量
@@ -164,10 +168,8 @@ public abstract class Constants {
      */
     public static final String QINIU_APP_KEY = "hJi-pUDYofUcsMDoi3Mp4yOtTGiZax24EEmrzqTY";
     public static final String QINIU_APP_SECRECT = "tIA8k-zn2hyilu4_X3mLDjJcE5VINeKl4gRvLnpc";
-    public static final String QINIU_PREFIX_IMAGE = "http://xxx.com/"; //图片访问前缀
-    public static final String QINIU_PREFIX_VIDEO = "http://xxx.com/"; //视频访问前缀
-    public static final String QINIU_BUCKET_IMAGE = "ideashow-image"; //图片空间名
-    public static final String QINIU_BUCKET_VIDEO = "ideashow-video"; //视频空间名
+    public static final String QINIU_PREFIX_FILES = "http://cdn.ideashow168.com/"; //文件访问前缀
+    public static final String QINIU_BUCKET_FILES = "ideashow-files"; //文件空间名
 
     /**
      * 邮箱验证相关常量

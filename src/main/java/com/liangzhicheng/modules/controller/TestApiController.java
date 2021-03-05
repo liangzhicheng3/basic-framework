@@ -1,30 +1,36 @@
 package com.liangzhicheng.modules.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.common.collect.Lists;
 import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.utils.SysAESUtil;
-import com.liangzhicheng.common.utils.SysCacheUtil;
-import com.liangzhicheng.common.utils.SysTokenUtil;
-import com.liangzhicheng.common.utils.SysToolUtil;
+import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginServerValidate;
+import com.liangzhicheng.modules.entity.TestPersonEntity;
+import com.liangzhicheng.modules.service.ITestPersonService;
 import io.swagger.annotations.*;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Api(value="Api-TestController", description="测试接口（仅供后台调试使用）")
 @RestController
 @RequestMapping("/api/testApiController")
 public class TestApiController extends BaseController {
+
+    @Resource
+    private ITestPersonService personService;
 
     @ApiOperation(value = "AES加密、解密测试")
     @RequestMapping(value = "/testAES", method = RequestMethod.POST)
@@ -117,6 +123,33 @@ public class TestApiController extends BaseController {
         map.put("phone", phone);
         map.put("cooperation", cooperation);
         return buildSuccessInfo(map);
+    }
+
+    @ApiOperation(value = "html转pdf")
+    @PostMapping("/htmlToPdf")
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
+    public WebResult htmlToPdf(@ApiParam(name = "param", value = "info:[{src:'html文件url',personId:'下载用户'},{...}]",
+            required = true) @RequestBody @Valid String param,
+                               BindingResult bindingResult) {
+        JSONObject json = JSON.parseObject(param);
+        String info = json.getString("info");
+        if(SysToolUtil.isBlank(info)){
+            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
+        }
+        List<String> resultList = Lists.newArrayList();
+        JSONArray jsonArray = JSONArray.parseArray(info);
+        for(int i = 0; i < jsonArray.size(); i++){
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            String src = jsonObject.getString("src");
+            String personId = jsonObject.getString("personId");
+            TestPersonEntity person = personService.getById(personId);
+            String filePath = Constants.UTIL_PDF_PREFIX + SysToolUtil.generateId() + ".pdf";
+            SysToolUtil.error(" --- htmlToPdf filePath : " + filePath, String.class);
+            SysPDFUtil.convert(src, filePath);
+            String key = person.getName() + "-" + SysToolUtil.dateToString(new Date(), null);
+            resultList.add(SysQiniuUtil.upload(filePath, key));
+        }
+        return buildSuccessInfo(resultList);
     }
 
 }

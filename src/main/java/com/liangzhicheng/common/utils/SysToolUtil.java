@@ -1190,7 +1190,7 @@ public class SysToolUtil {
      * @param file
      * @return String
      */
-    private static String getFileSuffix(MultipartFile file) {
+    public static String getFileSuffix(MultipartFile file) {
         String fileName = file.getOriginalFilename();
         if(!fileName.contains(".")){
             return null;
