@@ -3,6 +3,7 @@ package com.liangzhicheng.common.push.xinge;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.SysCacheUtil;
+import com.liangzhicheng.common.utils.SysConfigUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.tencent.xinge.XingeApp;
 import com.tencent.xinge.bean.*;
@@ -110,7 +111,11 @@ public class XingePush {
         MessageAndroid messageAndroid = null;
         if("IOS".equals(appType)){
             pushAppRequest.setPlatform(Platform.ios);
-            pushAppRequest.setEnvironment(Environment.dev);
+            if(SysConfigUtil.getValue("environment").equals("master")){
+                pushAppRequest.setEnvironment(Environment.product);
+            }else{
+                pushAppRequest.setEnvironment(Environment.dev);
+            }
             messageIOS = new MessageIOS();
             message.setIos(messageIOS);
         }else{
