@@ -7,19 +7,27 @@ import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.exception.BusinessException;
 import com.liangzhicheng.common.exception.TransactionException;
+import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @description 全局异常捕获处理类
@@ -30,6 +38,9 @@ import java.util.regex.Pattern;
 public class SysControllerAdvice extends BaseController {
 
     private static final Logger logger = LoggerFactory.getLogger(SysControllerAdvice.class);
+
+    @Resource
+    private MessageSource messageSource;
 
     /**
      * @description 服务器异常信息
@@ -130,6 +141,35 @@ public class SysControllerAdvice extends BaseController {
     public WebResult businessException(BusinessException ex){
         logger.error("BusinessException Output : " + ex.getMessage());
         return buildFailedInfo(ex.getCode(), ex.getMessage());
+    }
+
+    /**
+     * @description shiro异常
+     * @param ex
+     * @return WebResult
+     */
+    @ExceptionHandler(AuthorizationException.class)
+    @ResponseBody
+    public WebResult noAuthException(AuthorizationException ex) {
+        logger.error("没有通过权限验证！", ex.getMessage());
+        return buildFailedInfo(ApiConstant.NO_AUTHORIZATION);
+    }
+
+    /**
+     * @description 接口入参参数贴有@NotBlank注解拦截
+     * @param ex
+     * @return WebResult
+     */
+    @ResponseBody
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public WebResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        List<FieldError> errorList = ex.getBindingResult().getFieldErrors();
+        List<String> errorMessages = errorList.stream().map(x->{
+            String itemMessage= messageSource.getMessage(x.getDefaultMessage(), null, x.getDefaultMessage(), LocaleContextHolder.getLocale());
+            return String.format("%s", itemMessage);
+        }).collect(Collectors.toList());
+        logger.error("参数验证失败:{}", errorMessages.get(0));
+        return buildFailedInfo(errorMessages.get(0));
     }
 
 }

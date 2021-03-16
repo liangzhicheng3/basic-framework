@@ -15,6 +15,7 @@ import com.liangzhicheng.modules.entity.dto.TestLoginWeChatDto;
 import com.liangzhicheng.modules.service.ITestAreaNameService;
 import io.swagger.annotations.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -120,7 +121,7 @@ public class LoginClientController extends BaseController {
     @ApiOperation(value = "小程序授权登录，不需要token")
     @PostMapping(value = "/loginMINI")
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginMINI(@RequestBody TestLoginWeChatDto dto){
+    public WebResult loginMINI(@Validated @RequestBody TestLoginWeChatDto dto){
         SysToolUtil.info("--- loginCode come start ///", LoginClientController.class);
         String code = dto.getCode();
         String encryptedData = dto.getEncryptedData();
@@ -190,7 +191,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/loginAPP")
     @ApiOperationSupport(ignoreParameters = {"dto.encryptedData", "dto.iv"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginAPP(@RequestBody TestLoginWeChatDto dto){
+    public WebResult loginAPP(@Validated @RequestBody TestLoginWeChatDto dto){
         String code = dto.getCode();
         /**
          * 1.根据code获取用户信息
