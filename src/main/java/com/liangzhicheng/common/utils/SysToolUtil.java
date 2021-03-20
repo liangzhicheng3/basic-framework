@@ -35,11 +35,9 @@ import java.net.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -549,6 +547,44 @@ public class SysToolUtil {
     }
 
     /**
+     * @description String字符串格式转化成LocalDate格式
+     * @param str
+     * @return LocalDate
+     */
+    public static LocalDate stringToLocalDate(String str){
+        DateTimeFormatter dtf = null;
+        LocalDate localDate = null;
+        try{
+            dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            localDate = LocalDate.parse(str, dtf);
+        }catch(Exception e){
+            throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+        }
+        return localDate;
+    }
+
+    /**
+     * @description String字符串格式转化成LocalTime格式
+     * @param str
+     * @param format
+     * @return LocalTime
+     */
+    public static LocalTime stringToLocalTime(String str, String format) {
+        if (isBlank(format)) {
+            format = "yyyy-MM-dd HH:mm:ss";
+        }
+        DateTimeFormatter dtf = null;
+        LocalTime localTime = null;
+        try{
+            dtf = DateTimeFormatter.ofPattern(format);
+            localTime = LocalTime.parse(str, dtf);
+        }catch(Exception e){
+            throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
+        }
+        return localTime;
+    }
+
+    /**
      * @param localDateTime
      * @return Date
      * @throws ParseException
@@ -603,6 +639,30 @@ public class SysToolUtil {
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_YEAR, value);
         return calendar.getTime();
+    }
+
+    /**
+     * @description 返回日期参数加value天后的LocalDateTime日期
+     * @param localDateTime
+     * @param value
+     * @return LocalDateTime
+     */
+    public static LocalDateTime localDateTimeAdd(LocalDateTime localDateTime, int value, String type){
+        if (localDateTime == null || value < 1) {
+            return null;
+        }
+        LocalDateTime time = null;
+        if(in(type, "days", "months")){
+            if("days".equals(type)){
+//                LocalDateTime time = localDateTime.plusDays(value);
+                time = localDateTime.plus(value, ChronoUnit.DAYS);
+            }
+            if("months".equals(type)){
+//                LocalDateTime time = localDateTime.plusMonths(value);
+                time = localDateTime.plus(value, ChronoUnit.MONTHS);
+            }
+        }
+        return time;
     }
 
     /**
