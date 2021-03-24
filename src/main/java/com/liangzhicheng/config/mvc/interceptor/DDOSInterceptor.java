@@ -26,28 +26,19 @@ public class DDOSInterceptor extends HandlerInterceptorAdapter {
 			HandlerMethod handlerMethod = (HandlerMethod)handler;
 			DDOSValidate ddosValidate = handlerMethod.getMethodAnnotation(DDOSValidate.class);
 			if(ddosValidate != null && ddosValidate.validate() == true){
-				String userId = request.getParameter("userId");
+				String userId = request.getHeader("userId");
 				if(SysToolUtil.isBlank(userId)){
-					WebResult result = new WebResult(ApiConstant.PARAM_IS_NULL, ApiConstant.getMessage(ApiConstant.PARAM_IS_NULL), null);
-					JSONObject json = JSONObject.fromObject(result);
-					response.setCharacterEncoding("UTF-8");
-					response.setContentType("application/json");
-					response.getWriter().print(json.toString());
+					this.render(ApiConstant.PARAM_IS_NULL, response);
 					return false;
 				}
 				//获取函数名
 				String methodName = handlerMethod.getMethod().getName();
 				int second = ddosValidate.second();
 				if(second > 0){
-					//String ip = request.getRemoteAddr();
 					String cacheName = userId + "-" + methodName;
 					String cacheValue = (String) SysCacheUtil.get(cacheName);
 					if(SysToolUtil.isNotBlank(cacheValue)){
-						WebResult result = new WebResult(ApiConstant.REQUEST_BUSY, ApiConstant.getMessage(ApiConstant.REQUEST_BUSY), null);
-						JSONObject json = JSONObject.fromObject(result);
-						response.setCharacterEncoding("UTF-8");
-						response.setContentType("application/json");
-						response.getWriter().print(json.toString());
+						this.render(ApiConstant.REQUEST_BUSY, response);
 						return false;
 					}
 					SysCacheUtil.set(cacheName, cacheName, second);
@@ -55,6 +46,25 @@ public class DDOSInterceptor extends HandlerInterceptorAdapter {
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * @description 异常返回参数输出
+	 * @param flag
+	 * @param response
+	 */
+	private void render(int flag, HttpServletResponse response) throws Exception {
+		WebResult result = null;
+		if(flag == 41001){
+			result = new WebResult(ApiConstant.PARAM_IS_NULL, ApiConstant.getMessage(ApiConstant.PARAM_IS_NULL), null);
+		}
+		if(flag == -4){
+			result = new WebResult(ApiConstant.REQUEST_BUSY, ApiConstant.getMessage(ApiConstant.REQUEST_BUSY), null);
+		}
+		JSONObject json = JSONObject.fromObject(result);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json");
+		response.getWriter().print(json.toString());
 	}
 
 }

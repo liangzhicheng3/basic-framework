@@ -228,7 +228,7 @@ public class SysToolUtil {
      * @param size
      * @return int
      */
-    public static int ceil(int num, int size) {
+    public static int upCeil(int num, int size) {
         if (size == 0) {
             return 0;
         }
@@ -237,6 +237,21 @@ public class SysToolUtil {
         if (n2 > 0) {
             n1 += 1;
         }
+        return n1;
+    }
+
+    /**
+     * @description 向下取整
+     * @param num
+     * @param size
+     * @return int
+     */
+    public static int downCeil(int num, int size){
+        if(size == 0){
+            return 0;
+        }
+        int n1 = num / size;
+        Math.floor(n1);
         return n1;
     }
 
