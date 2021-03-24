@@ -1066,6 +1066,18 @@ public class SysToolUtil {
     }
 
     /**
+     * @description 判断集合是否为空并且数量大于0
+     * @param collection
+     * @return boolean
+     */
+    public static boolean sizeGTZero(Collection collection) {
+        if (collection == null || collection.size() < 1) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * @description 将request中的Xml格式转化成Map
      * @param request
      * @return Map
