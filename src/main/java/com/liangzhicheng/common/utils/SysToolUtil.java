@@ -669,12 +669,12 @@ public class SysToolUtil {
         LocalDateTime time = null;
         if(in(type, "days", "months")){
             if("days".equals(type)){
-//                LocalDateTime time = localDateTime.plusDays(value);
-                time = localDateTime.plus(value, ChronoUnit.DAYS);
+//                LocalDateTime time = localDateTime.plus(value, ChronoUnit.DAYS);
+                time = localDateTime.plusDays(value);
             }
             if("months".equals(type)){
-//                LocalDateTime time = localDateTime.plusMonths(value);
-                time = localDateTime.plus(value, ChronoUnit.MONTHS);
+//                LocalDateTime time = localDateTime.plus(value, ChronoUnit.MONTHS);
+                time = localDateTime.plusMonths(value);
             }
         }
         return time;
@@ -694,6 +694,29 @@ public class SysToolUtil {
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_YEAR, 0 - value);
         return calendar.getTime();
+    }
+
+    /**
+     * @description 返回日期参数减value天后的LocalDateTime日期
+     * @param localDateTime
+     * @param value
+     * @param type
+     * @return LocalDateTime
+     */
+    public static LocalDateTime localDateTimeSub(LocalDateTime localDateTime, int value, String type){
+        if (localDateTime == null || value < 1) {
+            return null;
+        }
+        LocalDateTime time = null;
+        if(in(type, "days", "months")){
+            if("days".equals(type)){
+                time = localDateTime.minusDays(value);
+            }
+            if("months".equals(type)){
+                time = localDateTime.minusMonths(value);
+            }
+        }
+        return time;
     }
 
     /**
