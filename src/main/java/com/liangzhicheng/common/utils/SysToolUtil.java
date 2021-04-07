@@ -624,20 +624,37 @@ public class SysToolUtil {
      * @throws ParseException
      * @description LocalDateTime格式转化成String字符串格式
      */
-    public static String localDateTimeToString(LocalDateTime localDateTime, String format) throws ParseException {
-        DateTimeFormatter dtf = null;
+    public static String localDateTimeToString(LocalDateTime localDateTime, String format) {
         if(isBlank(format)){
-            dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        }else{
-            dtf = DateTimeFormatter.ofPattern(format);
+            format = "yyyy-MM-dd HH:mm:ss";
         }
         String dateStr = "";
         try{
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
             dateStr = localDateTime.format(dtf);
         }catch(Exception e){
             throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
         }
         return dateStr;
+    }
+
+    /**
+     * @description 两个时间相比较，返回布尔值
+     * @param time1
+     * @param time2
+     * @return boolean
+     */
+    public static boolean localDateTimeGT(LocalDateTime time1, LocalDateTime time2){
+        if(time1 == null || time2 == null){
+            return false;
+        }
+        long currentTime = time1.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        long endTime = time2.toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        if(currentTime > endTime){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -824,6 +841,14 @@ public class SysToolUtil {
             return false;
         }
         return true;
+    }
+
+    /**
+     * @description 获取LocalDateTime当前时间毫秒数
+     * @return long
+     */
+    public static long getEpochMilliByCurrentTime(){
+        return LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
     }
 
     /**
@@ -1093,7 +1118,7 @@ public class SysToolUtil {
      * @param collection
      * @return boolean
      */
-    public static boolean sizeGTZero(Collection collection) {
+    public static boolean listSizeGT(Collection collection) {
         if (collection == null || collection.size() < 1) {
             return false;
         }
