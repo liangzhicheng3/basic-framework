@@ -81,6 +81,14 @@ public class PersonApiController extends BaseController {
         return buildSuccessInfo(resultList);
     }
 
+    @ApiOperation(value = "分页查询3")
+    @RequestMapping(value = "/page3", method = RequestMethod.POST)
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
+    public WebResult page3(@RequestBody TestPersonDto personDto){
+        IPage<TestPersonVO> resultList = testPersonService.page3(personDto);
+        return buildSuccessInfo(SysToolUtil.pageResult(resultList));
+    }
+
     @ApiOperation(value = "保存")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})

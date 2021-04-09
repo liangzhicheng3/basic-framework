@@ -50,4 +50,8 @@
         LIMIT #{page}, #{pageSize}
     </select>
 
+    <select id="page3" resultType="com.liangzhicheng.modules.entity.vo.TestPersonVO">
+        SELECT * FROM test_person person WHERE person.name = #{keyword}
+    </select>
+
 </mapper>

@@ -3,6 +3,7 @@ package com.liangzhicheng.modules.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liangzhicheng.common.page.PageResult;
+import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.dao.ITestAreaCodeDao;
 import com.liangzhicheng.modules.entity.TestAreaCodeEntity;
@@ -49,14 +50,14 @@ public class TestAreaCodeServiceImpl extends ServiceImpl<ITestAreaCodeDao, TestA
         }
         List<Map<String, Object>> areaCodeList = areaCodeDao.listArea(areaQuery);
         List<TestAreaCodeVO> areaCodeVOList = new ArrayList<TestAreaCodeVO>();
+        TestAreaCodeVO areaVO = null;
         if(areaCodeList != null && areaCodeList.size() > 0){
             for(Map<String, Object> area : areaCodeList){
-                TestAreaCodeVO areaVO = new TestAreaCodeVO();
+                areaVO = SysBeanUtil.copyEntity(area, TestAreaCodeVO.class);
                 areaVO.setAreaId(String.valueOf(area.get("areaId")));
                 areaVO.setAreaCode(String.valueOf(area.get("areaCode")));
                 areaVO.setAreaName(String.valueOf(area.get("areaName")));
                 areaVO.setAreaLevel(Integer.parseInt(String.valueOf(area.get("areaLevel"))));
-                BeanUtils.copyProperties(area, areaVO);
                 areaCodeVOList.add(areaVO);
             }
         }

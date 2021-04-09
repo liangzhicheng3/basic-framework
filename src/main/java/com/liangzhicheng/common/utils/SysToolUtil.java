@@ -1,7 +1,9 @@
 package com.liangzhicheng.common.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.config.http.HttpConnectionManager;
@@ -1190,6 +1192,20 @@ public class SysToolUtil {
             return document.asXML();
         }
         return "";
+    }
+
+    /**
+     * @description 分页查询结果集
+     * @param page
+     * @return Map<String, Object>
+     */
+    public static Map<String, Object> pageResult(IPage page){
+        Map<String, Object> resultMap = Maps.newHashMap();
+        resultMap.put("records", page.getRecords());
+        resultMap.put("total", page.getTotal());
+        resultMap.put("page", page.getCurrent());
+        resultMap.put("pageSize", page.getSize());
+        return resultMap;
     }
 
     /**

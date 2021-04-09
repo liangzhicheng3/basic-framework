@@ -1,5 +1,7 @@
 package com.liangzhicheng.modules.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.modules.dao.ITestPersonDao;
@@ -38,6 +40,12 @@ public class TestPersonServiceImpl extends ServiceImpl<ITestPersonDao, TestPerso
             return new PageResult(personQuery.getPage(), personQuery.getPageSize(), Collections.emptyList(), count.intValue());
         }
         return new PageResult<>(personQuery.getPage(), personQuery.getPageSize(), testPersonDao.getPersonList(personQuery), count.intValue());
+    }
+
+    @Override
+    public IPage<TestPersonVO> page3(TestPersonDto personDto) {
+        String keyword = personDto.getKeyword();
+        return baseMapper.page3(new Page<TestPersonEntity>().setCurrent(personDto.getPage()).setSize(personDto.getPageSize()), keyword);
     }
 
 }
