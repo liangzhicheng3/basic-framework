@@ -654,9 +654,8 @@ public class SysToolUtil {
         long endTime = time2.toInstant(ZoneOffset.of("+8")).toEpochMilli();
         if(currentTime > endTime){
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
     /**
