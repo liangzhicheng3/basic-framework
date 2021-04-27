@@ -19,27 +19,24 @@ import java.util.List;
 @Service
 public class TestPersonServiceImpl extends ServiceImpl<ITestPersonDao, TestPersonEntity> implements ITestPersonService {
 
-    @Resource
-    private ITestPersonDao testPersonDao;
-
     @Override
     public Long getCountUserNo() {
-        return testPersonDao.getCountUserNo();
+        return baseMapper.getCountUserNo();
     }
 
     @Override
     public String getRankUserNo() {
-        return testPersonDao.getRankUserNo();
+        return baseMapper.getRankUserNo();
     }
 
     @Override
     public PageResult page2(TestPersonDto personDto) {
         TestPersonQueryEntity personQuery = new TestPersonQueryEntity(personDto);
-        Long count = testPersonDao.getPersonCount(personQuery);
+        Long count = baseMapper.getPersonCount(personQuery);
         if(count.intValue() < 1){
             return new PageResult(personQuery.getPage(), personQuery.getPageSize(), Collections.emptyList(), count.intValue());
         }
-        return new PageResult<>(personQuery.getPage(), personQuery.getPageSize(), testPersonDao.getPersonList(personQuery), count.intValue());
+        return new PageResult<>(personQuery.getPage(), personQuery.getPageSize(), baseMapper.getPersonList(personQuery), count.intValue());
     }
 
     @Override

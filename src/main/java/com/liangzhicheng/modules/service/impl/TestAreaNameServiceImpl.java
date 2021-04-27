@@ -21,9 +21,6 @@ import java.util.Map;
 @Service
 public class TestAreaNameServiceImpl extends ServiceImpl<ITestAreaNameDao, TestAreaNameEntity> implements ITestAreaNameService {
 
-    @Resource
-    private ITestAreaNameDao areaNameDao;
-
     /**
      * @description 查询地区信息
      * @param areaName
@@ -31,7 +28,7 @@ public class TestAreaNameServiceImpl extends ServiceImpl<ITestAreaNameDao, TestA
      */
     @Override
     public List<Map<String, Object>> getAreaInfo(TestAreaNameEntity areaName) {
-        return areaNameDao.getAreaInfo(areaName);
+        return baseMapper.getAreaInfo(areaName);
     }
 
 }

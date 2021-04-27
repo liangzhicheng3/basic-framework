@@ -7,9 +7,11 @@
                an1.area_code AS areaCode
         FROM test_area_name an1,
              test_area_name an2
-        WHERE an1.area_code = an2.area_code
-        AND (an2.area_name = #{country} OR an2.area_name = #{province} OR an2.area_name = #{city})
-        AND an1.lang = 'zh_CN';
+        <where>
+            an1.area_code = an2.area_code
+            AND (an2.area_name = #{country} OR an2.area_name = #{province} OR an2.area_name = #{city})
+            AND an1.lang = 'zh_CN';
+        </where>
     </select>
 
 </mapper>

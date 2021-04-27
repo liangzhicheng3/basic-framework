@@ -2,6 +2,7 @@ package com.liangzhicheng.modules.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.common.collect.Lists;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
@@ -31,9 +32,6 @@ import java.util.Map;
 @Service
 public class TestAreaCodeServiceImpl extends ServiceImpl<ITestAreaCodeDao, TestAreaCodeEntity> implements ITestAreaCodeService {
 
-    @Resource
-    private ITestAreaCodeDao areaCodeDao;
-
     /**
      * @description 获取地区列表
      * @param areaDto
@@ -44,14 +42,14 @@ public class TestAreaCodeServiceImpl extends ServiceImpl<ITestAreaCodeDao, TestA
         TestAreaQueryEntity areaQuery = new TestAreaQueryEntity(areaDto);
         Integer page = areaQuery.getPage();
         Integer pageSize = areaQuery.getPageSize();
-        Long count = areaCodeDao.getCount(areaQuery);
+        Long count = baseMapper.getCount(areaQuery);
         if(count.intValue() < 1){
             return new PageResult<>(page, pageSize, Collections.emptyList(), count.intValue());
         }
-        List<Map<String, Object>> areaCodeList = areaCodeDao.listArea(areaQuery);
-        List<TestAreaCodeVO> areaCodeVOList = new ArrayList<TestAreaCodeVO>();
-        TestAreaCodeVO areaVO = null;
-        if(areaCodeList != null && areaCodeList.size() > 0){
+        List<Map<String, Object>> areaCodeList = baseMapper.listArea(areaQuery);
+        List<TestAreaCodeVO> areaCodeVOList = Lists.newArrayList();
+        if(SysToolUtil.listSizeGT(areaCodeList)){
+            TestAreaCodeVO areaVO = null;
             for(Map<String, Object> area : areaCodeList){
                 areaVO = SysBeanUtil.copyEntity(area, TestAreaCodeVO.class);
                 areaVO.setAreaId(String.valueOf(area.get("areaId")));
