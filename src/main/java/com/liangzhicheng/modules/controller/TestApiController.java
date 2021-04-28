@@ -12,7 +12,10 @@ import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginServerValidate;
+import com.liangzhicheng.config.websocket.WebSocketManager;
+import com.liangzhicheng.modules.entity.TestDepartmentPersonEntity;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
+import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
 import com.liangzhicheng.modules.service.ITestPersonService;
 import io.swagger.annotations.*;
 import org.springframework.validation.BindingResult;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.websocket.Session;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -31,6 +35,8 @@ public class TestApiController extends BaseController {
 
     @Resource
     private ITestPersonService personService;
+    @Resource
+    private ITestDepartmentPersonService departmentPersonService;
 
     @ApiOperation(value = "AES加密、解密测试")
     @RequestMapping(value = "/testAES", method = RequestMethod.POST)
@@ -150,6 +156,37 @@ public class TestApiController extends BaseController {
             resultList.add(SysQiniuUtil.upload(filePath, key));
         }
         return buildSuccessInfo(resultList);
+    }
+
+    @ApiOperation(value = "在线人数测试")
+    @RequestMapping(value = "/testOnlinePerson", method = RequestMethod.POST)
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
+    public WebResult testOnlinePerson(@ApiParam(name = "personId", value = "人员id") @RequestParam(required = true) String personId){
+        WebResult webResult = new WebResult(ApiConstant.BASE_SUCCESS_CODE, "未读消息总数");
+        String str = "person:";
+        try {
+            String key = str + personId;
+            Session session = WebSocketManager.clients.get(key);
+            if (session != null) {
+                webResult.setData(getCountByPersonId(personId));
+                session.getBasicRemote().sendText(JSONObject.toJSONString(webResult));
+                SysToolUtil.info("[未读消息总数] 通知App用户id:" + personId  + "的消息成功");
+            } else {
+                SysToolUtil.info("[未读消息总数] 通知App消息失败,无法获取到用户" + personId + "的连接");
+            }
+        } catch (Exception e) {
+            SysToolUtil.error("[未读消息总数] 通知App消息失败" + e, TestApiController.class);
+        }
+        return buildSuccessInfo(webResult);
+    }
+
+    /**
+     * @description 获取在线人数
+     * @param personId
+     * @return int
+     */
+    private int getCountByPersonId(String personId) {
+        return departmentPersonService.count(new QueryWrapper<TestDepartmentPersonEntity>().eq("person_id", personId));
     }
 
 }
