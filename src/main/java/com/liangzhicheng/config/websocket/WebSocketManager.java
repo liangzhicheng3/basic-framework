@@ -1,7 +1,7 @@
 package com.liangzhicheng.config.websocket;
 
 import com.liangzhicheng.config.context.SpringContextHolder;
-import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
+import com.liangzhicheng.modules.service.impl.TestDepartmentPersonServiceImpl;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;
@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Api(value="WebSocketManager", description="WebSocket")
 public class WebSocketManager {
 
-    private static ITestDepartmentPersonService departmentPersonService = SpringContextHolder.getBean(ITestDepartmentPersonService.class);
+    private static TestDepartmentPersonServiceImpl departmentPersonService = SpringContextHolder.getBean(TestDepartmentPersonServiceImpl.class);
 
     /**
      * 用于存放所有在线客户端
