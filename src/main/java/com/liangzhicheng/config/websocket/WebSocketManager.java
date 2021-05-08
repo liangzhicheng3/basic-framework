@@ -1,7 +1,11 @@
 package com.liangzhicheng.config.websocket;
 
+import com.liangzhicheng.config.context.SpringContextHolder;
+import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -18,9 +22,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 @Component
+@ComponentScan(basePackages = "com.liangzhicheng.modules.service.impl.TestDepartmentPersonServiceImpl") //解指定该类注入到bean中
+@Order(value = 2) //区分先后顺序
 @ServerEndpoint("/webSocket/{connectId}")
 @Api(value="WebSocketManager", description="WebSocket")
 public class WebSocketManager {
+
+    private static ITestDepartmentPersonService departmentPersonService = SpringContextHolder.getBean(ITestDepartmentPersonService.class);
 
     /**
      * 用于存放所有在线客户端
@@ -45,6 +53,9 @@ public class WebSocketManager {
         this.session = session;
         addOnlineCount();
         clients.put(connectId, session);
+        if(connectId.contains("personId:")){
+            departmentPersonService.testOnlinePerson(connectId.substring(9));
+        }
         log.warn("新的客户端上线，客户端id：{}", connectId);
     }
 

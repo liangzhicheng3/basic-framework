@@ -13,4 +13,10 @@ import com.liangzhicheng.modules.entity.TestDepartmentPersonEntity;
  */
 public interface ITestDepartmentPersonService extends IService<TestDepartmentPersonEntity> {
 
+    /**
+     * @description 测试在线人数
+     * @param personId
+     */
+    void testOnlinePerson(String personId);
+
 }
