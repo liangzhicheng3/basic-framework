@@ -1,11 +1,11 @@
-package com.liangzhicheng.config.websocket;
+package com.liangzhicheng.modules.controller.client;
 
 import com.liangzhicheng.config.context.SpringContextHolder;
+import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
 import com.liangzhicheng.modules.service.impl.TestDepartmentPersonServiceImpl;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.annotation.Order;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -22,13 +22,27 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Slf4j
 @Component
-@ComponentScan(basePackages = "com.liangzhicheng.modules.service.impl.TestDepartmentPersonServiceImpl") //解指定该类注入到bean中
-@Order(value = 2) //区分先后顺序
-@ServerEndpoint("/webSocket/{connectId}")
-@Api(value="WebSocketManager", description="WebSocket")
-public class WebSocketManager {
+@ServerEndpoint(value = "/webSocket/{connectId}")
+@Api(value = "WebSocketManager", description = "WebSocket")
+public class WebSocketController {
 
-    private static TestDepartmentPersonServiceImpl departmentPersonService = SpringContextHolder.getBean(TestDepartmentPersonServiceImpl.class);
+    /**
+     * 处理无法注入的关键
+     */
+    private static ApplicationContext applicationContext;
+
+    /**
+     * @description 设置上下文
+     * @param applicationContext
+     */
+    public static void setApplicationContext(ApplicationContext applicationContext) {
+        WebSocketController.applicationContext = applicationContext;
+    }
+
+    /**
+     * 需要注入的service或者dao
+     */
+    private ITestDepartmentPersonService departmentPersonService;
 
     /**
      * 用于存放所有在线客户端
@@ -54,6 +68,7 @@ public class WebSocketManager {
         addOnlineCount();
         clients.put(connectId, session);
         if(connectId.contains("personId:")){
+            departmentPersonService = applicationContext.getBean(ITestDepartmentPersonService.class);
             departmentPersonService.testOnlinePerson(connectId.substring(9));
         }
         log.warn("新的客户端上线，客户端id：{}", connectId);
@@ -82,15 +97,15 @@ public class WebSocketManager {
     }
 
     public static synchronized void addOnlineCount() {
-        WebSocketManager.onlineCount++;
+        WebSocketController.onlineCount++;
     }
 
     public static synchronized void subOnlineCount() {
-        WebSocketManager.onlineCount--;
+        WebSocketController.onlineCount--;
     }
 
     public static synchronized Map<String, Session> getClients() {
-        return WebSocketManager.getClients();
+        return WebSocketController.getClients();
     }
 
 }

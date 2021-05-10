@@ -3,7 +3,6 @@ package com.liangzhicheng.modules.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
@@ -12,8 +11,6 @@ import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginServerValidate;
-import com.liangzhicheng.config.websocket.WebSocketManager;
-import com.liangzhicheng.modules.entity.TestDepartmentPersonEntity;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
 import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
 import com.liangzhicheng.modules.service.ITestPersonService;
@@ -24,8 +21,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import javax.websocket.Session;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Api(value="Api-TestController", description="测试接口（仅供后台调试使用）")

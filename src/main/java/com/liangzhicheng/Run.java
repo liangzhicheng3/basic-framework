@@ -1,7 +1,9 @@
 package com.liangzhicheng;
 
+import com.liangzhicheng.modules.controller.client.WebSocketController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 //定时器注解，启用定时器功能
 //@EnableScheduling
@@ -9,7 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Run {
 
     public static void main(String[] args) {
-        SpringApplication.run(Run.class, args);
+        SpringApplication springApplication = new SpringApplication(Run.class);
+        ConfigurableApplicationContext configurableApplicationContext = springApplication.run(args);
+        //处理启动，WebSocket注入问题
+        WebSocketController.setApplicationContext(configurableApplicationContext);
     }
 
 }
