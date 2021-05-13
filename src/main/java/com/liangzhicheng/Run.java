@@ -1,6 +1,6 @@
 package com.liangzhicheng;
 
-import com.liangzhicheng.modules.controller.client.WebSocketManager;
+import com.liangzhicheng.modules.controller.client.WebSocketClientManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,7 +14,7 @@ public class Run {
         SpringApplication springApplication = new SpringApplication(Run.class);
         ConfigurableApplicationContext configurableApplicationContext = springApplication.run(args);
         //处理启动，WebSocket注入问题
-        WebSocketManager.setApplicationContext(configurableApplicationContext);
+        WebSocketClientManager.setApplicationContext(configurableApplicationContext);
     }
 
 }

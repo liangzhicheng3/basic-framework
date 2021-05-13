@@ -21,8 +21,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Component
 @ServerEndpoint(value = "/webSocket/{connectId}")
-@Api(value = "WebSocketController", description = "WebSocket")
-public class WebSocketManager {
+@Api(value = "WebSocketClientManager", description = "WebSocket")
+public class WebSocketClientManager {
 
     /**
      * 处理无法注入的关键
@@ -34,7 +34,7 @@ public class WebSocketManager {
      * @param applicationContext
      */
     public static void setApplicationContext(ApplicationContext applicationContext) {
-        WebSocketManager.applicationContext = applicationContext;
+        WebSocketClientManager.applicationContext = applicationContext;
     }
 
     /**
@@ -95,15 +95,15 @@ public class WebSocketManager {
     }
 
     public static synchronized void addOnlineCount() {
-        WebSocketManager.onlineCount++;
+        WebSocketClientManager.onlineCount++;
     }
 
     public static synchronized void subOnlineCount() {
-        WebSocketManager.onlineCount--;
+        WebSocketClientManager.onlineCount--;
     }
 
     public static synchronized Map<String, Session> getClients() {
-        return WebSocketManager.getClients();
+        return WebSocketClientManager.getClients();
     }
 
 }
