@@ -7,7 +7,7 @@ import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.controller.TestApiController;
-import com.liangzhicheng.modules.controller.client.WebSocketController;
+import com.liangzhicheng.modules.controller.client.WebSocketManager;
 import com.liangzhicheng.modules.dao.ITestDepartmentPersonDao;
 import com.liangzhicheng.modules.entity.TestDepartmentPersonEntity;
 import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
@@ -36,7 +36,7 @@ public class TestDepartmentPersonServiceImpl extends ServiceImpl<ITestDepartment
         String str = "person:";
         try {
             String key = str + personId;
-            Session session = WebSocketController.clients.get(key);
+            Session session = WebSocketManager.clients.get(key);
             if (session != null) {
                 webResult.setData(getCountByPersonId(personId));
                 session.getBasicRemote().sendText(JSONObject.toJSONString(webResult));

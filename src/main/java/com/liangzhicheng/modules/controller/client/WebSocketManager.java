@@ -1,8 +1,6 @@
 package com.liangzhicheng.modules.controller.client;
 
-import com.liangzhicheng.config.context.SpringContextHolder;
 import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
-import com.liangzhicheng.modules.service.impl.TestDepartmentPersonServiceImpl;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
@@ -24,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @ServerEndpoint(value = "/webSocket/{connectId}")
 @Api(value = "WebSocketController", description = "WebSocket")
-public class WebSocketController {
+public class WebSocketManager {
 
     /**
      * 处理无法注入的关键
@@ -36,7 +34,7 @@ public class WebSocketController {
      * @param applicationContext
      */
     public static void setApplicationContext(ApplicationContext applicationContext) {
-        WebSocketController.applicationContext = applicationContext;
+        WebSocketManager.applicationContext = applicationContext;
     }
 
     /**
@@ -97,15 +95,15 @@ public class WebSocketController {
     }
 
     public static synchronized void addOnlineCount() {
-        WebSocketController.onlineCount++;
+        WebSocketManager.onlineCount++;
     }
 
     public static synchronized void subOnlineCount() {
-        WebSocketController.onlineCount--;
+        WebSocketManager.onlineCount--;
     }
 
     public static synchronized Map<String, Session> getClients() {
-        return WebSocketController.getClients();
+        return WebSocketManager.getClients();
     }
 
 }
