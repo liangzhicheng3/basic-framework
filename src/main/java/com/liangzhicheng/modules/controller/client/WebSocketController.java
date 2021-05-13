@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
 @Component
 @ServerEndpoint(value = "/webSocket/{connectId}")
-@Api(value = "WebSocketManager", description = "WebSocket")
+@Api(value = "WebSocketController", description = "WebSocket")
 public class WebSocketController {
 
     /**
