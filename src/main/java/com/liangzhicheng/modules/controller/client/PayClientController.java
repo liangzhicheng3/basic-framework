@@ -12,7 +12,8 @@ import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.pay.wechatpay.utils.FeeUtil;
+import com.liangzhicheng.common.pay.alipay.utils.AlipayRefundUtil;
+import com.liangzhicheng.common.pay.wechatpay.utils.WeChatRefundUtil;
 import com.liangzhicheng.common.pay.wechatpay.utils.MD5Util;
 import com.liangzhicheng.common.pay.wechatpay.utils.SignUtil;
 import com.liangzhicheng.common.pay.wechatpay.utils.XmlUtil;
@@ -199,7 +200,7 @@ public class PayClientController extends BaseController {
         if (json.containsKey("orderId")) {
             orderId = json.getString("orderId");
         }
-        String result = FeeUtil.weChatRefund(Constants.WECHAT_APP_APP_ID, Constants.WECHAT_APP_MCH_ID, /*order.getOrderNo()*/null,
+        String result = WeChatRefundUtil.refund(Constants.WECHAT_APP_APP_ID, Constants.WECHAT_APP_MCH_ID, /*order.getOrderNo()*/null,
                 System.currentTimeMillis() + "", /*order.getAppPay()*/0, /*order.getAppPay()*/0, Constants.WECHAT_APP_SECRET, Constants.PATH_CERT);
         Document d = XmlUtil.parseXMLDocument(result);
         String return_code = d.getElementsByTagName("return_code").item(0).getFirstChild().getNodeValue();
@@ -261,10 +262,10 @@ public class PayClientController extends BaseController {
         if (json.containsKey("orderId")) {
             orderId = json.getString("orderId");
         }
-        AlipayTradeRefundResponse refundResponse = FeeUtil.alipayRefund(Constants.ALIPAY_URL, Constants.ALIPAY_APP_APP_ID,
+        AlipayTradeRefundResponse refundResponse = AlipayRefundUtil.refund(Constants.ALIPAY_URL, Constants.ALIPAY_APP_APP_ID,
                 Constants.ALIPAY_PRIVATE_KEY, Constants.INPUT_FORMAT, Constants.INPUT_CHARSET, Constants.ALIPAY_PUBLIC_KEY, Constants.SIGN_TYPE_APP/*, order*/);
         if(refundResponse.isSuccess()){
-            SysToolUtil.info("--- FeeUtil alipayRefund调用->退款成功 ///");
+            SysToolUtil.info("--- WeChatRefundUtil alipayRefund调用->退款成功 ///");
             //修改用户信息
             //余额日志记录
             //平台日志记录
