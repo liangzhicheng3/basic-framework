@@ -274,10 +274,10 @@
       <version>1.25</version>
     </dependency>
 
-    <!-- junit -->
+    <!-- 单元测试 -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
     </dependency>
   </dependencies>
 
