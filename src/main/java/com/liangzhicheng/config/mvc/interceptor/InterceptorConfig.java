@@ -19,8 +19,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    DDOSInterceptor ddosInterceptor(){
-        return new DDOSInterceptor();
+    AccessLimitInterceptor accessLimitInterceptor(){
+        return new AccessLimitInterceptor();
     }
 
     @Bean
@@ -36,7 +36,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(xssInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(ddosInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(accessLimitInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(loginClientInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(loginServerInterceptor()).addPathPatterns("/**");
     }
