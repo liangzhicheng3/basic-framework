@@ -55,13 +55,8 @@ public class LoginClientController extends BaseController {
         if(!SysToolUtil.isPhone(phone)){
             return buildFailedInfo(ApiConstant.PARAM_PHONE_ERROR);
         }
-        String vcode = SysToolUtil.random().substring(2);
-        try{
-            SysSmsUtil.sendSMS(Constants.SMS_ACCOUNT_SID, Constants.SMS_AUTH_TOKEN, Constants.SMS_APP_ID, Constants.SMS_TEMPLATE_ID, Constants.SMS_URL, phone, vcode);
-        }catch(Exception e){
-            e.printStackTrace();
-            return buildFailedInfo(ApiConstant.BASE_FAIL_CODE, "发送失败！");
-        }
+        String vcode = SysToolUtil.random();
+        SysSmsUtil.sendSMS(Constants.SMS_ACCOUNT_SID, Constants.SMS_AUTH_TOKEN, Constants.SMS_APP_ID, Constants.SMS_TEMPLATE_ID, Constants.SMS_URL, phone, vcode);
         SysCacheUtil.set(phone, vcode);
         //测试展示到缓存Map
         SysCacheUtil.hset("SMS_TEST_MAP", phone, vcode);

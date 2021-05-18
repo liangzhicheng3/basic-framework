@@ -10,7 +10,7 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class SysSmsUtil {
 
-    public static String sendSMS(String accountSid, String authToken, String appId, String templateId, String url, String phone, String ... vcodes) {
+    public static void sendSMS(String accountSid, String authToken, String appId, String templateId, String url, String phone, String ... vcodes) {
         String content = "";
         if(vcodes != null && vcodes.length > 0){
             for(String str : vcodes){
@@ -26,9 +26,12 @@ public class SysSmsUtil {
         json.put("mobile", phone);
         json.put("param", content);
         json.put("uid", null);
-        String result = SysToolUtil.sendPost(url, json.toJSONString(), null);
-        SysToolUtil.info("--- sendSms 调用成功 : \nphone : " + phone + ", content : " + content + " \nresult : " + result, SysSmsUtil.class);
-        return result;
+        try{
+            String result = SysToolUtil.sendPost(url, json.toJSONString(), null);
+            SysToolUtil.info("--- sendSms 调用成功 : \nphone : " + phone + ", content : " + content + " \nresult : " + result, SysSmsUtil.class);
+        }catch(Exception e){
+            SysToolUtil.error("--- sendSms 调用失败 : " + e.getMessage(), SysSmsUtil.class);
+        }
     }
 
 }
