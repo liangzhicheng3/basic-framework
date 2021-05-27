@@ -20,10 +20,10 @@ public class SysWeChatUtil {
      * @return String
      */
     public static String getUserInfoByCode(String code){
-        String appid = Constants.WECHAT_APP_APP_ID_USER;
-        String secrect = Constants.WECHAT_APP_APP_SECRET_USER;
+        String appId = Constants.WECHAT_APP_APP_ID_USER;
+        String secret = Constants.WECHAT_APP_APP_SECRET_USER;
         String authorizationCode = Constants.WECHAT_APP_GRANT_TYPE_USER;
-        String url = Constants.WECHAT_APP_URL_USER+"appid="+appid+"&secret="+secrect+"&code="+code+"&grant_type="+authorizationCode;
+        String url = Constants.WECHAT_APP_URL_USER+"appid="+appId+"&secret="+secret+"&code="+code+"&grant_type="+authorizationCode;
         String result = SysToolUtil.sendGet(url);
         try{
             JSONObject json = JSONObject.fromObject(result);
@@ -53,10 +53,10 @@ public class SysWeChatUtil {
      * @return String
      */
     public static Map<String, Object> getOpenIdByCode(String code){
-        String appid = Constants.WECHAT_APP_APP_ID_USER;
-        String secrect = Constants.WECHAT_APP_APP_SECRET_USER;
+        String appId = Constants.WECHAT_APP_APP_ID_USER;
+        String secret = Constants.WECHAT_APP_APP_SECRET_USER;
         String authorizationCode = Constants.WECHAT_APP_GRANT_TYPE_USER;
-        String url = Constants.WECHAT_APP_URL_USER+"appid="+appid+"&secret="+secrect+"&code="+code+"&grant_type="+authorizationCode;
+        String url = Constants.WECHAT_APP_URL_USER+"appid="+appId+"&secret="+secret+"&code="+code+"&grant_type="+authorizationCode;
         String result = SysToolUtil.sendGet(url);
         Map<String, Object> map = new HashMap<String, Object>();
         try{
