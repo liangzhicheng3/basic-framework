@@ -32,11 +32,6 @@ public class AccessLimitInterceptor extends HandlerInterceptorAdapter {
 			if(!method.isAnnotationPresent(AccessLimitValidate.class)){
 				return true;
 			}
-			String userId = request.getHeader("userId");
-			if(SysToolUtil.isBlank(userId)){
-				render(ApiConstant.PARAM_IS_NULL, response);
-				return false;
-			}
 			//获取注解内容信息
 			AccessLimitValidate accessLimitValidate = method.getAnnotation(AccessLimitValidate.class);
 			if(accessLimitValidate == null){
@@ -46,7 +41,7 @@ public class AccessLimitInterceptor extends HandlerInterceptorAdapter {
 				int second = accessLimitValidate.second(); //请求时间范围
 				int times = accessLimitValidate.times(); //请求次数
 				//根据IP + API限流
-				String key = SysToolUtil.getAccessUrl(request) + request.getRequestURI() + "-" + userId;
+				String key = SysToolUtil.getAccessUrl(request) + request.getRequestURI();
 				//根据key获取已请求次数
 				Integer maxTimes = (Integer) SysCacheUtil.get(key);
 				if(maxTimes == null){
@@ -54,7 +49,7 @@ public class AccessLimitInterceptor extends HandlerInterceptorAdapter {
 				}else if(maxTimes < times){
 					SysCacheUtil.set(key, maxTimes + 1, second);
 				}else{
-					render(ApiConstant.REQUEST_BUSY, response);
+					render(response);
 					return false;
 				}
 			}
@@ -64,19 +59,13 @@ public class AccessLimitInterceptor extends HandlerInterceptorAdapter {
 
 	/**
 	 * @description 异常返回参数输出
-	 * @param code
 	 * @param response
 	 */
-	private void render(int code, HttpServletResponse response) {
+	private void render(HttpServletResponse response) {
 		PrintWriter out = null;
 		WebResult result = null;
 		try {
-			if(code == 41001){
-				result = new WebResult(ApiConstant.PARAM_IS_NULL, ApiConstant.getMessage(ApiConstant.PARAM_IS_NULL), null);
-			}
-			if(code == -4){
-				result = new WebResult(ApiConstant.REQUEST_BUSY, ApiConstant.getMessage(ApiConstant.REQUEST_BUSY), null);
-			}
+			result = new WebResult(ApiConstant.REQUEST_BUSY, ApiConstant.getMessage(ApiConstant.REQUEST_BUSY), null);
 			response.setContentType("application/json;charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
 			out = response.getWriter();
