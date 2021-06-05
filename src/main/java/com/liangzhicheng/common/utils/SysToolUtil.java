@@ -86,8 +86,31 @@ public class SysToolUtil {
      * @param request
      * @return String
      */
-    public static String getAccessUrl(HttpServletRequest request) {
+    public static String getAccessUrlPrefix(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+    }
+
+    /**
+     * @description 获取真实的ip地址
+     * @param request
+     * @return String
+     */
+    public static String getAccessUrl(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+        if(isNotBlank(ip)){
+            //多次反向代理后会有多个IP值，第一个IP才是真实IP
+            int index = ip.indexOf(",");
+            if(index != -1){
+                return ip.substring(0, index);
+            }else{
+                return ip;
+            }
+        }
+        ip = request.getHeader("X-Real-IP");
+        if(isNotBlank(ip)){
+            return ip;
+        }
+        return request.getRemoteAddr();
     }
 
     /**
