@@ -103,7 +103,7 @@ public class WebSocketClientManager {
     }
 
     public static synchronized Map<String, Session> getClients() {
-        return WebSocketClientManager.getClients();
+        return clients;
     }
 
 }
