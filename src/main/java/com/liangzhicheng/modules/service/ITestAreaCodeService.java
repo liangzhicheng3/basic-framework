@@ -15,11 +15,4 @@ import com.liangzhicheng.modules.entity.dto.TestAreaDto;
  */
 public interface ITestAreaCodeService extends IService<TestAreaCodeEntity> {
 
-    /**
-     * @description 获取地区列表
-     * @param areaDto
-     * @return PageResult
-     */
-    PageResult listArea(TestAreaDto areaDto);
-
 }

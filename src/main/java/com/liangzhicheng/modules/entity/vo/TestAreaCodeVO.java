@@ -22,9 +22,6 @@ public class TestAreaCodeVO {
     @ApiModelProperty("地区编码")
     private String areaCode;
 
-    @ApiModelProperty("地区名称")
-    private String areaName;
-
     @ApiModelProperty("地区层级")
     private Integer areaLevel;
 

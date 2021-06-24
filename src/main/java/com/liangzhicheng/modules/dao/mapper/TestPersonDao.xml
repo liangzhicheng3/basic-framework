@@ -47,7 +47,7 @@
                 ORDER BY person.create_date DESC
             </otherwise>
         </choose>
-        LIMIT #{page}, #{pageSize}
+        LIMIT #{pageNo}, #{pageSize}
     </select>
 
     <select id="page3" resultType="com.liangzhicheng.modules.entity.vo.TestPersonVO">

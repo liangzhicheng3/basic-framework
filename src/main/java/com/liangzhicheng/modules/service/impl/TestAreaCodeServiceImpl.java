@@ -32,34 +32,4 @@ import java.util.Map;
 @Service
 public class TestAreaCodeServiceImpl extends ServiceImpl<ITestAreaCodeDao, TestAreaCodeEntity> implements ITestAreaCodeService {
 
-    /**
-     * @description 获取地区列表
-     * @param areaDto
-     * @return PageResult
-     */
-    @Override
-    public PageResult<TestAreaCodeVO> listArea(TestAreaDto areaDto) {
-        TestAreaQueryEntity areaQuery = new TestAreaQueryEntity(areaDto);
-        Integer page = areaQuery.getPage();
-        Integer pageSize = areaQuery.getPageSize();
-        Long count = baseMapper.getCount(areaQuery);
-        if(count.intValue() < 1){
-            return new PageResult<>(page, pageSize, Collections.emptyList(), count.intValue());
-        }
-        List<Map<String, Object>> areaCodeList = baseMapper.listArea(areaQuery);
-        List<TestAreaCodeVO> areaCodeVOList = Lists.newArrayList();
-        if(SysToolUtil.listSizeGT(areaCodeList)){
-            TestAreaCodeVO areaVO = null;
-            for(Map<String, Object> area : areaCodeList){
-                areaVO = SysBeanUtil.copyEntity(area, TestAreaCodeVO.class);
-                areaVO.setAreaId(String.valueOf(area.get("areaId")));
-                areaVO.setAreaCode(String.valueOf(area.get("areaCode")));
-                areaVO.setAreaName(String.valueOf(area.get("areaName")));
-                areaVO.setAreaLevel(Integer.parseInt(String.valueOf(area.get("areaLevel"))));
-                areaCodeVOList.add(areaVO);
-            }
-        }
-        return new PageResult<>(page, pageSize, areaCodeVOList, count.intValue());
-    }
-
 }

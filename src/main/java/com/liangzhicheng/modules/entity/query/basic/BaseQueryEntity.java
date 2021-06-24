@@ -17,11 +17,19 @@ public class BaseQueryEntity {
     private int pageSize;
 
     public BaseQueryEntity(BaseDto dto){
-        this.page = dto.getPage();
-        this.pageSize = dto.getPageSize();
+        Integer page = dto.getPage();
+        Integer pageSize = dto.getPageSize();
+        if(page == null || page < 1){
+            page = 1;
+        }
+        if(pageSize == null || pageSize < 1){
+            pageSize = 10;
+        }
+        this.page = page;
+        this.pageSize = pageSize;
     }
 
-    public int getPage(){
+    public int getPageNo(){
         return (this.page - 1) * pageSize;
     }
 

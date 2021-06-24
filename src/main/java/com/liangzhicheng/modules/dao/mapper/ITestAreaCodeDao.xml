@@ -2,36 +2,5 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.liangzhicheng.modules.dao.ITestAreaCodeDao">
 
-    <select id="getCount" resultType="java.lang.Long">
-        SELECT
-        COUNT(ac.area_id) AS total
-        FROM test_area_code ac, test_area_name an
-        <where>
-            an.area_code = ac.area_code AND an.lang = #{langType}
-            AND ac.area_level = #{areaLevel}
-            <if test="areaId != null and areaId != ''">
-                AND ac.area_id != #{areaId}
-                AND SUBSTRING(ac.area_id, 1, #{length}) = #{areaId}
-            </if>
-        </where>
-    </select>
-
-    <select id="listArea" resultType="java.util.Map">
-        SELECT
-        ac.area_id AS areaId,
-        ac.area_code AS areaCode,
-        an.area_name AS areaName,
-        ac.area_level AS areaLevel
-        FROM test_area_code ac, test_area_name an
-        <where>
-            an.area_code = ac.area_code AND an.lang = #{langType}
-            AND ac.area_level = #{areaLevel}
-            <if test="areaId != null and areaId != ''">
-                AND ac.area_id != #{areaId}
-                AND SUBSTRING(ac.area_id, 1, #{length}) = #{areaId}
-            </if>
-        </where>
-        LIMIT #{page}, #{pageSize}
-    </select>
 
 </mapper>

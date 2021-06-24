@@ -17,18 +17,4 @@ import java.util.Map;
  */
 public interface ITestAreaCodeDao extends BaseMapper<TestAreaCodeEntity> {
 
-    /**
-     * @description 获取地区总记录
-     * @param areaQuery
-     * @return long
-     */
-    Long getCount(TestAreaQueryEntity areaQuery);
-
-    /**
-     * @description 获取地区列表
-     * @param areaQuery
-     * @return List<Map<String, Object>>
-     */
-    List<Map<String, Object>> listArea(TestAreaQueryEntity areaQuery);
-
 }

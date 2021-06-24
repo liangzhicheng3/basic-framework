@@ -16,22 +16,16 @@ import lombok.Data;
 @ApiModel(value="TestAreaNameVO")
 public class TestAreaNameVO {
 
-    @ApiModelProperty("语言")
-    private String lang;
-
-    @ApiModelProperty("地区名称")
-    private String areaName;
+    @ApiModelProperty("地区id")
+    private String areaId;
 
     @ApiModelProperty("地区编码")
     private String areaCode;
 
-    @ApiModelProperty("类型")
-    private String type;
+    @ApiModelProperty("地区名称")
+    private String areaName;
 
-    @ApiModelProperty("是否编辑：0否，1是")
-    private String isEdit;
-
-    @ApiModelProperty("备注")
-    private String remarks;
+    @ApiModelProperty("地区层级")
+    private Integer areaLevel;
 
 }
