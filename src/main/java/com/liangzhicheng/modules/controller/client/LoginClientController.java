@@ -8,7 +8,7 @@ import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
-import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
+import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.TestAreaNameEntity;
 import com.liangzhicheng.modules.entity.dto.TestLoginClientDto;
 import com.liangzhicheng.modules.entity.dto.TestLoginWeChatDto;
@@ -204,7 +204,7 @@ public class LoginClientController extends BaseController {
         return buildSuccessInfo(resultMap);
     }
 
-    @LoginClientValidate
+    @LoginValidate
     @ApiOperation(value = "APP退出登录")
     @PostMapping(value = "/logOutAPP")
     @ApiOperationSupport(ignoreParameters = {"dto.phone", "dto.email", "dto.vcode"})

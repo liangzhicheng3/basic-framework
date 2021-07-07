@@ -133,12 +133,22 @@ public class SysTokenUtil {
     }
 
     /**
+     * @description 判断用户是否登录(WEB)
+     * @param userId
+     * @param token
+     * @return boolean
+     */
+    public static boolean isLoginWEB(String userId, String token){
+        return isLogin(userId + Constants.USER_ID_SUFFIX_WEB, token);
+    }
+
+    /**
      * @description 判断用户是否登录
      * @param userId
      * @param token
      * @return boolean
      */
-    public static boolean loginDispose(String userId, String token){
+    public static boolean isLogin(String userId, String token){
         if(SysToolUtil.isNotBlank(userId)) {
             if(SysToolUtil.isNotBlank(token)) {
                 String existValue = (String) SysCacheUtil.hget(Constants.TOKEN_KEY_MAP, userId);
@@ -161,8 +171,8 @@ public class SysTokenUtil {
      * @param token
      * @return boolean
      */
-    public static boolean isLogin(String userId, String token){
-        return !loginDispose(userId, token);
+    public static boolean isNotLogin(String userId, String token){
+        return !isLogin(userId, token);
     }
 
     /**

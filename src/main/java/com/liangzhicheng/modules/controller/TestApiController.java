@@ -9,7 +9,7 @@ import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
-import com.liangzhicheng.config.mvc.interceptor.annotation.LoginClientValidate;
+import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginServerValidate;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
 import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
@@ -80,7 +80,7 @@ public class TestApiController extends BaseController {
         return buildSuccessInfo(map);
     }
 
-    @LoginClientValidate
+    @LoginValidate
     @ApiOperation(value = "校验是否登录-客户端")
     @RequestMapping(value = "/testIsLoginClient", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})

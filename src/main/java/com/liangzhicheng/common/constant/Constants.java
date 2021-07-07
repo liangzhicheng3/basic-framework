@@ -135,8 +135,9 @@ public abstract class Constants {
     /**
      * JSON Web Token相关常量
      */
-    public static final String USER_ID_SUFFIX_APP = "-APP";
     public static final String USER_ID_SUFFIX_MINI = "-MINI";
+    public static final String USER_ID_SUFFIX_APP = "-APP";
+    public static final String USER_ID_SUFFIX_WEB = "-WEB";
     public static final String TOKEN_KEY_MAP = "token_key_map";
     public static final String JWT_SECRET = "3MZq0BYyGcXYoXjhS4QbAM+2YdlLCwKRr2gvVJOJ+LIANGZHICHENG"; //JWT生成token时加密密文
 
