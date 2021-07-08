@@ -1235,6 +1235,32 @@ public class SysToolUtil {
     }
 
     /**
+     * @description 获取当前页码
+     * @param value
+     * @return Long
+     */
+    public static Long getPage(Integer value){
+        if(value == null || value < 1){
+            Integer page = 1;
+            return Long.valueOf(page + "");
+        }
+        return Long.valueOf(value + "");
+    }
+
+    /**
+     * @description 获取每页数量
+     * @param value
+     * @return
+     */
+    public static Long getPageSize(Integer value){
+        if(value == null || value < 1){
+            Integer pageSize = 10;
+            return Long.valueOf(pageSize + "");
+        }
+        return Long.valueOf(value + "");
+    }
+
+    /**
      * @description 分页查询结果集
      * @param page
      * @return Map<String, Object>
