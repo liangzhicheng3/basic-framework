@@ -1,8 +1,7 @@
 package com.liangzhicheng.modules.entity.query;
 
-import com.alibaba.fastjson.JSONObject;
 import com.liangzhicheng.common.utils.SysToolUtil;
-import com.liangzhicheng.modules.entity.dto.TestAreaDto;
+import com.liangzhicheng.modules.entity.dto.TestAreaDTO;
 import com.liangzhicheng.modules.entity.query.basic.BaseQueryEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,7 +32,7 @@ public class TestAreaQueryEntity extends BaseQueryEntity {
      */
     private String length;
 
-    public TestAreaQueryEntity(TestAreaDto areaDto) {
+    public TestAreaQueryEntity(TestAreaDTO areaDto) {
         super(areaDto);
         String areaId = areaDto.getAreaId();
         if(SysToolUtil.isNotBlank(areaId)) {

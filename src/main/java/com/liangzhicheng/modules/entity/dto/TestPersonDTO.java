@@ -1,10 +1,11 @@
 package com.liangzhicheng.modules.entity.dto;
 
+import com.liangzhicheng.modules.entity.dto.basic.BaseDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class TestPersonDto extends BaseDto {
+public class TestPersonDTO extends BaseDTO {
 
     @ApiModelProperty(value = "关键字(昵称，手机号)")
     private String keyword;

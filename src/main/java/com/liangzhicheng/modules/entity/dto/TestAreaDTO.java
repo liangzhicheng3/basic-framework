@@ -1,5 +1,6 @@
 package com.liangzhicheng.modules.entity.dto;
 
+import com.liangzhicheng.modules.entity.dto.basic.BaseDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import lombok.Data;
  * @since 2021-03-05
  */
 @Data
-public class TestAreaDto extends BaseDto {
+public class TestAreaDTO extends BaseDTO {
 
     /**
      * areaLevel为0时可以为空

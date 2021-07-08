@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
  * @since 2021-01-26
  */
 @Data
-public class TestLoginWeChatDto {
+public class TestLoginWeChatDTO {
 
     @ApiModelProperty(value = "微信code", required = true)
     @NotBlank(message = "code字段不能为空")

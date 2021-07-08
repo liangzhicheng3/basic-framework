@@ -1,4 +1,4 @@
-package com.liangzhicheng.modules.entity.dto;
+package com.liangzhicheng.modules.entity.dto.basic;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
  * @since 2021-01-26
  */
 @Data
-public class BaseDto {
+public class BaseDTO {
 
     @ApiModelProperty(value = "页码", required = true)
     private Integer page;

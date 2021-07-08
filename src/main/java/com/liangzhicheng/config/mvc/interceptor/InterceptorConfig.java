@@ -28,17 +28,11 @@ public class InterceptorConfig implements WebMvcConfigurer {
         return new LoginInterceptor();
     }
 
-    @Bean
-    LoginServerInterceptor loginServerInterceptor(){
-        return new LoginServerInterceptor();
-    }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(xssInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(accessLimitInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(loginInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(loginServerInterceptor()).addPathPatterns("/**");
     }
 
 }

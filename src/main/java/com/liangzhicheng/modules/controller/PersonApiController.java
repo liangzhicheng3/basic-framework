@@ -11,12 +11,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
-import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
-import com.liangzhicheng.modules.entity.dto.TestPersonDto;
+import com.liangzhicheng.modules.entity.dto.TestPersonDTO;
 import com.liangzhicheng.modules.entity.vo.TestPersonVO;
 import com.liangzhicheng.modules.service.ITestPersonService;
 import io.swagger.annotations.*;
@@ -76,7 +75,7 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "分页查询2")
     @RequestMapping(value = "/page2", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult page2(@RequestBody TestPersonDto personDto){
+    public WebResult page2(@RequestBody TestPersonDTO personDto){
         PageResult resultList = testPersonService.page2(personDto);
         return buildSuccessInfo(resultList);
     }
@@ -84,7 +83,7 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "分页查询3")
     @RequestMapping(value = "/page3", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult page3(@RequestBody TestPersonDto personDto){
+    public WebResult page3(@RequestBody TestPersonDTO personDto){
         IPage<TestPersonVO> resultList = testPersonService.page3(personDto);
         return buildSuccessInfo(SysToolUtil.pageResult(resultList));
     }

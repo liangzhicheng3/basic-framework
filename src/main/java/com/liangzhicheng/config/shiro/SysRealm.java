@@ -1,6 +1,16 @@
 package com.liangzhicheng.config.shiro;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.liangzhicheng.common.constant.Constants;
+import com.liangzhicheng.common.utils.SysToolUtil;
+import com.liangzhicheng.modules.entity.SysPermEntity;
+import com.liangzhicheng.modules.entity.SysRolePermEntity;
+import com.liangzhicheng.modules.entity.SysRoleUserEntity;
+import com.liangzhicheng.modules.entity.SysUserEntity;
+import com.liangzhicheng.modules.service.ISysPermService;
+import com.liangzhicheng.modules.service.ISysRolePermService;
+import com.liangzhicheng.modules.service.ISysRoleUserService;
+import com.liangzhicheng.modules.service.ISysUserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -17,14 +27,14 @@ import java.util.List;
 @Component
 public class SysRealm extends AuthorizingRealm {
 
-//    @Resource
-//    private ISysUserService sysUserService;
-//    @Resource
-//    private ISysRoleService roleService;
-//    @Resource
-//    private ISysPermissionService permissionService;
-//    @Resource
-//    private ISysRolePermissionService rolePermissionService;
+    @Resource
+    private ISysUserService sysUserService;
+    @Resource
+    private ISysRoleUserService roleUserService;
+    @Resource
+    private ISysPermService permService;
+    @Resource
+    private ISysRolePermService rolePermService;
 
     /**
      * @description realm中使用指定的凭证匹配器完成密码匹配操作
@@ -38,73 +48,57 @@ public class SysRealm extends AuthorizingRealm {
     /**
      * @description 用户登录认证
      * @param token
-     * @return
+     * @return AuthenticationInfo
      * @throws AuthenticationException
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        //通过token获取用户名，登录请求头参数携带
-//        String username = (String) token.getPrincipal();
-//        SysUserEntity user = sysUserService.getOne(new QueryWrapper<SysUserEntity>().eq("username", username));
-//        if(user == null){
-//            throw new UnknownAccountException("用户名或密码错误！");
-//        }
-//        if(user.isLocked()){
-//            throw new DisabledAccountException("账号已被禁用！");
-//        }
-//        if(user != null){
-//            //返回用户信息
-//            return new SimpleAuthenticationInfo(user, user.getPassword(), "SysRealm");
-//        }
-
-//        String username = token.getPrincipal().toString();
-//        String password = new String((char[])token.getCredentials());
-//        SysUserEntity user = sysUserService.getOne(new QueryWrapper<SysUserEntity>().eq("username", username).eq("password", password));
-//        if(user == null){
-//            throw new UnknownAccountException("用户名或密码错误！");
-//        }
-//        if(user.isLocked()){
-//            throw new DisabledAccountException("账号已被禁用！");
-//        }
-//        if(user != null){
-//            //返回用户信息
-//            return new SimpleAuthenticationInfo(user, password, this.getName());
-//        }
-        return null;
+        //登录请求头参数携带，通过token获取用户名
+        String accountName = token.getPrincipal().toString();
+        String password = new String((char[]) token.getCredentials());
+        SysUserEntity user = sysUserService.getOne(new QueryWrapper<SysUserEntity>()
+                .eq("account_name", accountName).eq(Constants.DEL_FLAG, Constants.ZERO));
+        if(SysToolUtil.isNull(user) || !user.getPassword().equals(password)){
+            throw new UnknownAccountException("账号或密码错误");
+        }
+        if(!Constants.ONE.equals(user.getLoginStatus())){
+            throw new DisabledAccountException("账号已被禁用");
+        }
+        return new SimpleAuthenticationInfo(user, user.getPassword(), this.getName());
     }
 
     /**
      * @description 角色，权限相关设置
      * @param pc
-     * @return
+     * @return AuthorizationInfo
      */
-//    @Override
-//    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
-//        //创建info，将角色和权限存储
-//        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        /*Subject subject = SecurityUtils.getSubject();
-//        SysUserEntity sysUser = (SysUserEntity) subject.getPrincipal();*/
-//        SysUserEntity sysUser = (SysUserEntity) pc.getPrimaryPrincipal();
-//        info.addRole(sysUser.getRoleName());
-//        if(sysUser.isAdmin()){
-//            List<SysPermissionEntity> permissionList = permissionService.list(new QueryWrapper<SysPermissionEntity>());
-//            for (SysPermissionEntity permissionEntity : permissionList) {
-//                info.addStringPermission(permissionEntity.getExpression());
-//            }
-//        }else{
-//            List<SysRolePermissionEntity> rolePermissionEntities = rolePermissionService.list(new QueryWrapper<SysRolePermissionEntity>().eq("role_id", sysUser.getRoleId()));
-//            if(rolePermissionEntities != null && rolePermissionEntities.size() > 0){
-//                for(SysRolePermissionEntity rolePermissionEntity : rolePermissionEntities){
-//                    info.addStringPermission(rolePermissionEntity.getExpression());
-//                }
-//            }
-//        }
-//        return info;
-//    }
-
     @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
+        //创建authInfo，将权限存储
+        SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
+        SysUserEntity user = (SysUserEntity) pc.getPrimaryPrincipal();
+        if(Constants.ONE.equals(user.getIsAdmin())){
+            List<SysPermEntity> permList = permService.list(
+                    new QueryWrapper<SysPermEntity>().eq(Constants.DEL_FLAG, Constants.ZERO));
+            if(SysToolUtil.listSizeGT(permList)){
+                for(SysPermEntity perm : permList){
+                    authInfo.addStringPermission(perm.getExpression());
+                }
+            }
+        }else{
+            SysRoleUserEntity roleUser = roleUserService.getOne(user.getId());
+            if(SysToolUtil.isNotNull(roleUser)){
+                authInfo.addRole(roleUser.getRoleName());
+                List<SysRolePermEntity> rolePermList = rolePermService.list(
+                        new QueryWrapper<SysRolePermEntity>().eq("role_id", roleUser.getRoleId()));
+                if(SysToolUtil.listSizeGT(rolePermList)){
+                    for(SysRolePermEntity rolePerm : rolePermList){
+                        authInfo.addStringPermission(rolePerm.getExpression());
+                    }
+                }
+            }
+        }
+        return authInfo;
     }
 
 }

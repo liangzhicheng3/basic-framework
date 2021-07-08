@@ -1,8 +1,7 @@
 package com.liangzhicheng.modules.entity.query;
 
-import com.alibaba.fastjson.JSONObject;
 import com.liangzhicheng.common.utils.SysToolUtil;
-import com.liangzhicheng.modules.entity.dto.TestPersonDto;
+import com.liangzhicheng.modules.entity.dto.TestPersonDTO;
 import com.liangzhicheng.modules.entity.query.basic.BaseQueryEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +34,7 @@ public class TestPersonQueryEntity extends BaseQueryEntity {
      */
     private LocalDateTime dateEnd;
 
-    public TestPersonQueryEntity(TestPersonDto personDto) {
+    public TestPersonQueryEntity(TestPersonDTO personDto) {
         super(personDto);
         String keyword = personDto.getKeyword();
         if(SysToolUtil.isNotBlank(keyword)) {

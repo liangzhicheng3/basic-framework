@@ -18,7 +18,7 @@ public abstract class BaseController {
 	}
 
     protected WebResult buildFailedInfo(int errorCode, String appendMsg) {
-        return new WebResult(errorCode, ApiConstant.getMessage(errorCode) + appendMsg, null);
+        return new WebResult(errorCode, appendMsg, null);
 	}
 
     protected WebResult buildFailedInfo(String errorMsg) {

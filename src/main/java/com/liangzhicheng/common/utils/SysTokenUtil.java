@@ -39,6 +39,16 @@ public class SysTokenUtil {
     }
 
     /**
+     * @description 生成用户JSON Web Token(WEB)
+     * @param userId
+     * @param expireTime
+     * @return String
+     */
+    public static String createTokenWEB(String userId, Date expireTime){
+        return createToken(userId + Constants.USER_ID_SUFFIX_WEB, expireTime);
+    }
+
+    /**
      * @description 更新用户Token(MINI)
      * @param userId
      * @param token
@@ -57,6 +67,15 @@ public class SysTokenUtil {
     }
 
     /**
+     * @description 更新用户Token(WEB)
+     * @param userId
+     * @param token
+     */
+    public static void updateTokenWEB(String userId, String token){
+        updateToken(userId + Constants.USER_ID_SUFFIX_WEB, token);
+    }
+
+    /**
      * @description 清除用户缓存Token(MINI)
      * @param userId
      * @return String
@@ -72,6 +91,15 @@ public class SysTokenUtil {
      */
     public static String clearTokenAPP(String userId){
         return clearToken(userId + Constants.USER_ID_SUFFIX_APP);
+    }
+
+    /**
+     * @description 清除用户缓存Token(WEB)
+     * @param userId
+     * @return String
+     */
+    public static String clearTokenWEB(String userId){
+        return clearToken(userId + Constants.USER_ID_SUFFIX_WEB);
     }
 
     /**

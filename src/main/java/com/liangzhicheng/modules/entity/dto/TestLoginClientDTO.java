@@ -9,7 +9,7 @@ import lombok.Data;
  * @since 2021-01-26
  */
 @Data
-public class TestLoginClientDto {
+public class TestLoginClientDTO {
 
     @ApiModelProperty(value = "用户id", required = true)
     private String userId;

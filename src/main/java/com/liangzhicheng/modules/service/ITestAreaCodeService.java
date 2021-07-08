@@ -1,9 +1,7 @@
 package com.liangzhicheng.modules.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.modules.entity.TestAreaCodeEntity;
-import com.liangzhicheng.modules.entity.dto.TestAreaDto;
 
 /**
  * <p>

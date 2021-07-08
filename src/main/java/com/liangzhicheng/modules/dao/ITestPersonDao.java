@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
-import com.liangzhicheng.modules.entity.dto.TestPersonDto;
 import com.liangzhicheng.modules.entity.query.TestPersonQueryEntity;
 import com.liangzhicheng.modules.entity.vo.TestPersonVO;
 import org.apache.ibatis.annotations.Param;

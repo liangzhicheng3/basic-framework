@@ -19,6 +19,7 @@ public abstract class Constants {
      * 将用户id放入到session中
      */
     public static final String LOGIN_USER_ID = "login_user_id";
+    public static final String LOGIN_ACCOUNT_ID = "login_account_id";
 
     //登录令牌
     public static final String LOGIN_TOKEN_SERVER = "login_token_server";
@@ -31,6 +32,17 @@ public abstract class Constants {
      */
     public static final String INIT_PHONE_SERVICE = "400-0000-0000"; //电话客服
     public static final String INIT_COOPERATION_AISLE = "13856985541"; //合作专属通道
+
+    /**
+     * 数字，字符串相关常量
+     */
+    public static final String DEL_USER = "del_user";
+    public static final String DEL_FLAG = "del_flag";
+    public static final String CREATE_DATE = "create_date";
+    public static final String ZERO = "0";
+    public static final String ONE = "1";
+    public static final String TWO = "2";
+    public static final String THREE = "3";
 
     /**
      * 工具类相关常量

@@ -10,7 +10,6 @@ import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
-import com.liangzhicheng.config.mvc.interceptor.annotation.LoginServerValidate;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
 import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
 import com.liangzhicheng.modules.service.ITestPersonService;
@@ -97,14 +96,6 @@ public class TestApiController extends BaseController {
                            HttpServletRequest request){
         request.getSession().setAttribute(Constants.LOGIN_USER_ID, userId);
         return buildSuccessInfo("登录成功！");
-    }
-
-    @LoginServerValidate
-    @ApiOperation(value = "校验是否登录-服务端")
-    @RequestMapping(value = "/testIsLoginServer", method = RequestMethod.POST)
-    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testIsLoginServer(@ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId){
-        return buildSuccessInfo(null);
     }
 
     @ApiOperation(value = "手机验证码测试")

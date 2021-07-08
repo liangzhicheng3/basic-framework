@@ -137,6 +137,24 @@ public class SysToolUtil {
     }
 
     /**
+     * @description 判断对象参数是否为空
+     * @param value
+     * @return boolean
+     */
+    public static boolean isNull(Object value){
+        return Objects.isNull(value);
+    }
+
+    /**
+     * @description 判断对象参数是否为空
+     * @param value
+     * @return boolean
+     */
+    public static boolean isNotNull(Object value){
+        return !isNull(value);
+    }
+
+    /**
      * @description 判断String参数是否为数字字符
      * @param str
      * @return boolean

@@ -27,10 +27,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			LoginValidate loginValidate = handlerMethod.getMethodAnnotation(LoginValidate.class);
 			if(loginValidate != null && loginValidate.validate() == true){
 				boolean isLogin = false;
-				String tokenMINI = request.getParameter("tokenMINI");
-				String tokenAPP = request.getParameter("tokenAPP");
-				String tokenWEB = request.getParameter("tokenWEB");
-				String userId = request.getParameter("userId");
+				String tokenMINI = request.getHeader("tokenMINI");
+				String tokenAPP = request.getHeader("tokenAPP");
+				String tokenWEB = request.getHeader("tokenWEB");
+				String userId = request.getHeader("userId");
 				SysToolUtil.info("--- request tokenMINI : " + tokenMINI);
 				SysToolUtil.info("--- request tokenAPP : " + tokenAPP);
 				SysToolUtil.info("--- request tokenWEB : " + tokenWEB);

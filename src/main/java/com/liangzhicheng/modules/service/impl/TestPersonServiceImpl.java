@@ -6,15 +6,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.modules.dao.ITestPersonDao;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
-import com.liangzhicheng.modules.entity.dto.TestPersonDto;
+import com.liangzhicheng.modules.entity.dto.TestPersonDTO;
 import com.liangzhicheng.modules.entity.query.TestPersonQueryEntity;
 import com.liangzhicheng.modules.entity.vo.TestPersonVO;
 import com.liangzhicheng.modules.service.ITestPersonService;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Collections;
-import java.util.List;
 
 @Service
 public class TestPersonServiceImpl extends ServiceImpl<ITestPersonDao, TestPersonEntity> implements ITestPersonService {
@@ -30,7 +28,7 @@ public class TestPersonServiceImpl extends ServiceImpl<ITestPersonDao, TestPerso
     }
 
     @Override
-    public PageResult page2(TestPersonDto personDto) {
+    public PageResult page2(TestPersonDTO personDto) {
         TestPersonQueryEntity personQuery = new TestPersonQueryEntity(personDto);
         Long count = baseMapper.getPersonCount(personQuery);
         if(count.intValue() < 1){
@@ -40,7 +38,7 @@ public class TestPersonServiceImpl extends ServiceImpl<ITestPersonDao, TestPerso
     }
 
     @Override
-    public IPage<TestPersonVO> page3(TestPersonDto personDto) {
+    public IPage<TestPersonVO> page3(TestPersonDTO personDto) {
         String keyword = personDto.getKeyword();
         return baseMapper.page3(new Page<TestPersonEntity>().setCurrent(personDto.getPage()).setSize(personDto.getPageSize()), keyword);
     }

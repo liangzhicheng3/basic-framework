@@ -7,7 +7,7 @@ import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.dao.ITestAreaNameDao;
 import com.liangzhicheng.modules.entity.TestAreaNameEntity;
-import com.liangzhicheng.modules.entity.dto.TestAreaDto;
+import com.liangzhicheng.modules.entity.dto.TestAreaDTO;
 import com.liangzhicheng.modules.entity.query.TestAreaQueryEntity;
 import com.liangzhicheng.modules.entity.vo.TestAreaNameVO;
 import com.liangzhicheng.modules.service.ITestAreaNameService;
@@ -34,7 +34,7 @@ public class TestAreaNameServiceImpl extends ServiceImpl<ITestAreaNameDao, TestA
      * @return PageResult
      */
     @Override
-    public PageResult<TestAreaNameVO> listArea(TestAreaDto areaDto) {
+    public PageResult<TestAreaNameVO> listArea(TestAreaDTO areaDto) {
         TestAreaQueryEntity areaQuery = new TestAreaQueryEntity(areaDto);
         Integer page = areaQuery.getPage();
         Integer pageSize = areaQuery.getPageSize();

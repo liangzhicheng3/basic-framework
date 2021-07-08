@@ -1,6 +1,6 @@
 package com.liangzhicheng.modules.entity.query.basic;
 
-import com.liangzhicheng.modules.entity.dto.BaseDto;
+import com.liangzhicheng.modules.entity.dto.basic.BaseDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,9 +16,9 @@ public class BaseQueryEntity {
     private int page;
     private int pageSize;
 
-    public BaseQueryEntity(BaseDto dto){
-        Integer page = dto.getPage();
-        Integer pageSize = dto.getPageSize();
+    public BaseQueryEntity(BaseDTO baseDTO){
+        Integer page = baseDTO.getPage();
+        Integer pageSize = baseDTO.getPageSize();
         if(page == null || page < 1){
             page = 1;
         }
