@@ -8,7 +8,7 @@ CREATE TABLE `sys_menu` (
   `id`                   VARCHAR(19) NOT NULL COMMENT '菜单id(主键)',
   `level`                VARCHAR(1) NOT NULL COMMENT '菜单级别：1一级菜单，2二级菜单',
   `parent_id`            VARCHAR(19) DEFAULT '' COMMENT '父级id',
-  `title`                VARCHAR(30) NOT NULL COMMENT '菜单标题',
+  `name`                 VARCHAR(30) NOT NULL COMMENT '菜单名称',
   `component`            VARCHAR(100) DEFAULT '' COMMENT '父组件',
   `router_path`          VARCHAR(100) DEFAULT '' COMMENT '路由路径',
   `router_name`          VARCHAR(100) DEFAULT '' COMMENT '路由名称',
@@ -69,6 +69,7 @@ INSERT INTO `sys_role` (id, name, description, dept_id, dept_name, create_date, 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_perm`;
 CREATE TABLE `sys_role_perm` (
+  `id`                   VARCHAR(19) NOT NULL COMMENT '角色权限id(主键)',
   `role_id`              VARCHAR(19) NOT NULL COMMENT '角色id',
   `perm_id`              VARCHAR(19) NOT NULL COMMENT '权限id',
   `perm_name`            VARCHAR(100) NOT NULL COMMENT '权限名称',
@@ -76,7 +77,9 @@ CREATE TABLE `sys_role_perm` (
   `del_flag`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标记-平台：0否，1是',
   `create_date`          DATETIME NOT NULL COMMENT '创建时间',
   `update_date`          DATETIME NOT NULL COMMENT '更新时间',
-  PRIMARY KEY (`role_id`,`perm_id`)
+  PRIMARY KEY (`id`),
+  KEY `role_id` (`role_id`),
+  KEY `perm_id` (`perm_id`)
 ) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='角色权限信息表';
 
 -- ----------------------------

@@ -25,15 +25,19 @@ public class SysRolePermEntity extends Model<SysRolePermEntity> {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 角色权限id(主键)
+     */
+    @TableId(value = "id", type = IdType.INPUT)
+    private String id;
+
+    /**
      * 角色id
      */
-    @TableId(value = "role_id", type = IdType.INPUT)
     private String roleId;
 
     /**
      * 权限id
      */
-    @TableId(value = "perm_id", type = IdType.INPUT)
     private String permId;
 
     /**
