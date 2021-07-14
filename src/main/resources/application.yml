@@ -29,11 +29,10 @@ spring:
     servlet:
       load-on-startup: 1
 
+  profiles:
+    active: master
+
 mvc:
   static:
     dirs: /css,/js,/upload
     prefix: http://127.0.0.1:${server.port}${server.servlet.context-path}
-
-environment: master
-
-

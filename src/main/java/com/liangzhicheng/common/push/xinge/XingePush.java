@@ -111,7 +111,7 @@ public class XingePush {
         MessageAndroid messageAndroid = null;
         if("IOS".equals(appType)){
             pushAppRequest.setPlatform(Platform.ios);
-            if(SysConfigUtil.getValue("environment").equals("master")){
+            if(SysConfigUtil.getValue("spring.profiles.active").equals("master")){
                 pushAppRequest.setEnvironment(Environment.product);
             }else{
                 pushAppRequest.setEnvironment(Environment.dev);
