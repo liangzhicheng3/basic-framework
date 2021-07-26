@@ -12,7 +12,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
-import java.lang.reflect.Method;
 
 /**
  * @description 访问限制拦截器，凡是方法头部加了注解@AccessLimitValidate的controller，执行前都会先执行下面的preHandle()方法
