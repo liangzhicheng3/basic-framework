@@ -23,21 +23,11 @@ public class AccessLimitInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		//Handler是否为HandlerMethod 实例
-		if(handler instanceof HandlerMethod){
+		if(handler.getClass().isAssignableFrom(HandlerMethod.class)){
 			SysToolUtil.info("--- AccessLimitValidate come start ///");
 			HandlerMethod handlerMethod = (HandlerMethod) handler;
-			Method method = handlerMethod.getMethod();
-			//是否有AccessLimitValidate注解
-			if(!method.isAnnotationPresent(AccessLimitValidate.class)){
-				return true;
-			}
-			//获取注解内容信息
-			AccessLimitValidate accessLimitValidate = method.getAnnotation(AccessLimitValidate.class);
-			if(accessLimitValidate == null){
-				return true;
-			}
-			if(accessLimitValidate.validate() == true){
+			AccessLimitValidate accessLimitValidate = handlerMethod.getMethodAnnotation(AccessLimitValidate.class);
+			if(accessLimitValidate != null && accessLimitValidate.validate() == true){
 				int second = accessLimitValidate.second(); //请求时间范围
 				int times = accessLimitValidate.times(); //请求次数
 				//根据IP + API限流

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * @description 登录校验拦截器，凡是方法头部加了注解@LoginValidate的controller，执行前都会先执行下面的preHandle()方法
@@ -50,11 +51,22 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				 * 如果没有登录，返回false拦截请求
 				 */
 				if(!isLogin){
-					WebResult result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(ApiConstant.NO_LOGIN), null);
-					JSONObject json = JSONObject.fromObject(result);
-					response.setCharacterEncoding("UTF-8");
-					response.setContentType("application/json");
-					response.getWriter().print(json.toString());
+					WebResult result = null;
+					PrintWriter out = null;
+					try{
+						result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(ApiConstant.NO_LOGIN), null);
+						response.setContentType("application/json;charset=UTF-8");
+						response.setCharacterEncoding("UTF-8");
+						out = response.getWriter();
+						out.println(JSONObject.fromObject(result).toString());
+					}catch(Exception e){
+						SysToolUtil.error("JSON异常 : " + e.getMessage(), LoginInterceptor.class);
+					}finally{
+						if(SysToolUtil.isNotNull(out)){
+							out.flush();
+							out.close();
+						}
+					}
 					return false;
 				}
 			}
