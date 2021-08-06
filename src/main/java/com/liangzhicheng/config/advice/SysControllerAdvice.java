@@ -7,12 +7,12 @@ import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.exception.BusinessException;
 import com.liangzhicheng.common.exception.TransactionException;
+import com.liangzhicheng.common.utils.SysToolUtil;
 import org.apache.shiro.authz.AuthorizationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -37,52 +37,52 @@ import java.util.stream.Collectors;
 @ControllerAdvice(basePackages = {"com"})
 public class SysControllerAdvice extends BaseController {
 
-    private static final Logger logger = LoggerFactory.getLogger(SysControllerAdvice.class);
-
     @Resource
     private MessageSource messageSource;
 
     /**
      * @description 服务器异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({RuntimeException.class})
     @ResponseBody
     public WebResult runtimeException(RuntimeException ex){
         StringWriter sw = new StringWriter();
         ex.printStackTrace(new PrintWriter(sw,true));
-        logger.error("Exception Output : " + sw.toString(), this.getClass());
-        //logger.error("Exception Output 2 : " + ex.getClass().getName(), this.getClass());
+        SysToolUtil.error("Exception Output : " + sw.toString(), getClass());
         return buildFailedInfo("服务器发生异常 : " + ex.getMessage());
     }
 
     /**
      * @description 400错误->参数缺失异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({MissingServletRequestParameterException.class})
     @ResponseBody
-    public WebResult missingServletRequestParameterException(MissingServletRequestParameterException ex){
-        return buildFailedInfo(ApiConstant.PARAM_IS_NULL," : " + ex.getParameterName());
+    public WebResult missingServletRequestParameterException(
+            MissingServletRequestParameterException ex){
+        return buildFailedInfo(ApiConstant.PARAM_IS_NULL," : "
+                + ex.getParameterName());
     }
 
     /**
      * @description 400错误->参数类型异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({TypeMismatchException.class})
     @ResponseBody
     public WebResult typeMismatchException(TypeMismatchException ex){
-        return buildFailedInfo(ApiConstant.PARAM_TYPE_ERROR," : " + ex.getValue()+"，需要 : " + ex.getRequiredType().getName());
+        return buildFailedInfo(ApiConstant.PARAM_TYPE_ERROR," : "
+                + ex.getValue()+"，需要 : " + ex.getRequiredType().getName());
     }
 
     /**
      * @description 400错误->参数格式有误异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({InvalidFormatException.class})
     @ResponseBody
@@ -93,7 +93,7 @@ public class SysControllerAdvice extends BaseController {
     /**
      * @description 400错误->json参数格式有误异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({JsonParseException.class})
     @ResponseBody
@@ -104,7 +104,7 @@ public class SysControllerAdvice extends BaseController {
     /**
      * @description 400错误->json参数格式有误异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({HttpMessageNotReadableException.class})
     @ResponseBody
@@ -116,60 +116,74 @@ public class SysControllerAdvice extends BaseController {
         if(m.find()){
             message = "非法参数 -> " + m.group(1);
         }
-        return buildFailedInfo(ApiConstant.getMessage(ApiConstant.PARAM_JSON_ERROR) + " : " + message);
+        return buildFailedInfo(ApiConstant.getMessage(
+                ApiConstant.PARAM_JSON_ERROR) + " : " + message);
     }
 
     /**
-     * @description 事务异常信息
+     * @description 参数贴有@NotBlank注解拦截异常信息
+     * @param ex
+     * @return ResponseResult
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public WebResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        List<FieldError> errorList = ex.getBindingResult().getFieldErrors();
+        List<String> errorMessages = errorList.stream().map(x->{
+            String itemMessage= messageSource.getMessage(x.getDefaultMessage(), null,
+                    x.getDefaultMessage(), LocaleContextHolder.getLocale());
+            return String.format("%s", itemMessage);
+        }).collect(Collectors.toList());
+        SysToolUtil.error("参数验证失败:" + errorMessages.get(0), getClass());
+        return buildFailedInfo(errorMessages.get(0));
+    }
+
+    /**
+     * @description 参数保存有误异常
      * @param ex
      * @return WebResult
+     */
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseBody
+    public WebResult dataIntegrityViolationException(DataIntegrityViolationException ex) {
+        SysToolUtil.error("DataIntegrityViolationException Output : " + ex.getMessage(), getClass());
+        return buildFailedInfo("保存失败");
+    }
+
+    /**
+     * @description 业务逻辑异常信息
+     * @param ex
+     * @return ResponseResult
      */
     @ExceptionHandler({TransactionException.class})
     @ResponseBody
     public WebResult transactionException(TransactionException ex){
-        logger.error("TransactionException Output : " + ex.getMessage());
+        SysToolUtil.error("TransactionException Output : " + ex.getMessage(), getClass());
         return buildFailedInfo(ex.getCode());
     }
 
     /**
      * @description 自定义异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler({BusinessException.class})
     @ResponseBody
     public WebResult businessException(BusinessException ex){
-        logger.error("BusinessException Output : " + ex.getMessage());
+        SysToolUtil.error("BusinessException Output : " + ex.getMessage(), getClass());
         return buildFailedInfo(ex.getCode(), ex.getMessage());
     }
 
     /**
-     * @description shiro异常
+     * @description Shiro异常信息
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler(AuthorizationException.class)
     @ResponseBody
-    public WebResult noAuthException(AuthorizationException ex) {
-        logger.error("没有通过权限验证！", ex.getMessage());
+    public WebResult notAuthException(AuthorizationException ex) {
+        SysToolUtil.error("没有通过权限验证", getClass());
         return buildFailedInfo(ApiConstant.NO_AUTHORIZATION);
-    }
-
-    /**
-     * @description 接口入参参数贴有@NotBlank注解拦截
-     * @param ex
-     * @return WebResult
-     */
-    @ResponseBody
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public WebResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        List<FieldError> errorList = ex.getBindingResult().getFieldErrors();
-        List<String> errorMessages = errorList.stream().map(x->{
-            String itemMessage= messageSource.getMessage(x.getDefaultMessage(), null, x.getDefaultMessage(), LocaleContextHolder.getLocale());
-            return String.format("%s", itemMessage);
-        }).collect(Collectors.toList());
-        logger.error("参数验证失败:{}", errorMessages.get(0));
-        return buildFailedInfo(errorMessages.get(0));
     }
 
 }
