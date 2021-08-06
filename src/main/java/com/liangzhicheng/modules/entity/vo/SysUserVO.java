@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * <p>
  * 账号信息表
@@ -19,16 +21,12 @@ public class SysUserVO {
 
     @ApiModelProperty("账号id")
     private String id;
-    @ApiModelProperty("部门id")
-    private String deptId;
     @ApiModelProperty("部门名称")
     private String deptName;
     @ApiModelProperty("账号名称")
     private String accountName;
     @ApiModelProperty("真实姓名")
     private String truename;
-    @ApiModelProperty("密码")
-    private String password;
     @ApiModelProperty("头像")
     private String avatar;
     @ApiModelProperty("超级管理员：0否，1是")
@@ -38,6 +36,6 @@ public class SysUserVO {
 
 
     @ApiModelProperty("角色名称")
-    private String roleName;
+    private List<String> roleNames;
 
 }

@@ -3,10 +3,8 @@ package com.liangzhicheng.modules.controller.server;
 import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
-import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.dto.SysUserDTO;
-import com.liangzhicheng.modules.entity.dto.TestLoginServerDTO;
 import com.liangzhicheng.modules.entity.vo.SysUserLoginVO;
 import com.liangzhicheng.modules.service.ISysUserService;
 import io.swagger.annotations.*;
@@ -30,22 +28,6 @@ public class LoginServerController extends BaseController {
 
     @Resource
     private ISysUserService sysUserService;
-
-    @ApiOperation(value = "注册")
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ApiOperationSupport(ignoreParameters = {"dto.accountId", "dto.newPassword"})
-    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult register(@RequestBody TestLoginServerDTO dto){
-        String username = dto.getUsername();
-        String password = dto.getPassword();
-        if(SysToolUtil.isBlank(username, password)){
-            return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
-        }
-        //判断短信验证码是否存在，是否与传过来的vcode相等
-        //判断username是否存在
-        //保存用户信息
-        return buildSuccessInfo(null);
-    }
 
     @ApiOperation(value = "登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)

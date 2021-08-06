@@ -1,5 +1,6 @@
 package com.liangzhicheng.config.mvc.filter;
 
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -15,7 +16,7 @@ import org.springframework.web.filter.CorsFilter;
 public class CorsFilterConfig {
 
     @Bean
-    public CorsFilter corsFilter() {
+    public FilterRegistrationBean corsFilter() {
         CorsConfiguration config = new CorsConfiguration(); //添加Cors配置信息
         config.addAllowedOrigin("*"); //允许的域，如果填写*，Cookie则无法使用
         config.addAllowedHeader("*"); //允许任何头
@@ -34,8 +35,9 @@ public class CorsFilterConfig {
         //添加映射路径，拦截所有请求
         UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
         configSource.registerCorsConfiguration("/**", config);
-        //返回新的CorsFilter
-        return new CorsFilter(configSource);
+        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(configSource));
+        bean.setOrder(0);
+        return bean;
     }
 
 }

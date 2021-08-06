@@ -2,6 +2,7 @@ package com.liangzhicheng.config.shiro;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.liangzhicheng.common.constant.Constants;
+import com.liangzhicheng.common.utils.SysCacheUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.entity.SysPermEntity;
 import com.liangzhicheng.modules.entity.SysRolePermEntity;
@@ -23,18 +24,14 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Component
 public class SysRealm extends AuthorizingRealm {
 
     @Resource
     private ISysUserService sysUserService;
-    @Resource
-    private ISysRoleUserService roleUserService;
-    @Resource
-    private ISysPermService permService;
-    @Resource
-    private ISysRolePermService rolePermService;
 
     /**
      * @description realm中使用指定的凭证匹配器完成密码匹配操作
@@ -64,7 +61,7 @@ public class SysRealm extends AuthorizingRealm {
         if(!Constants.ONE.equals(user.getLoginStatus())){
             throw new DisabledAccountException("账号已被禁用");
         }
-        return new SimpleAuthenticationInfo(user, user.getPassword(), this.getName());
+        return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 
     /**
@@ -74,30 +71,18 @@ public class SysRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection pc) {
-        //创建authInfo，将权限存储
-        SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
         SysUserEntity user = (SysUserEntity) pc.getPrimaryPrincipal();
-        if(Constants.ONE.equals(user.getIsAdmin())){
-            List<SysPermEntity> permList = permService.list(
-                    new QueryWrapper<SysPermEntity>().eq(Constants.DEL_FLAG, Constants.ZERO));
-            if(SysToolUtil.listSizeGT(permList)){
-                for(SysPermEntity perm : permList){
-                    authInfo.addStringPermission(perm.getExpression());
-                }
-            }
-        }else{
-            SysRoleUserEntity roleUser = roleUserService.getOne(user.getId());
-            if(SysToolUtil.isNotNull(roleUser)){
-                authInfo.addRole(roleUser.getRoleName());
-                List<SysRolePermEntity> rolePermList = rolePermService.list(
-                        new QueryWrapper<SysRolePermEntity>().eq("role_id", roleUser.getRoleId()));
-                if(SysToolUtil.listSizeGT(rolePermList)){
-                    for(SysRolePermEntity rolePerm : rolePermList){
-                        authInfo.addStringPermission(rolePerm.getExpression());
-                    }
-                }
-            }
+        if(SysToolUtil.isNull(user)){
+            return null;
         }
+        Map<String, Object> roleMap = SysCacheUtil.getRoleMap();
+        Map<String, Object> permMap = SysCacheUtil.getPermMap();
+        Set<String> roles = (Set<String>) roleMap.get(user.getId());
+        Set<String> perms = (Set<String>) permMap.get(user.getId());
+        //创建SimpleAuthorizationInfo，将角色和权限存储
+        SimpleAuthorizationInfo authInfo = new SimpleAuthorizationInfo();
+        authInfo.setRoles(roles);
+        authInfo.setStringPermissions(perms);
         return authInfo;
     }
 

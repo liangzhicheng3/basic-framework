@@ -8,6 +8,8 @@ import com.liangzhicheng.modules.service.ISysRoleUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色用户表 服务实现类
@@ -20,14 +22,15 @@ import org.springframework.stereotype.Service;
 public class SysRoleUserServiceImpl extends ServiceImpl<ISysRoleUserDao, SysRoleUserEntity> implements ISysRoleUserService {
 
     /**
-     * @description 获取用户角色信息
-     * @param accountId
-     * @return SysRoleUserEntity
+     * @description 根据key，value获取角色用户列表
+     * @param key
+     * @param value
+     * @return List<SysRoleUserEntity>
      */
     @Override
-    public SysRoleUserEntity getOne(String accountId) {
-        return baseMapper.selectOne(new QueryWrapper<SysRoleUserEntity>()
-                .eq("account_id", accountId).eq(Constants.DEL_FLAG, Constants.ZERO));
+    public List<SysRoleUserEntity> list(String key, String value) {
+        return baseMapper.selectList(new QueryWrapper<SysRoleUserEntity>()
+                .eq(key, value).eq(Constants.DEL_FLAG, Constants.ZERO));
     }
 
 }

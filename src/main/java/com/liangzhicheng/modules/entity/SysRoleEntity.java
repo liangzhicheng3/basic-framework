@@ -41,16 +41,6 @@ public class SysRoleEntity extends Model<SysRoleEntity> {
     private String description;
 
     /**
-     * 部门id
-     */
-    private String deptId;
-
-    /**
-     * 部门名称
-     */
-    private String deptName;
-
-    /**
      * 排序
      */
     private Integer rank;

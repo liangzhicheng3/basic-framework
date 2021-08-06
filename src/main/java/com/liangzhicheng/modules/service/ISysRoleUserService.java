@@ -3,6 +3,8 @@ package com.liangzhicheng.modules.service;
 import com.liangzhicheng.modules.entity.SysRoleUserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色用户表 服务类
@@ -14,10 +16,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface ISysRoleUserService extends IService<SysRoleUserEntity> {
 
     /**
-     * @description 获取用户角色信息
-     * @param accountId
-     * @return SysRoleUserEntity
+     * @description 根据key，value获取角色用户列表
+     * @param key
+     * @param value
+     * @return List<SysRoleUserEntity>
      */
-    SysRoleUserEntity getOne(String accountId);
+    List<SysRoleUserEntity> list(String key, String value);
 
 }

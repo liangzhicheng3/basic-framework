@@ -31,7 +31,7 @@ public class SysMenuEntity extends Model<SysMenuEntity> {
     private String id;
 
     /**
-     * 菜单级别：1一级菜单，2二级菜单
+     * 菜单级别：1一级菜单，2二级菜单，3三级菜单，4四级菜单
      */
     private String level;
 
@@ -41,9 +41,9 @@ public class SysMenuEntity extends Model<SysMenuEntity> {
     private String parentId;
 
     /**
-     * 菜单标题
+     * 菜单名称
      */
-    private String title;
+    private String name;
 
     /**
      * 父组件

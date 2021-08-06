@@ -77,4 +77,16 @@ public class SysRoleUserEntity extends Model<SysRoleUserEntity> {
         return this.id;
     }
 
+    public SysRoleUserEntity() {
+        super();
+    }
+
+    public SysRoleUserEntity(String id, String roleId, String roleName, String accountId, String accountName) {
+        this.id = id;
+        this.roleId = roleId;
+        this.roleName = roleName;
+        this.accountId = accountId;
+        this.accountName = accountName;
+    }
+
 }

@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
   `id`                   VARCHAR(19) NOT NULL COMMENT '菜单id(主键)',
-  `level`                VARCHAR(1) NOT NULL COMMENT '菜单级别：1一级菜单，2二级菜单',
+  `level`                VARCHAR(1) NOT NULL COMMENT '菜单级别：1一级菜单，2二级菜单，3三级菜单，4四级菜单',
   `parent_id`            VARCHAR(19) DEFAULT '' COMMENT '父级id',
   `name`                 VARCHAR(30) NOT NULL COMMENT '菜单名称',
   `component`            VARCHAR(100) DEFAULT '' COMMENT '父组件',
@@ -28,16 +28,32 @@ CREATE TABLE `sys_menu` (
 DROP TABLE IF EXISTS `sys_perm`;
 CREATE TABLE `sys_perm` (
   `id`                   VARCHAR(19) NOT NULL COMMENT '权限id(主键)',
-  `menu_id`              VARCHAR(19) DEFAULT '' COMMENT '菜单id',
   `name`                 VARCHAR(100) NOT NULL COMMENT '权限名称',
   `expression`           VARCHAR(100) NOT NULL COMMENT '表达式',
   `del_flag`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标记-平台：0否，1是',
   `create_date`          DATETIME NOT NULL COMMENT '创建时间',
   `update_date`          DATETIME NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `menu_id` (`menu_id`),
   KEY `name` (`name`)
 ) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='权限信息表';
+
+-- ----------------------------
+-- Table structure for sys_perm_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_perm_menu`;
+CREATE TABLE `sys_perm_menu` (
+  `id`                   VARCHAR(19) NOT NULL COMMENT '权限菜单id(主键)',
+  `perm_id`              VARCHAR(19) NOT NULL COMMENT '权限id',
+  `perm_name`            VARCHAR(30) NOT NULL COMMENT '权限名称',
+  `menu_id`              VARCHAR(19) NOT NULL COMMENT '菜单id',
+  `menu_name`            VARCHAR(30) NOT NULL COMMENT '菜单名称',
+  `del_flag`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标记-平台：0否，1是',
+  `create_date`          DATETIME NOT NULL COMMENT '创建时间',
+  `update_date`          DATETIME NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `perm_id` (`perm_id`),
+  KEY `menu_id` (`menu_id`)
+) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='权限菜单信息表';
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -47,8 +63,6 @@ CREATE TABLE `sys_role`(
   `id`                   VARCHAR(19) NOT NULL COMMENT '角色id(主键)',
   `name`                 VARCHAR(30) NOT NULL COMMENT '角色名称',
   `description`          VARCHAR(255) NOT NULL COMMENT '职务描述',
-  `dept_id`              VARCHAR(19) NOT NULL COMMENT '部门id',
-  `dept_name`            VARCHAR(30) NOT NULL COMMENT '部门名称',
   `rank`                 INT(11) UNSIGNED COMMENT '排序',
   `del_flag`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标记-平台：0否，1是',
   `create_date`          DATETIME NOT NULL COMMENT '创建时间',
@@ -61,8 +75,26 @@ CREATE TABLE `sys_role`(
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
-INSERT INTO `sys_role` (id, name, description, dept_id, dept_name, create_date, update_date)
-  VALUE ('1', '超级管理员', '管理公司业务、人员流动', '1', '总经办', sysdate(), sysdate());
+INSERT INTO `sys_role` (id, name, description, create_date, update_date)
+  VALUE ('1', '超级管理员', '管理公司业务、人员流动', sysdate(), sysdate());
+
+-- ----------------------------
+-- Table structure for sys_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role_menu`;
+CREATE TABLE `sys_role_menu`(
+ `id`                   VARCHAR(19) NOT NULL COMMENT '角色菜单id(主键)',
+ `role_id`              VARCHAR(19) NOT NULL COMMENT '角色id',
+ `role_name`            VARCHAR(30) NOT NULL COMMENT '角色名称',
+ `menu_id`              VARCHAR(19) NOT NULL COMMENT '菜单id',
+ `menu_name`            VARCHAR(30) NOT NULL COMMENT '菜单名称',
+ `del_flag`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标记-平台：0否，1是',
+ `create_date`          DATETIME NOT NULL COMMENT '创建时间',
+ `update_date`          DATETIME NOT NULL COMMENT '更新时间',
+ PRIMARY KEY (`id`),
+ KEY `role_id` (`role_id`),
+ KEY `menu_id` (`menu_id`)
+) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='角色菜单信息表';
 
 -- ----------------------------
 -- Table structure for sys_role_perm
@@ -144,7 +176,6 @@ CREATE TABLE `sys_dept` (
   `id`                   VARCHAR(19) NOT NULL COMMENT '部门id(主键)',
   `name`                 VARCHAR(30) NOT NULL COMMENT '部门名称',
   `description`          VARCHAR(100) NOT NULL COMMENT '部门描述',
-  `role_num`             INT(11) UNSIGNED DEFAULT 0 COMMENT '角色数',
   `rank`                 INT(11) UNSIGNED COMMENT '排序',
   `del_flag`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '删除标记-平台：0否，1是',
   `create_date`          DATETIME NOT NULL COMMENT '创建时间',

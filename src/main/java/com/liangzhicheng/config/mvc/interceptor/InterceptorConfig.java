@@ -28,11 +28,17 @@ public class InterceptorConfig implements WebMvcConfigurer {
         return new LoginInterceptor();
     }
 
+    @Bean
+    PermissionsInterceptor permissionsInterceptor(){
+        return new PermissionsInterceptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(xssInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(accessLimitInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(loginInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(permissionsInterceptor()).addPathPatterns("/**");
     }
 
 }

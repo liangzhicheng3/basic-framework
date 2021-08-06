@@ -72,4 +72,16 @@ public class SysRolePermEntity extends Model<SysRolePermEntity> {
         return this.roleId;
     }
 
+    public SysRolePermEntity() {
+        super();
+    }
+
+    public SysRolePermEntity(String id, String roleId, String permId, String permName, String expression) {
+        this.id = id;
+        this.roleId = roleId;
+        this.permId = permId;
+        this.permName = permName;
+        this.expression = expression;
+    }
+
 }

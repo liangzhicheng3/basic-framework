@@ -31,11 +31,6 @@ public class SysPermEntity extends Model<SysPermEntity> {
     private String id;
 
     /**
-     * 菜单id
-     */
-    private String menuId;
-
-    /**
      * 权限名称
      */
     private String name;

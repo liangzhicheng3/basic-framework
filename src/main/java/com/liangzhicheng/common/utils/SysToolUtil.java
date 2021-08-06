@@ -329,6 +329,20 @@ public class SysToolUtil {
     }
 
     /**
+     * @description 判断String可变参数中是否存在，存在返回true
+     * @param strs
+     * @return boolean
+     */
+    public static boolean inOneByNotBlank(String ... strs) {
+        for (String s : strs) {
+            if(isNotBlank(s)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * @description 精确计算两个数相除，v1除以v2(Integer类型)
      * @param v1
      * @param v2

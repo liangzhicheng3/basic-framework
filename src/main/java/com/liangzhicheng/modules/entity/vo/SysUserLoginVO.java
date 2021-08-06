@@ -25,8 +25,8 @@ public class SysUserLoginVO {
     private String isAdmin;
     @ApiModelProperty("角色id")
     private String roleId;
-    @ApiModelProperty("权限列表")
-    private List<String> permList;
+    @ApiModelProperty("权限菜单列表")
+    private List<SysMenuVO> permMenuList;
     @ApiModelProperty("登录token")
     private String token;
 

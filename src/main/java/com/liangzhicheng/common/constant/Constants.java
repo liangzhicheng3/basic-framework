@@ -7,13 +7,12 @@ package com.liangzhicheng.common.constant;
  */
 public abstract class Constants {
 
-    public static final String KEY_SESSION_SYS_USER_INFO = "KEY_SESSION_SYS_USER_INFO";
-
-    public static final String KEY_SESSION_SYS_USER_MENU = "KEY_SESSION_SYS_USER_MENU";
-
-    public static final String KEY_SESSION_SYS_USER_ROLES = "KEY_SESSION_SYS_USER_ROLES";
-
-    public static final String KEY_SESSION_SYS_USER_PERMS = "KEY_SESSION_SYS_USER_PERMS";
+    //系统菜单列表键值
+    public static final String KEY_MENU_LIST = "key_menu_list";
+    //Shiro角色Map键值
+    public static final String KEY_ROLE_MAP = "key_role_map";
+    //Shiro权限Map键值
+    public static final String KEY_PERM_MAP = "key_perm_map";
 
     /**
      * 将用户id放入到session中
@@ -43,6 +42,10 @@ public abstract class Constants {
     public static final String ONE = "1";
     public static final String TWO = "2";
     public static final String THREE = "3";
+    //默认头像
+    public static final String DEFAULT_AVATAR = "http://cdn.ideashow168.com/1c9797a19ca7435ea5c7fe760300b4d1508921.png";
+    //默认密码,123456
+    public static final String DEFAULT_PASSWORD = "7c4a8d09ca3762af61e59520943dc26494f8941b";
 
     /**
      * 工具类相关常量
@@ -181,15 +184,15 @@ public abstract class Constants {
      */
     public static final String QINIU_APP_KEY = "hJi-pUDYofUcsMDoi3Mp4yOtTGiZax24EEmrzqTY";
     public static final String QINIU_APP_SECRECT = "tIA8k-zn2hyilu4_X3mLDjJcE5VINeKl4gRvLnpc";
-    public static final String QINIU_PREFIX_FILES = "http://cdn.ideashow168.com/"; //文件访问前缀
-    public static final String QINIU_BUCKET_FILES = "ideashow-files"; //文件空间名
+    public static final String QINIU_PREFIX_FILES = "http://cdn.xxx.com/"; //文件访问前缀
+    public static final String QINIU_BUCKET_FILES = "xxx-files"; //文件空间名
 
     /**
      * 邮箱验证相关常量
      */
     public static final String EMAIL_HOST_NAME = "smtp.163.com"; //邮箱服务器地址
-    public static final String EMAIL_SEND_USER_ADDRESS = "ideashow0769@163.com"; //发送用户
-    public static final String EMAIL_SEND_USER_NAME = "靓彩孵化投资"; //发送用户名称
+    public static final String EMAIL_SEND_USER_ADDRESS = "yichengc3@163.com"; //发送用户
+    public static final String EMAIL_SEND_USER_NAME = "liangzhicheng"; //发送用户名称
     public static final String EMAIL_AUTH_CODE = "KSLJNROHQPZMIDQF"; //授权码
     public static final String EMAIL_NAME = "邮箱验证码"; //邮件名称
 

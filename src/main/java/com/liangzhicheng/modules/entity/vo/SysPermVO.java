@@ -19,8 +19,6 @@ public class SysPermVO {
 
     @ApiModelProperty("权限id")
     private String id;
-    @ApiModelProperty("菜单id")
-    private String menuId;
     @ApiModelProperty("权限名称")
     private String name;
     @ApiModelProperty("表达式")
