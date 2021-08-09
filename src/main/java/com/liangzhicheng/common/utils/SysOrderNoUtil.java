@@ -48,18 +48,19 @@ public class SysOrderNoUtil {
 
     //订单号处理
     private static String orderNoDispose(String orderNo){
+        String randomNum = SysToolUtil.random();
         try {
             if(count >= 10000){
                 count = 1;
             }
             if(count < 10){
-                orderNo = "YC" + getCurrentDateStr() + "000" + count + SysToolUtil.random();
+                orderNo = getCurrentDateStr() + "000" + count + randomNum;
             }else if(count < 100){
-                orderNo = "YC" + getCurrentDateStr() + "00" + count + SysToolUtil.random();
+                orderNo = getCurrentDateStr() + "00" + count + randomNum;
             }else if(count < 1000){
-                orderNo = "YC" + getCurrentDateStr() + "0" + count + SysToolUtil.random();
+                orderNo = getCurrentDateStr() + "0" + count + randomNum;
             }else{
-                orderNo = "YC" + getCurrentDateStr() + count + SysToolUtil.random();
+                orderNo = getCurrentDateStr() + count + randomNum;
             }
             count++;
         }catch(Exception e){
