@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.liangzhicheng.common.basic.BaseController;
 import com.liangzhicheng.common.basic.WebResult;
 import com.liangzhicheng.common.constant.ApiConstant;
-import com.liangzhicheng.common.exception.BusinessException;
+import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import org.apache.shiro.authz.AuthorizationException;
@@ -146,7 +146,7 @@ public class SysControllerAdvice extends BaseController {
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseBody
     public WebResult dataIntegrityViolationException(DataIntegrityViolationException ex) {
-        SysToolUtil.error("DataIntegrityViolationException Output : " + ex.getMessage(), getClass());
+        SysToolUtil.error("参数保存有误异常输出 : " + ex.getMessage(), getClass());
         return buildFailedInfo("保存失败");
     }
 
@@ -158,7 +158,7 @@ public class SysControllerAdvice extends BaseController {
     @ExceptionHandler({TransactionException.class})
     @ResponseBody
     public WebResult transactionException(TransactionException ex){
-        SysToolUtil.error("TransactionException Output : " + ex.getMessage(), getClass());
+        SysToolUtil.error("业务逻辑异常输出 : " + ex.getMessage(), getClass());
         return buildFailedInfo(ex.getCode());
     }
 
@@ -167,10 +167,10 @@ public class SysControllerAdvice extends BaseController {
      * @param ex
      * @return ResponseResult
      */
-    @ExceptionHandler({BusinessException.class})
+    @ExceptionHandler({CustomizeException.class})
     @ResponseBody
-    public WebResult businessException(BusinessException ex){
-        SysToolUtil.error("BusinessException Output : " + ex.getMessage(), getClass());
+    public WebResult businessException(CustomizeException ex){
+        SysToolUtil.error("自定义异常输出 : " + ex.getMessage(), getClass());
         return buildFailedInfo(ex.getCode(), ex.getMessage());
     }
 

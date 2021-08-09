@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.exception.BusinessException;
+import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysSnowFlakeUtil;
@@ -132,13 +132,13 @@ public class SysRoleServiceImpl extends ServiceImpl<ISysRoleDao, SysRoleEntity> 
         }
         if(SysToolUtil.isNotBlank(name)){
             if(name.length() > 30){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "角色名称字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "角色名称字数过长");
             }
             role.setName(name);
         }
         if(SysToolUtil.isNotBlank(description)){
             if(description.length() > 255){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "角色描述字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "角色描述字数过长");
             }
             role.setDescription(description);
         }
@@ -157,7 +157,7 @@ public class SysRoleServiceImpl extends ServiceImpl<ISysRoleDao, SysRoleEntity> 
                 for(String menuId : arrayMenuId){
                     menu = menuService.getById(menuId);
                     if(SysToolUtil.isNull(menu)){
-                        throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "菜单记录不存在");
+                        throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "菜单记录不存在");
                     }
                     roleMenu = new SysRoleMenuEntity(SysSnowFlakeUtil.get().nextId() + "",
                             role.getId(), role.getName(), menuId, menu.getName());
@@ -171,7 +171,7 @@ public class SysRoleServiceImpl extends ServiceImpl<ISysRoleDao, SysRoleEntity> 
                 for(String permId : arrayPermId){
                     perm = permService.getById(permId);
                     if(SysToolUtil.isNull(perm)){
-                        throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "权限记录不存在");
+                        throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "权限记录不存在");
                     }
                     rolePerm = new SysRolePermEntity(SysSnowFlakeUtil.get().nextId() + "",
                             role.getId(), permId, perm.getName(), perm.getExpression());

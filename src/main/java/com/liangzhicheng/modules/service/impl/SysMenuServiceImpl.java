@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.exception.BusinessException;
+import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysSnowFlakeUtil;
@@ -250,7 +250,7 @@ public class SysMenuServiceImpl extends ServiceImpl<ISysMenuDao, SysMenuEntity> 
         menu.setId(SysSnowFlakeUtil.get().nextId() + "");
         menu.setParentId(parentId);
         if(name.length() > 30){
-            throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "标题字数过长");
+            throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "标题字数过长");
         }
         menu.setName(name);
         menu.setComponent(component);
@@ -299,7 +299,7 @@ public class SysMenuServiceImpl extends ServiceImpl<ISysMenuDao, SysMenuEntity> 
         }
         if(SysToolUtil.isNotBlank(name)){
             if(name.length() > 30){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "标题字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "标题字数过长");
             }
             menu.setName(name);
         }

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.exception.BusinessException;
+import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.modules.entity.*;
@@ -61,7 +61,7 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
         String password = userDTO.getPassword();
         String content = "账号或密码错误";
         if(SysToolUtil.isBlank(accountName, password)){
-            throw new BusinessException(ApiConstant.BASE_FAIL_CODE, content);
+            throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, content);
         }
         SysUserLoginVO userVO = null;
         try{
@@ -86,12 +86,12 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
             userVO.setToken(token);
             request.getSession().setAttribute(Constants.LOGIN_ACCOUNT_ID, user.getId());
         }catch(UnknownAccountException e){
-            throw new BusinessException(ApiConstant.BASE_FAIL_CODE, content);
+            throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, content);
         }catch(IncorrectCredentialsException e){
-            throw new BusinessException(ApiConstant.BASE_FAIL_CODE, content);
+            throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, content);
         }catch(DisabledAccountException e){
             e.printStackTrace();
-            throw new BusinessException(ApiConstant.BASE_FAIL_CODE, e.getMessage());
+            throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, e.getMessage());
         }
         return userVO;
     }
@@ -296,27 +296,27 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
         if(SysToolUtil.isNotBlank(deptId)){
             SysDeptEntity dept = deptService.getById(deptId);
             if(SysToolUtil.isNull(dept)){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "部门记录不存在");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "部门记录不存在");
             }
             user.setDeptId(deptId);
             user.setDeptName(dept.getName());
         }
         if(SysToolUtil.isNotBlank(accountName)){
             if(accountName.length() > 30){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "账号名称字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "账号名称字数过长");
             }
             if(SysToolUtil.isBlank(id) || !user.getAccountName().equals(accountName)){
                 Integer count = baseMapper.selectCount(new QueryWrapper<SysUserEntity>()
                         .eq("account_name", accountName).eq(Constants.DEL_FLAG, Constants.ZERO));
                 if(count > 0){
-                    throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "账号已存在");
+                    throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "账号已存在");
                 }
             }
             user.setAccountName(accountName);
         }
         if(SysToolUtil.isNotBlank(truename)){
             if(accountName.length() > 30){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "姓名字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "姓名字数过长");
             }
             user.setTruename(truename);
         }
@@ -338,7 +338,7 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
                 for (String primaryId : arrayRoleId) {
                     role = roleService.getById(primaryId);
                     if(SysToolUtil.isNull(role)){
-                        throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "角色记录不存在");
+                        throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "角色记录不存在");
                     }
                     if(Constants.ONE.equals(primaryId)){
                         isAdmin = Constants.ONE;

@@ -10,12 +10,19 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class BusinessException extends IllegalArgumentException {
+public class CustomizeException extends IllegalArgumentException {
 
-    private int code;
+    /**
+     * 状态码
+     */
+    private Integer code;
+
+    /**
+     * 具体信息
+     */
     private String message;
 
-    public BusinessException(int code, String message){
+    public CustomizeException(int code, String message){
         this.code = code;
         this.message = message;
     }

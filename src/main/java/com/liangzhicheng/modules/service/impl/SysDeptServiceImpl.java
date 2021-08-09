@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
-import com.liangzhicheng.common.exception.BusinessException;
+import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.common.utils.SysBeanUtil;
 import com.liangzhicheng.common.utils.SysSnowFlakeUtil;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -98,13 +97,13 @@ public class SysDeptServiceImpl extends ServiceImpl<ISysDeptDao, SysDeptEntity> 
         }
         if(SysToolUtil.isNotBlank(name)){
             if(name.length() > 30){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "部门名称字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "部门名称字数过长");
             }
             dept.setName(name);
         }
         if(SysToolUtil.isNotBlank(description)){
             if(description.length() > 200){
-                throw new BusinessException(ApiConstant.BASE_FAIL_CODE, "部门描述字数过长");
+                throw new CustomizeException(ApiConstant.BASE_FAIL_CODE, "部门描述字数过长");
             }
             dept.setDescription(description);
         }

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @description 事务异常
+ * @description 业务逻辑异常
  * @author liangzhicheng
  * @since 2021-01-26
  */
@@ -13,7 +13,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TransactionException extends IllegalArgumentException {
 
+    /**
+     * 状态码
+     */
     private int code;
+
+    /**
+     * 具体信息
+     */
     private String message;
 
     public TransactionException(int code){
