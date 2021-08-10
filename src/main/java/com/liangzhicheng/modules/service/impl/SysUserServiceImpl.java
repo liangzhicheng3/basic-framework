@@ -108,7 +108,6 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
             throw new TransactionException(ApiConstant.LOG_NOT_EXIST);
         }
         SysTokenUtil.clearTokenWEB(user.getId());
-        SysCacheUtil.del(request.getHeader("tokenWEB"));
         request.getSession().removeAttribute(Constants.LOGIN_ACCOUNT_ID);
     }
 
