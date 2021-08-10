@@ -68,7 +68,6 @@ CREATE TABLE `sys_role`(
   `create_date`          DATETIME NOT NULL COMMENT '创建时间',
   `update_date`          DATETIME NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  KEY `dept_id` (`dept_id`),
   KEY `name` (`name`)
 ) ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='角色信息表';
 
