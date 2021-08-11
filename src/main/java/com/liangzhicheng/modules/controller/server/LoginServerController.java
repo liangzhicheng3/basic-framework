@@ -31,7 +31,10 @@ public class LoginServerController extends BaseController {
 
     @ApiOperation(value = "登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ApiOperationSupport(ignoreParameters = {"userDTO.page", "userDTO.pageSize"})
+    @ApiOperationSupport(ignoreParameters = {"userDTO.companyId", "userDTO.deptId",
+            "userDTO.roleIds", "userDTO.keyword", "userDTO.id", "userDTO.truename",
+            "userDTO.avatar", "userDTO.isAdmin", "userDTO.loginStatus",
+            "userDTO.newPassword", "userDTO.page", "userDTO.pageSize"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysUserLoginVO.class)})
     public WebResult login(@RequestBody SysUserDTO userDTO,
