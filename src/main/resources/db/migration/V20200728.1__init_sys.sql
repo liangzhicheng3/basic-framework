@@ -148,7 +148,7 @@ CREATE TABLE `sys_user` (
   `dept_name`            VARCHAR(30) NOT NULL COMMENT '部门名称',
   `account_name`         VARCHAR(30) NOT NULL COMMENT '账号名称',
   `truename`             VARCHAR(30) NOT NULL COMMENT '真实姓名',
-  `password`             VARCHAR(50) NOT NULL COMMENT '密码',
+  `password`             VARCHAR(255) NOT NULL COMMENT '密码',
   `avatar`               VARCHAR(255) DEFAULT '' COMMENT '头像',
   `is_admin`             VARCHAR(1) NOT NULL DEFAULT '0' COMMENT '超级管理员：0否，1是',
   `login_status`         VARCHAR(1) NOT NULL DEFAULT '1' COMMENT '登录状态：0冻结，1正常',
