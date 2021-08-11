@@ -2,6 +2,7 @@ package com.liangzhicheng.modules.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
@@ -204,29 +205,35 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
             //获取两个List交集
             accountIdByUser = SysToolUtil.getListBoth(accountIdByUser, accountIdByRoleUser);
         }
-        IPage resultList = baseMapper.selectPage(PageQuery.queryDispose(userDTO),
-                new QueryWrapper<SysUserEntity>().in("id", accountIdByUser)
-                        .orderByDesc("login_status").orderByAsc("id"));
-        userList = resultList.getRecords();
-        List<SysUserVO> userVOList = Lists.newArrayList();
-        if(SysToolUtil.listSizeGT(userList)){
-            SysUserVO userVO = null;
-            List<SysRoleUserEntity> roleUserList = Lists.newArrayList();
-            List<String> roleNames = null;
-            for(SysUserEntity user : userList){
-                userVO = SysBeanUtil.copyEntity(user, SysUserVO.class);
-                roleUserList = roleUserService.list("account_id", user.getId());
-                if(SysToolUtil.listSizeGT(roleUserList)){
-                    roleNames = Lists.newArrayList();
-                    for(SysRoleUserEntity roleUser : roleUserList){
-                        roleNames.add(roleUser.getRoleName());
+        IPage resultList = new Page();
+        if(SysToolUtil.listSizeGT(accountIdByUser)){
+            resultList = baseMapper.selectPage(PageQuery.queryDispose(userDTO),
+                    new QueryWrapper<SysUserEntity>().in("id", accountIdByUser)
+                            .orderByDesc("login_status").orderByAsc("id"));
+            userList = resultList.getRecords();
+            List<SysUserVO> userVOList = Lists.newArrayList();
+            if(SysToolUtil.listSizeGT(userList)){
+                SysUserVO userVO = null;
+                List<SysRoleUserEntity> roleUserList = Lists.newArrayList();
+                List<String> roleNames = null;
+                for(SysUserEntity user : userList){
+                    userVO = SysBeanUtil.copyEntity(user, SysUserVO.class);
+                    roleUserList = roleUserService.list("account_id", user.getId());
+                    if(SysToolUtil.listSizeGT(roleUserList)){
+                        roleNames = Lists.newArrayList();
+                        for(SysRoleUserEntity roleUser : roleUserList){
+                            roleNames.add(roleUser.getRoleName());
+                        }
+                        userVO.setRoleNames(roleNames);
                     }
-                    userVO.setRoleNames(roleNames);
+                    userVOList.add(userVO);
                 }
-                userVOList.add(userVO);
             }
+            return resultList.setRecords(userVOList);
         }
-        return resultList.setRecords(userVOList);
+        resultList.setRecords(Lists.newArrayList());
+        resultList.setTotal(0L);
+        return resultList;
     }
 
     /**
