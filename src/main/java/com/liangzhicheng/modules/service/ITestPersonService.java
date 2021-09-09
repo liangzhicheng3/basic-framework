@@ -5,9 +5,13 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
 import com.liangzhicheng.modules.entity.dto.TestPersonDTO;
+import com.liangzhicheng.modules.entity.query.TestPersonQueryCondition;
 import com.liangzhicheng.modules.entity.vo.TestPersonVO;
+import org.springframework.data.domain.Pageable;
 
-public interface ITestPersonService extends IService<TestPersonEntity> {
+import java.util.Map;
+
+public interface ITestPersonService extends BaseService<TestPersonEntity> {
 
     Long getCountUserNo();
 
@@ -16,5 +20,7 @@ public interface ITestPersonService extends IService<TestPersonEntity> {
     PageResult page2(TestPersonDTO personDto);
 
     IPage<TestPersonVO> page3(TestPersonDTO personDto);
+
+    Map<String, Object> testListPerson(TestPersonDTO personDTO, Pageable pageable);
 
 }

@@ -3,12 +3,9 @@ package com.liangzhicheng.config.db;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,23 +79,13 @@ public class DBConfig {
         if(resources != null){
             bean.setMapperLocations(resources);
         }
-        //分页插件
-        PaginationInterceptor pageInterceptor = new PaginationInterceptor();
-        pageInterceptor.setDialectType("mysql");
-        //SQL执行性能分析插件
-        /*PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
-        performanceInterceptor.setMaxTime(10000);
-        performanceInterceptor.setFormat(true);*/
-        Interceptor[] interceptors = {pageInterceptor/*,performanceInterceptor*/};
-        bean.setPlugins(interceptors);
-
         GlobalConfig config = new GlobalConfig();
         //插入数据字段预处理
         config.setMetaObjectHandler(new MyBatisPlusObjectHandler());
         GlobalConfig.DbConfig dbConfig = new GlobalConfig.DbConfig();
         //主键策略
         dbConfig.setIdType(IdType.AUTO);
-        dbConfig.setDbType(DbType.MYSQL);
+//        dbConfig.setDbType(DbType.MYSQL);
         config.setDbConfig(dbConfig);
         bean.setGlobalConfig(config);
         //字段下划线映射bean以驼峰模式

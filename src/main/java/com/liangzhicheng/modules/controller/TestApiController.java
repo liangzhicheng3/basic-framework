@@ -11,9 +11,12 @@ import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
-import com.liangzhicheng.modules.service.ITestDepartmentPersonService;
+import com.liangzhicheng.modules.entity.dto.TestPersonDTO;
+import com.liangzhicheng.modules.entity.query.TestPersonQueryCondition;
+import com.liangzhicheng.modules.entity.vo.TestPersonVO;
 import com.liangzhicheng.modules.service.ITestPersonService;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,15 +25,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.*;
 
-@Api(value="Api-TestController", description="测试接口（仅供后台调试使用）")
+@Api(value="Api-TestController", tags={"测试接口（仅供后台调试使用）"})
 @RestController
 @RequestMapping("/api/testApiController")
 public class TestApiController extends BaseController {
 
     @Resource
     private ITestPersonService personService;
-    @Resource
-    private ITestDepartmentPersonService departmentPersonService;
+
+    @ApiOperation(value = "人员列表")
+    @PostMapping(value = "/testListPerson")
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE,
+            message = "成功", response = TestPersonVO.class)})
+    public WebResult testListPerson(@RequestBody TestPersonDTO personDTO, Pageable pageable){
+        return buildSuccessInfo(personService.testListPerson(personDTO, pageable));
+    }
 
     @ApiOperation(value = "AES加密、解密测试")
     @RequestMapping(value = "/testAES", method = RequestMethod.POST)

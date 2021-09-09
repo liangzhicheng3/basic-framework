@@ -3,6 +3,7 @@ package com.liangzhicheng.modules.controller;
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -43,9 +44,9 @@ public class PersonApiController extends BaseController {
                           @ApiParam(value = "密码") @RequestParam(required=false)  String password,
                           @ApiParam(value = "年龄") @RequestParam(required=false)  Integer age,
                           @ApiParam(value = "性别：0女 1男") @RequestParam(required=false)  Boolean gender,
-                          @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") LocalTime sleepTime,
-                          @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime workTime,
-                          @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthday,
+                          @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") Date sleepTime,
+                          @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date workTime,
+                          @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
                           @ApiParam(value = "个人简介") @RequestParam(required=false)  String intro){
         TestPersonEntity entity = new TestPersonEntity();
         if(SysToolUtil.isNotBlank(avatar)){
@@ -97,9 +98,9 @@ public class PersonApiController extends BaseController {
                           @ApiParam(value = "密码") @RequestParam(required=false)  String password,
                           @ApiParam(value = "年龄") @RequestParam(required=false)  Integer age,
                           @ApiParam(value = "性别：0女 1男") @RequestParam(required=false)  Boolean gender,
-                          @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") LocalTime sleepTime,
-                          @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime workTime,
-                          @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate birthday,
+                          @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") Date sleepTime,
+                          @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date workTime,
+                          @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
                           @ApiParam(value = "个人简介") @RequestParam(required=false)  String intro
                           ){
         TestPersonEntity entity = null;

@@ -44,14 +44,14 @@ public class TestPersonQueryEntity extends BaseQueryEntity {
         if(SysToolUtil.isNotBlank(age) && "1".equals(age)) {
             this.age = age;
         }
-        String dateStartStr = personDto.getDateStart();
-        if(SysToolUtil.isNotBlank(dateStartStr)) {
-            this.dateStart = SysToolUtil.stringToLocalDateTime(dateStartStr , null);
-        }
-        String dateEndStr = personDto.getDateEnd();
-        if(SysToolUtil.isNotBlank(dateEndStr)) {
-            this.dateEnd = SysToolUtil.stringToLocalDateTime(dateEndStr , null);
-        }
+//        String dateStartStr = personDto.getDateStart();
+//        if(SysToolUtil.isNotBlank(dateStartStr)) {
+//            this.dateStart = SysToolUtil.stringToLocalDateTime(dateStartStr , null);
+//        }
+//        String dateEndStr = personDto.getDateEnd();
+//        if(SysToolUtil.isNotBlank(dateEndStr)) {
+//            this.dateEnd = SysToolUtil.stringToLocalDateTime(dateEndStr , null);
+//        }
     }
 
 }

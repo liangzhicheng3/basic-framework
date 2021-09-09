@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.Date;
 
 @TableName("test_person")
 public class TestPersonEntity extends Model<TestPersonEntity> {
@@ -50,17 +51,17 @@ public class TestPersonEntity extends Model<TestPersonEntity> {
     /**
      * 睡觉时间
      */
-    private LocalTime sleepTime;
+    private Date sleepTime;
 
     /**
      * 上班时间
      */
-    private LocalDateTime workTime;
+    private Date workTime;
 
     /**
      * 出生时间
      */
-    private LocalDate birthday;
+    private Date birthday;
 
     /**
      * 个人简介
@@ -71,13 +72,13 @@ public class TestPersonEntity extends Model<TestPersonEntity> {
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createDate;
+    private Date createDate;
 
     /**
      * 更新时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateDate;
+    private Date updateDate;
 
     /**
      * 用户编号
@@ -126,25 +127,25 @@ public class TestPersonEntity extends Model<TestPersonEntity> {
     public void setGender(Boolean gender) {
         this.gender = gender;
     }
-    public LocalTime getSleepTime() {
+    public Date getSleepTime() {
         return sleepTime;
     }
 
-    public void setSleepTime(LocalTime sleepTime) {
+    public void setSleepTime(Date sleepTime) {
         this.sleepTime = sleepTime;
     }
-    public LocalDateTime getWorkTime() {
+    public Date getWorkTime() {
         return workTime;
     }
 
-    public void setWorkTime(LocalDateTime workTime) {
+    public void setWorkTime(Date workTime) {
         this.workTime = workTime;
     }
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
     public String getIntro() {
@@ -154,18 +155,18 @@ public class TestPersonEntity extends Model<TestPersonEntity> {
     public void setIntro(String intro) {
         this.intro = intro;
     }
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-    public LocalDateTime getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(LocalDateTime updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
