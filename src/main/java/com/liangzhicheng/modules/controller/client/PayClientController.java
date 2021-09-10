@@ -9,7 +9,7 @@ import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.pay.alipay.utils.AlipayRefundUtil;
@@ -50,8 +50,8 @@ public class PayClientController extends BaseController {
     @ApiOperation(value = "微信小程序支付")
     @RequestMapping(value = "/weChatMiniPay", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult weChatMiniPay(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                             BindingResult bindingResult, HttpServletRequest request){
+    public ResponseResult weChatMiniPay(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
+                                        BindingResult bindingResult, HttpServletRequest request){
         //JSONObject json = JSON.parseObject(param); com.alibaba.fastJson
         JSONObject json = JSONObject.fromObject(param);
         String orderId = null;
@@ -116,8 +116,8 @@ public class PayClientController extends BaseController {
     @ApiOperation(value = "微信APP支付")
     @RequestMapping(value = "/weChatAppPay", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult weChatAppPay(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                            BindingResult bindingResult, HttpServletRequest request){
+    public ResponseResult weChatAppPay(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
+                                       BindingResult bindingResult, HttpServletRequest request){
         //JSONObject json = JSON.parseObject(param);
         JSONObject json = JSONObject.fromObject(param);
         String orderId = null;
@@ -192,8 +192,8 @@ public class PayClientController extends BaseController {
     @ApiOperation(value = "微信支付退款")
     @RequestMapping(value = "/weChatRefund", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult weChatRefund(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                               BindingResult bindingResult, HttpServletRequest request){
+    public ResponseResult weChatRefund(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
+                                       BindingResult bindingResult, HttpServletRequest request){
         //JSONObject json = JSON.parseObject(param);
         JSONObject json = JSONObject.fromObject(param);
         String orderId = null;
@@ -220,8 +220,8 @@ public class PayClientController extends BaseController {
     @ApiOperation(value = "支付宝APP支付")
     @RequestMapping(value = "/alipayApp", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult alipayApp(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                               BindingResult bindingResult){
+    public ResponseResult alipayApp(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
+                                    BindingResult bindingResult){
         //JSONObject json = JSON.parseObject(param);
         JSONObject json = JSONObject.fromObject(param);
         String orderId = null;
@@ -254,8 +254,8 @@ public class PayClientController extends BaseController {
     @ApiOperation(value = "支付宝退款")
     @RequestMapping(value = "/alipayRefund", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult alipayRefund(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
-                                  BindingResult bindingResult){
+    public ResponseResult alipayRefund(@ApiParam(name = "param", value = "需要传的参数说明", required = true) @RequestBody @Valid String param,
+                                       BindingResult bindingResult){
         //JSONObject json = JSON.parseObject(param);
         JSONObject json = JSONObject.fromObject(param);
         String orderId = null;

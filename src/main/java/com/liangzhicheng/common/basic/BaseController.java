@@ -9,20 +9,20 @@ import com.liangzhicheng.common.constant.ApiConstant;
  */
 public abstract class BaseController {
 
-	protected WebResult buildSuccessInfo(Object resultData) {
-		return new WebResult(ApiConstant.BASE_SUCCESS_CODE, ApiConstant.getMessage(ApiConstant.BASE_SUCCESS_CODE), resultData);
+	protected ResponseResult buildSuccessInfo(Object resultData) {
+		return new ResponseResult(ApiConstant.BASE_SUCCESS_CODE, ApiConstant.getMessage(ApiConstant.BASE_SUCCESS_CODE), resultData);
 	}
 
-    protected WebResult buildFailedInfo(int errorCode) {
-        return new WebResult(errorCode, ApiConstant.getMessage(errorCode), null);
+    protected ResponseResult buildFailedInfo(int errorCode) {
+        return new ResponseResult(errorCode, ApiConstant.getMessage(errorCode), null);
 	}
 
-    protected WebResult buildFailedInfo(int errorCode, String appendMsg) {
-        return new WebResult(errorCode, appendMsg, null);
+    protected ResponseResult buildFailedInfo(int errorCode, String appendMsg) {
+        return new ResponseResult(errorCode, appendMsg, null);
 	}
 
-    protected WebResult buildFailedInfo(String errorMsg) {
-        return new WebResult(ApiConstant.BASE_FAIL_CODE, errorMsg, null);
+    protected ResponseResult buildFailedInfo(String errorMsg) {
+        return new ResponseResult(ApiConstant.BASE_FAIL_CODE, errorMsg, null);
 	}
-	
+
 }

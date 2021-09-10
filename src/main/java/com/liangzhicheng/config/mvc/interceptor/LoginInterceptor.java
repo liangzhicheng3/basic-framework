@@ -1,6 +1,6 @@
 package com.liangzhicheng.config.mvc.interceptor;
 
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.utils.SysTokenUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
@@ -51,10 +51,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				 * 如果没有登录，返回false拦截请求
 				 */
 				if(!isLogin){
-					WebResult result = null;
+					ResponseResult result = null;
 					PrintWriter out = null;
 					try{
-						result = new WebResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(ApiConstant.NO_LOGIN), null);
+						result = new ResponseResult(ApiConstant.NO_LOGIN, ApiConstant.getMessage(ApiConstant.NO_LOGIN), null);
 						response.setContentType("application/json;charset=UTF-8");
 						response.setCharacterEncoding("UTF-8");
 						out = response.getWriter();

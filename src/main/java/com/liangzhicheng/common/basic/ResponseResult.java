@@ -9,8 +9,8 @@ import io.swagger.annotations.ApiModelProperty;
  * @since 2020-07-28
  */
 @ApiModel(value = "BaseResult", description = "返回集合")
-public class WebResult {
-	
+public class ResponseResult {
+
 	@ApiModelProperty(notes = "返回码，10000表示成功，非10000表示失败")
 	private Integer code;
 
@@ -19,28 +19,28 @@ public class WebResult {
 
 	@ApiModelProperty(notes = "返回的具体数据")
 	private Object data;
-	
-	public WebResult() {
+
+	public ResponseResult() {
 		super();
 	}
-	
-	public WebResult(Integer resultCode) {
+
+	public ResponseResult(Integer resultCode) {
 		super();
 		this.code = resultCode;
 	}
 
-	public WebResult(Object data) {
+	public ResponseResult(Object data) {
 		super();
 		this.data = data;
 	}
 
-	public WebResult(Integer code, String message) {
+	public ResponseResult(Integer code, String message) {
 		super();
 		this.code = code;
 		this.message = message;
 	}
 
-	public WebResult(Integer code, String message, Object data) {
+	public ResponseResult(Integer code, String message, Object data) {
 		super();
 		this.code = code;
 		this.message = message;

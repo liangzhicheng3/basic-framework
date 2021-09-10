@@ -1,7 +1,7 @@
 package com.liangzhicheng.modules.controller.client;
 
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.modules.entity.dto.TestAreaDTO;
@@ -31,7 +31,7 @@ public class AreaClientController extends BaseController {
     @ApiOperation(value = "地区列表")
     @PostMapping(value = "/listArea")
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestAreaNameVO.class)})
-    public WebResult listArea(@RequestBody TestAreaDTO areaDto){
+    public ResponseResult listArea(@RequestBody TestAreaDTO areaDto){
         PageResult resultList = areaNameService.listArea(areaDto);
         return buildSuccessInfo(resultList);
     }

@@ -5,9 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
-import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.entity.TestDepartmentEntity;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
@@ -43,7 +42,7 @@ public class DepartmentApiController extends BaseController {
     @ApiOperation(value = "分页查询")
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestDepartmentVO.class)})
-    public WebResult page(@RequestBody @Valid String param, BindingResult bindingResult
+    public ResponseResult page(@RequestBody @Valid String param, BindingResult bindingResult
             /*@ApiParam(value = "页码，1为第一页",required = true) @RequestParam Integer page,
                           @ApiParam(value = "每页数量",required = true) @RequestParam Integer pageSize,
                           @ApiParam(value = "部门id") @RequestParam(required=false)  Integer deptId*/
@@ -78,8 +77,8 @@ public class DepartmentApiController extends BaseController {
     @ApiOperation(value = "保存")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestDepartmentVO.class)})
-    public WebResult save(@ApiParam(value = "id") @RequestParam(required=false) Long id,
-                          @ApiParam(value = "部门名称") @RequestParam(required=false)  String deptName
+    public ResponseResult save(@ApiParam(value = "id") @RequestParam(required=false) Long id,
+                               @ApiParam(value = "部门名称") @RequestParam(required=false)  String deptName
                           ){
         TestDepartmentEntity entity = null;
         if(id != null){
@@ -98,7 +97,7 @@ public class DepartmentApiController extends BaseController {
     @ApiOperation(value = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = Boolean.class)})
-    public WebResult delete(@RequestParam Long id){
+    public ResponseResult delete(@RequestParam Long id){
         boolean delete = testDepartmentService.removeById(id);
         return buildSuccessInfo(delete);
     }
@@ -107,7 +106,7 @@ public class DepartmentApiController extends BaseController {
     @ApiOperation(value = "获取详情")
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestDepartmentVO.class)})
-    public WebResult get(@RequestParam Long id){
+    public ResponseResult get(@RequestParam Long id){
         TestDepartmentEntity entity = testDepartmentService.getById(id);
         TestDepartmentVO vo = null;
         if(entity != null){

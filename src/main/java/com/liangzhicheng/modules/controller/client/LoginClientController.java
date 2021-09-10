@@ -4,7 +4,7 @@ import cn.hutool.core.codec.Base64;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
@@ -47,7 +47,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/sendSMS")
     @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.email", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult sendSMS(@RequestBody TestLoginClientDTO dto){
+    public ResponseResult sendSMS(@RequestBody TestLoginClientDTO dto){
         String phone = dto.getPhone();
         if(SysToolUtil.isBlank(phone)){
             return buildFailedInfo(ApiConstant.PARAM_IS_NULL);
@@ -68,7 +68,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/sendEmailCode")
     @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.phone", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult sendEmailCode(@RequestBody TestLoginClientDTO dto) {
+    public ResponseResult sendEmailCode(@RequestBody TestLoginClientDTO dto) {
         String email = dto.getEmail();
         if(SysToolUtil.isBlank(email)){
             //throw new TransactionException(ApiConstant.PARAM_ERROR);
@@ -88,7 +88,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/loginPhone")
     @ApiOperationSupport(ignoreParameters = {"dto.userId", "dto.email"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginPhone(@RequestBody TestLoginClientDTO dto){
+    public ResponseResult loginPhone(@RequestBody TestLoginClientDTO dto){
         String phone = dto.getPhone();
         String vcode = dto.getVcode();
         if(SysToolUtil.isBlank(phone, vcode)){
@@ -116,7 +116,7 @@ public class LoginClientController extends BaseController {
     @ApiOperation(value = "小程序授权登录，不需要token")
     @PostMapping(value = "/loginMINI")
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginMINI(@Validated @RequestBody TestLoginWeChatDTO dto){
+    public ResponseResult loginMINI(@Validated @RequestBody TestLoginWeChatDTO dto){
         SysToolUtil.info("--- loginCode come start ///", LoginClientController.class);
         String code = dto.getCode();
         String encryptedData = dto.getEncryptedData();
@@ -186,7 +186,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/loginAPP")
     @ApiOperationSupport(ignoreParameters = {"dto.encryptedData", "dto.iv"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult loginAPP(@Validated @RequestBody TestLoginWeChatDTO dto){
+    public ResponseResult loginAPP(@Validated @RequestBody TestLoginWeChatDTO dto){
         String code = dto.getCode();
         /**
          * 1.根据code获取用户信息
@@ -209,7 +209,7 @@ public class LoginClientController extends BaseController {
     @PostMapping(value = "/logOutAPP")
     @ApiOperationSupport(ignoreParameters = {"dto.phone", "dto.email", "dto.vcode"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult logOutAPP(@RequestBody TestLoginClientDTO dto){
+    public ResponseResult logOutAPP(@RequestBody TestLoginClientDTO dto){
         String userId = dto.getUserId();
         //判断用户是否存在
         // TODO user

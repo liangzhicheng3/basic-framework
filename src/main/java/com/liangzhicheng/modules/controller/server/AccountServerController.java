@@ -1,7 +1,7 @@
 package com.liangzhicheng.modules.controller.server;
 
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.dto.SysUserDTO;
@@ -34,7 +34,7 @@ public class AccountServerController extends BaseController {
     /**
      * @description 更新当前登录用户头像
      * @param userDTO
-     * @return WebResult
+     * @return ResponseResult
      */
     @ApiOperation(value = "更新头像")
     @PostMapping(value = "/updateAvatar")
@@ -45,14 +45,14 @@ public class AccountServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysPersonInfoVO.class)})
     @LoginValidate
-    public WebResult updateAvatar(@RequestBody SysUserDTO userDTO, HttpServletRequest request){
+    public ResponseResult updateAvatar(@RequestBody SysUserDTO userDTO, HttpServletRequest request){
         return buildSuccessInfo(sysUserService.updateAvatar(userDTO, request));
     }
 
     /**
      * @description 更新当前登录用户密码
      * @param userDTO
-     * @return WebResult
+     * @return ResponseResult
      */
     @ApiOperation(value = "更新密码")
     @PostMapping(value = "/updatePassword")
@@ -62,7 +62,7 @@ public class AccountServerController extends BaseController {
             "userDTO.isAdmin", "userDTO.loginStatus",
             "userDTO.page", "userDTO.pageSize"})
     @LoginValidate
-    public WebResult updatePassword(@RequestBody SysUserDTO userDTO, HttpServletRequest request){
+    public ResponseResult updatePassword(@RequestBody SysUserDTO userDTO, HttpServletRequest request){
         sysUserService.updatePassword(userDTO, request);
         return buildSuccessInfo(null);
     }
@@ -75,7 +75,7 @@ public class AccountServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysUserVO.class)})
     @LoginValidate
-    public WebResult listAccount(@RequestBody SysUserDTO userDTO){
+    public ResponseResult listAccount(@RequestBody SysUserDTO userDTO){
         return buildSuccessInfo(sysUserService.listAccount(userDTO));
     }
 
@@ -88,7 +88,7 @@ public class AccountServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysUserDescVO.class)})
     @LoginValidate
-    public WebResult getAccount(@RequestBody SysUserDTO userDTO){
+    public ResponseResult getAccount(@RequestBody SysUserDTO userDTO){
         return buildSuccessInfo(sysUserService.getAccount(userDTO));
     }
 
@@ -98,7 +98,7 @@ public class AccountServerController extends BaseController {
             "userDTO.password", "userDTO.avatar", "userDTO.isAdmin",
             "userDTO.newPassword", "userDTO.page", "userDTO.pageSize"})
     @LoginValidate
-    public WebResult saveAccount(@RequestBody SysUserDTO userDTO){
+    public ResponseResult saveAccount(@RequestBody SysUserDTO userDTO){
         sysUserService.saveAccount(userDTO);
         return buildSuccessInfo(null);
     }
@@ -111,7 +111,7 @@ public class AccountServerController extends BaseController {
             "userDTO.isAdmin", "userDTO.loginStatus", "userDTO.newPassword",
             "userDTO.page", "userDTO.pageSize"})
     @LoginValidate
-    public WebResult resetPassword(@RequestBody SysUserDTO userDTO){
+    public ResponseResult resetPassword(@RequestBody SysUserDTO userDTO){
         sysUserService.resetPassword(userDTO);
         return buildSuccessInfo(null);
     }
@@ -124,7 +124,7 @@ public class AccountServerController extends BaseController {
             "userDTO.isAdmin", "userDTO.loginStatus", "userDTO.newPassword",
             "userDTO.page", "userDTO.pageSize"})
     @LoginValidate
-    public WebResult deleteAccount(@RequestBody SysUserDTO userDTO){
+    public ResponseResult deleteAccount(@RequestBody SysUserDTO userDTO){
         sysUserService.deleteAccount(userDTO);
         return buildSuccessInfo(null);
     }

@@ -1,7 +1,7 @@
 package com.liangzhicheng.modules.controller.server;
 
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.dto.SysDeptDTO;
@@ -36,7 +36,7 @@ public class DepartmentServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysDeptVO.class)})
     //@LoginValidate
-    public WebResult listDept(@RequestBody SysDeptDTO deptDTO){
+    public ResponseResult listDept(@RequestBody SysDeptDTO deptDTO){
         return buildSuccessInfo(deptService.listDept(deptDTO));
     }
 
@@ -48,7 +48,7 @@ public class DepartmentServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysDeptDescVO.class)})
     @LoginValidate
-    public WebResult getDept(@RequestBody SysDeptDTO deptDTO){
+    public ResponseResult getDept(@RequestBody SysDeptDTO deptDTO){
         return buildSuccessInfo(deptService.getDept(deptDTO));
     }
 
@@ -58,7 +58,7 @@ public class DepartmentServerController extends BaseController {
             "deptDTO.dateStart", "deptDTO.dateEnd",
             "deptDTO.page", "deptDTO.pageSize"})
     @LoginValidate
-    public WebResult saveDept(@RequestBody SysDeptDTO deptDTO){
+    public ResponseResult saveDept(@RequestBody SysDeptDTO deptDTO){
         deptService.saveDept(deptDTO);
         return buildSuccessInfo(null);
     }
@@ -70,7 +70,7 @@ public class DepartmentServerController extends BaseController {
             "deptDTO.companyId", "deptDTO.companyName", "deptDTO.description",
             "deptDTO.page", "deptDTO.pageSize"})
     @LoginValidate
-    public WebResult deleteDept(@RequestBody SysDeptDTO deptDTO){
+    public ResponseResult deleteDept(@RequestBody SysDeptDTO deptDTO){
         deptService.deleteDept(deptDTO);
         return buildSuccessInfo(null);
     }

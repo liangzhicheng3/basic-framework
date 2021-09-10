@@ -1,7 +1,7 @@
 package com.liangzhicheng.modules.controller.server;
 
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.utils.SysCacheUtil;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
@@ -35,7 +35,7 @@ public class MenuServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysMenuVO.class)})
     //@LoginValidate
-    public WebResult listMenu(){
+    public ResponseResult listMenu(){
         return buildSuccessInfo(SysCacheUtil.listPermMenu());
     }
 
@@ -47,7 +47,7 @@ public class MenuServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysMenuDescVO.class)})
     @LoginValidate
-    public WebResult getMenu(@RequestBody SysMenuDTO menuDTO){
+    public ResponseResult getMenu(@RequestBody SysMenuDTO menuDTO){
         return buildSuccessInfo(menuService.getMenu(menuDTO));
     }
 
@@ -55,7 +55,7 @@ public class MenuServerController extends BaseController {
     @PostMapping(value = "/insertMenu")
     @ApiOperationSupport(ignoreParameters = {"menuDTO.id"})
     @LoginValidate
-    public WebResult insertMenu(@RequestBody SysMenuDTO menuDTO){
+    public ResponseResult insertMenu(@RequestBody SysMenuDTO menuDTO){
         menuService.insertMenu(menuDTO);
         return buildSuccessInfo(null);
     }
@@ -64,7 +64,7 @@ public class MenuServerController extends BaseController {
     @PostMapping(value = "/updateMenu")
     @ApiOperationSupport(ignoreParameters = {"menuDTO.type", "menuDTO.parentId"})
     @LoginValidate
-    public WebResult updateMenu(@RequestBody SysMenuDTO menuDTO){
+    public ResponseResult updateMenu(@RequestBody SysMenuDTO menuDTO){
         menuService.updateMenu(menuDTO);
         return buildSuccessInfo(null);
     }
@@ -76,7 +76,7 @@ public class MenuServerController extends BaseController {
             "menuDTO.component", "menuDTO.routerPath", "menuDTO.redirect",
             "menuDTO.isHide", "menuDTO.rank"})
     @LoginValidate
-    public WebResult deleteMenu(@RequestBody SysMenuDTO menuDTO){
+    public ResponseResult deleteMenu(@RequestBody SysMenuDTO menuDTO){
         menuService.deleteMenu(menuDTO);
         return buildSuccessInfo(null);
     }

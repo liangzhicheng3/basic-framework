@@ -5,14 +5,13 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.TestPersonEntity;
 import com.liangzhicheng.modules.entity.dto.TestPersonDTO;
-import com.liangzhicheng.modules.entity.query.TestPersonQueryCondition;
 import com.liangzhicheng.modules.entity.vo.TestPersonVO;
 import com.liangzhicheng.modules.service.ITestPersonService;
 import io.swagger.annotations.*;
@@ -37,16 +36,16 @@ public class TestApiController extends BaseController {
     @PostMapping(value = "/testListPerson")
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE,
             message = "成功", response = TestPersonVO.class)})
-    public WebResult testListPerson(@RequestBody TestPersonDTO personDTO, Pageable pageable){
+    public ResponseResult testListPerson(@RequestBody TestPersonDTO personDTO, Pageable pageable){
         return buildSuccessInfo(personService.testListPerson(personDTO, pageable));
     }
 
     @ApiOperation(value = "AES加密、解密测试")
     @RequestMapping(value = "/testAES", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testAES(@ApiParam(name = "sign", value = "把下面所有参数AES签名", required = true) @RequestParam String sign,
-                             @ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId,
-                             @ApiParam(name = "orderId", value = "订单id") @RequestParam(required = false) String orderId
+    public ResponseResult testAES(@ApiParam(name = "sign", value = "把下面所有参数AES签名", required = true) @RequestParam String sign,
+                                  @ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId,
+                                  @ApiParam(name = "orderId", value = "订单id") @RequestParam(required = false) String orderId
                              /*BindingResult bindingResult*/){
         userId = SysAESUtil.getParam("userId", sign);
         orderId = SysAESUtil.getParam("orderId", sign);
@@ -60,7 +59,7 @@ public class TestApiController extends BaseController {
     @ApiOperation(value = "生成token-MINI")
     @RequestMapping(value = "/testCreateTokenMINI", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testCreateTokenMINI(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId){
+    public ResponseResult testCreateTokenMINI(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId){
         Date expireTime = SysToolUtil.dateAdd(new Date(), 1);
         String token = SysTokenUtil.createTokenMINI(userId, expireTime);
         SysTokenUtil.updateTokenMINI(userId, token);
@@ -70,7 +69,7 @@ public class TestApiController extends BaseController {
     @ApiOperation(value = "生成token-APP")
     @RequestMapping(value = "/testCreateTokenAPP", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testCreateTokenAPP(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId){
+    public ResponseResult testCreateTokenAPP(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId){
         Date expireTime = SysToolUtil.dateAdd(new Date(), 1);
         String token = SysTokenUtil.createTokenMINI(userId, expireTime);
         SysTokenUtil.updateTokenMINI(userId, token);
@@ -80,8 +79,8 @@ public class TestApiController extends BaseController {
     @ApiOperation(value = "校验token")
     @RequestMapping(value = "/testVerifyToken", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testVerifyToken(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId,
-                                     @ApiParam(name = "token", value = "登录密钥校验") @RequestParam(required = true) String token){
+    public ResponseResult testVerifyToken(@ApiParam(name = "userId", value = "用户id", required = true) @RequestParam String userId,
+                                          @ApiParam(name = "token", value = "登录密钥校验") @RequestParam(required = true) String token){
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("MINI", SysTokenUtil.isLoginMINI(userId, token));
         map.put("APP", SysTokenUtil.isLoginAPP(userId, token));
@@ -92,17 +91,17 @@ public class TestApiController extends BaseController {
     @ApiOperation(value = "校验是否登录-客户端")
     @RequestMapping(value = "/testIsLoginClient", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testIsLoginClient(@ApiParam(name = "tokenMINI", value = "登录密钥校验-小程序") @RequestParam(required = false) String tokenMINI,
-                                       @ApiParam(name = "tokenAPP", value = "登录密钥校验-APP") @RequestParam(required = false) String tokenAPP,
-                                       @ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId){
+    public ResponseResult testIsLoginClient(@ApiParam(name = "tokenMINI", value = "登录密钥校验-小程序") @RequestParam(required = false) String tokenMINI,
+                                            @ApiParam(name = "tokenAPP", value = "登录密钥校验-APP") @RequestParam(required = false) String tokenAPP,
+                                            @ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId){
         return buildSuccessInfo(null);
     }
 
     @ApiOperation(value = "登录-服务端")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = Boolean.class)})
-    public WebResult login(@ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId,
-                           HttpServletRequest request){
+    public ResponseResult login(@ApiParam(name = "userId", value = "用户id") @RequestParam(required = false) String userId,
+                                HttpServletRequest request){
         request.getSession().setAttribute(Constants.LOGIN_USER_ID, userId);
         return buildSuccessInfo("登录成功！");
     }
@@ -110,14 +109,14 @@ public class TestApiController extends BaseController {
     @ApiOperation(value = "手机验证码测试")
     @RequestMapping(value = "/testSMS", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testSMS(){
+    public ResponseResult testSMS(){
         return buildSuccessInfo(SysCacheUtil.entries("SMS_TEST_MAP"));
     }
 
     @ApiOperation(value = "获取初始化数据")
     @RequestMapping(value = "/testInitData", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult testInitData(){
+    public ResponseResult testInitData(){
         String phone = (String) SysCacheUtil.get(Constants.INIT_PHONE_SERVICE);
         String cooperation = (String) SysCacheUtil.get(Constants.INIT_COOPERATION_AISLE);
         Map<String, Object> map = new HashMap<String, Object>();
@@ -129,9 +128,9 @@ public class TestApiController extends BaseController {
     @ApiOperation(value = "html转pdf")
     @PostMapping("/htmlToPdf")
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = String.class)})
-    public WebResult htmlToPdf(@ApiParam(name = "param", value = "info:[{src:'html文件url',personId:'下载用户'},{...}]",
+    public ResponseResult htmlToPdf(@ApiParam(name = "param", value = "info:[{src:'html文件url',personId:'下载用户'},{...}]",
             required = true) @RequestBody @Valid String param,
-                               BindingResult bindingResult) {
+                                    BindingResult bindingResult) {
         JSONObject json = JSON.parseObject(param);
         String info = json.getString("info");
         if(SysToolUtil.isBlank(info)){

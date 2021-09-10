@@ -1,6 +1,6 @@
 package com.liangzhicheng.config.mvc.interceptor;
 
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.utils.SysCacheUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
@@ -61,9 +61,9 @@ public class PermissionsInterceptor extends HandlerInterceptorAdapter {
      */
     private void render(HttpServletResponse response) {
         PrintWriter out = null;
-        WebResult result = null;
+        ResponseResult result = null;
         try {
-            result = new WebResult(ApiConstant.NO_AUTHORIZATION, ApiConstant.getMessage(ApiConstant.NO_AUTHORIZATION), null);
+            result = new ResponseResult(ApiConstant.NO_AUTHORIZATION, ApiConstant.getMessage(ApiConstant.NO_AUTHORIZATION), null);
             response.setContentType("application/json;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             out = response.getWriter();

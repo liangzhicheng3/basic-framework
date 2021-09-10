@@ -1,6 +1,6 @@
 package com.liangzhicheng.config.mvc.interceptor;
 
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import net.sf.json.JSONObject;
@@ -33,7 +33,7 @@ public class XSSInterceptor extends HandlerInterceptorAdapter {
 					SysToolUtil.info("--- XSS come start ///");
 					SysToolUtil.info("--- valueStr : " + valueStr);
 					SysToolUtil.info("--- newStr : " + newStr);
-					WebResult result = new WebResult(ApiConstant.BASE_FAIL_CODE, "含有XSS字符", null);
+					ResponseResult result = new ResponseResult(ApiConstant.BASE_FAIL_CODE, "含有XSS字符", null);
 					JSONObject json = JSONObject.fromObject(result);
 					response.setCharacterEncoding("UTF-8");
 					response.setContentType("application/json");
@@ -44,5 +44,5 @@ public class XSSInterceptor extends HandlerInterceptorAdapter {
 		}
 		return true;
 	}
-	
+
 }

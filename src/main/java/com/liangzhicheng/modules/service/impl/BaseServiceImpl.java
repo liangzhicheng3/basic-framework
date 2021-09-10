@@ -5,9 +5,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.liangzhicheng.common.utils.SysToolUtil;
-import com.liangzhicheng.modules.entity.dto.basic.BaseDTO;
 import com.liangzhicheng.modules.entity.query.basic.BaseQueryEntity;
-import com.liangzhicheng.modules.service.BaseService;
+import com.liangzhicheng.modules.service.IBaseService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -21,7 +20,7 @@ import java.util.Map;
  * @author liangzhicheng
  * @since 2021-09-09
  */
-public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements BaseService<T> {
+public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements IBaseService<T> {
 
     /**
      * @description 自定义排序

@@ -3,7 +3,7 @@ package com.liangzhicheng.config.advice;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
@@ -47,7 +47,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({RuntimeException.class})
     @ResponseBody
-    public WebResult runtimeException(RuntimeException ex){
+    public ResponseResult runtimeException(RuntimeException ex){
         StringWriter sw = new StringWriter();
         ex.printStackTrace(new PrintWriter(sw,true));
         SysToolUtil.error("Exception Output : " + sw.toString(), getClass());
@@ -61,7 +61,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({MissingServletRequestParameterException.class})
     @ResponseBody
-    public WebResult missingServletRequestParameterException(
+    public ResponseResult missingServletRequestParameterException(
             MissingServletRequestParameterException ex){
         return buildFailedInfo(ApiConstant.PARAM_IS_NULL," : "
                 + ex.getParameterName());
@@ -74,7 +74,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({TypeMismatchException.class})
     @ResponseBody
-    public WebResult typeMismatchException(TypeMismatchException ex){
+    public ResponseResult typeMismatchException(TypeMismatchException ex){
         return buildFailedInfo(ApiConstant.PARAM_TYPE_ERROR," : "
                 + ex.getValue()+"，需要 : " + ex.getRequiredType().getName());
     }
@@ -86,7 +86,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({InvalidFormatException.class})
     @ResponseBody
-    public WebResult invalidFormatException(InvalidFormatException ex){
+    public ResponseResult invalidFormatException(InvalidFormatException ex){
         return buildFailedInfo(ApiConstant.PARAM_FORMAT_ERROR);
     }
 
@@ -97,7 +97,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({JsonParseException.class})
     @ResponseBody
-    public WebResult jsonParseException1(JsonParseException ex){
+    public ResponseResult jsonParseException1(JsonParseException ex){
         return buildFailedInfo(ApiConstant.PARAM_JSON_ERROR);
     }
 
@@ -108,7 +108,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({HttpMessageNotReadableException.class})
     @ResponseBody
-    public WebResult jsonParseException2(HttpMessageNotReadableException ex){
+    public ResponseResult jsonParseException2(HttpMessageNotReadableException ex){
         String message = ex.getMessage();
         String rgex = "Unrecognized field \"(.*?)\" ";
         Pattern pattern = Pattern.compile(rgex); //匹配的模式
@@ -127,7 +127,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseBody
-    public WebResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    public ResponseResult handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         List<FieldError> errorList = ex.getBindingResult().getFieldErrors();
         List<String> errorMessages = errorList.stream().map(x->{
             String itemMessage= messageSource.getMessage(x.getDefaultMessage(), null,
@@ -141,11 +141,11 @@ public class SysControllerAdvice extends BaseController {
     /**
      * @description 参数保存有误异常
      * @param ex
-     * @return WebResult
+     * @return ResponseResult
      */
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseBody
-    public WebResult dataIntegrityViolationException(DataIntegrityViolationException ex) {
+    public ResponseResult dataIntegrityViolationException(DataIntegrityViolationException ex) {
         SysToolUtil.error("参数保存有误异常输出 : " + ex.getMessage(), getClass());
         return buildFailedInfo("保存失败");
     }
@@ -157,7 +157,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({TransactionException.class})
     @ResponseBody
-    public WebResult transactionException(TransactionException ex){
+    public ResponseResult transactionException(TransactionException ex){
         SysToolUtil.error("业务逻辑异常输出 : " + ex.getMessage(), getClass());
         return buildFailedInfo(ex.getCode());
     }
@@ -169,7 +169,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler({CustomizeException.class})
     @ResponseBody
-    public WebResult businessException(CustomizeException ex){
+    public ResponseResult businessException(CustomizeException ex){
         SysToolUtil.error("自定义异常输出 : " + ex.getMessage(), getClass());
         return buildFailedInfo(ex.getCode(), ex.getMessage());
     }
@@ -181,7 +181,7 @@ public class SysControllerAdvice extends BaseController {
      */
     @ExceptionHandler(AuthorizationException.class)
     @ResponseBody
-    public WebResult notAuthException(AuthorizationException ex) {
+    public ResponseResult notAuthException(AuthorizationException ex) {
         SysToolUtil.error("没有通过权限验证", getClass());
         return buildFailedInfo(ApiConstant.NO_AUTHORIZATION);
     }

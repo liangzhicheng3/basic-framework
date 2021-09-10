@@ -2,7 +2,7 @@ package com.liangzhicheng.config.aop;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -84,8 +84,8 @@ public class RequestControllerAspect {
                                         String paramName = methodSignature.getParameterNames()[i];
                                         logger.info(paramName+":"+args[i]);
                                         logger.info("参数 "+paramName+" 要求非空，参数值："+(args[i]==null?"":args[i].toString()));
-                                        WebResult webResult = new WebResult(ApiConstant.PARAM_IS_NULL, ApiConstant.getMessage(ApiConstant.PARAM_IS_NULL)+"->"+paramName);
-                                        return webResult;
+                                        ResponseResult responseResult = new ResponseResult(ApiConstant.PARAM_IS_NULL, ApiConstant.getMessage(ApiConstant.PARAM_IS_NULL)+"->"+paramName);
+                                        return responseResult;
                                     }
                                 }
                             }

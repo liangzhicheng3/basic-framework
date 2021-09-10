@@ -1,7 +1,7 @@
 package com.liangzhicheng.modules.controller.server;
 
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.dto.SysRoleDTO;
@@ -36,7 +36,7 @@ public class RoleServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysRoleVO.class)})
 //    @LoginValidate
-    public WebResult listRole(@RequestBody SysRoleDTO roleDTO){
+    public ResponseResult listRole(@RequestBody SysRoleDTO roleDTO){
         return buildSuccessInfo(roleService.listRole(roleDTO));
     }
 
@@ -48,7 +48,7 @@ public class RoleServerController extends BaseController {
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysRoleDescVO.class)})
     @LoginValidate
-    public WebResult getRole(@RequestBody SysRoleDTO roleDTO){
+    public ResponseResult getRole(@RequestBody SysRoleDTO roleDTO){
         return buildSuccessInfo(roleService.getRole(roleDTO));
     }
 
@@ -58,7 +58,7 @@ public class RoleServerController extends BaseController {
             "roleDTO.dateStart", "roleDTO.dateEnd",
             "roleDTO.page", "roleDTO.pageSize"})
     @LoginValidate
-    public WebResult saveRole(@RequestBody SysRoleDTO roleDTO){
+    public ResponseResult saveRole(@RequestBody SysRoleDTO roleDTO){
         roleService.saveRole(roleDTO);
         return buildSuccessInfo(null);
     }
@@ -70,7 +70,7 @@ public class RoleServerController extends BaseController {
             "roleDTO.description", "roleDTO.menuIds",
             "roleDTO.permIds", "roleDTO.page", "roleDTO.pageSize"})
     @LoginValidate
-    public WebResult deleteRole(@RequestBody SysRoleDTO roleDTO){
+    public ResponseResult deleteRole(@RequestBody SysRoleDTO roleDTO){
         roleService.deleteRole(roleDTO);
         return buildSuccessInfo(null);
     }

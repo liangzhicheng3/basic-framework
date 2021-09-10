@@ -1,7 +1,7 @@
 package com.liangzhicheng.modules.controller.server;
 
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.config.mvc.interceptor.annotation.LoginValidate;
 import com.liangzhicheng.modules.entity.dto.SysUserDTO;
@@ -37,15 +37,15 @@ public class LoginServerController extends BaseController {
             "userDTO.newPassword", "userDTO.page", "userDTO.pageSize"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysUserLoginVO.class)})
-    public WebResult login(@RequestBody SysUserDTO userDTO,
-                           HttpServletRequest request){
+    public ResponseResult login(@RequestBody SysUserDTO userDTO,
+                                HttpServletRequest request){
         return buildSuccessInfo(sysUserService.login(userDTO, request));
     }
 
     @ApiOperation(value = "退出登录")
     @RequestMapping(value = "/logOut", method = RequestMethod.POST)
     @LoginValidate
-    public WebResult logOut(HttpServletRequest request){
+    public ResponseResult logOut(HttpServletRequest request){
         sysUserService.logOut(request);
         return buildSuccessInfo(null);
     }

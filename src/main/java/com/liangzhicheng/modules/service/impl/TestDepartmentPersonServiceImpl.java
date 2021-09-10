@@ -3,7 +3,7 @@ package com.liangzhicheng.modules.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.controller.TestApiController;
@@ -32,14 +32,14 @@ public class TestDepartmentPersonServiceImpl extends ServiceImpl<ITestDepartment
      */
     @Override
     public void testOnlinePerson(String personId) {
-        WebResult webResult = new WebResult(ApiConstant.BASE_SUCCESS_CODE, "未读消息总数");
+        ResponseResult responseResult = new ResponseResult(ApiConstant.BASE_SUCCESS_CODE, "未读消息总数");
         String str = "person:";
         try {
             String key = str + personId;
             Session session = WebSocketClientManager.clients.get(key);
             if (session != null) {
-                webResult.setData(getCountByPersonId(personId));
-                session.getBasicRemote().sendText(JSONObject.toJSONString(webResult));
+                responseResult.setData(getCountByPersonId(personId));
+                session.getBasicRemote().sendText(JSONObject.toJSONString(responseResult));
                 SysToolUtil.info("[未读消息总数] 通知App用户id:" + personId  + "的消息成功");
             } else {
                 SysToolUtil.info("[未读消息总数] 通知App消息失败,无法获取到用户" + personId + "的连接");

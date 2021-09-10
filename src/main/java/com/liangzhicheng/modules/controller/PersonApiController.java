@@ -1,8 +1,5 @@
 package com.liangzhicheng.modules.controller;
 
-import java.time.LocalTime;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +7,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.liangzhicheng.common.basic.BaseController;
-import com.liangzhicheng.common.basic.WebResult;
+import com.liangzhicheng.common.basic.ResponseResult;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.page.PageResult;
 import com.liangzhicheng.common.utils.SysBeanUtil;
@@ -37,17 +34,17 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "分页查询1")
     @RequestMapping(value = "/page1", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult page1(@ApiParam(value = "页码，1为第一页") @RequestParam(required = true) Integer page,
-                          @ApiParam(value = "每页数量") @RequestParam(required = true) Integer pageSize,
-                          @ApiParam(value = "头像") @RequestParam(required=false)  String avatar,
-                          @ApiParam(value = "姓名") @RequestParam(required=false)  String name,
-                          @ApiParam(value = "密码") @RequestParam(required=false)  String password,
-                          @ApiParam(value = "年龄") @RequestParam(required=false)  Integer age,
-                          @ApiParam(value = "性别：0女 1男") @RequestParam(required=false)  Boolean gender,
-                          @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") Date sleepTime,
-                          @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date workTime,
-                          @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
-                          @ApiParam(value = "个人简介") @RequestParam(required=false)  String intro){
+    public ResponseResult page1(@ApiParam(value = "页码，1为第一页") @RequestParam(required = true) Integer page,
+                                @ApiParam(value = "每页数量") @RequestParam(required = true) Integer pageSize,
+                                @ApiParam(value = "头像") @RequestParam(required=false)  String avatar,
+                                @ApiParam(value = "姓名") @RequestParam(required=false)  String name,
+                                @ApiParam(value = "密码") @RequestParam(required=false)  String password,
+                                @ApiParam(value = "年龄") @RequestParam(required=false)  Integer age,
+                                @ApiParam(value = "性别：0女 1男") @RequestParam(required=false)  Boolean gender,
+                                @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") Date sleepTime,
+                                @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date workTime,
+                                @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
+                                @ApiParam(value = "个人简介") @RequestParam(required=false)  String intro){
         TestPersonEntity entity = new TestPersonEntity();
         if(SysToolUtil.isNotBlank(avatar)){
             entity.setAvatar(avatar);
@@ -76,7 +73,7 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "分页查询2")
     @RequestMapping(value = "/page2", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult page2(@RequestBody TestPersonDTO personDto){
+    public ResponseResult page2(@RequestBody TestPersonDTO personDto){
         PageResult resultList = testPersonService.page2(personDto);
         return buildSuccessInfo(resultList);
     }
@@ -84,7 +81,7 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "分页查询3")
     @RequestMapping(value = "/page3", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult page3(@RequestBody TestPersonDTO personDto){
+    public ResponseResult page3(@RequestBody TestPersonDTO personDto){
         IPage<TestPersonVO> resultList = testPersonService.page3(personDto);
         return buildSuccessInfo(SysToolUtil.pageResult(resultList));
     }
@@ -92,16 +89,16 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "保存")
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult save(@ApiParam(value = "id") @RequestParam(required=false) Long id,
-                          @ApiParam(value = "头像") @RequestParam(required=false)  String avatar,
-                          @ApiParam(value = "姓名") @RequestParam(required=false)  String name,
-                          @ApiParam(value = "密码") @RequestParam(required=false)  String password,
-                          @ApiParam(value = "年龄") @RequestParam(required=false)  Integer age,
-                          @ApiParam(value = "性别：0女 1男") @RequestParam(required=false)  Boolean gender,
-                          @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") Date sleepTime,
-                          @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date workTime,
-                          @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
-                          @ApiParam(value = "个人简介") @RequestParam(required=false)  String intro
+    public ResponseResult save(@ApiParam(value = "id") @RequestParam(required=false) Long id,
+                               @ApiParam(value = "头像") @RequestParam(required=false)  String avatar,
+                               @ApiParam(value = "姓名") @RequestParam(required=false)  String name,
+                               @ApiParam(value = "密码") @RequestParam(required=false)  String password,
+                               @ApiParam(value = "年龄") @RequestParam(required=false)  Integer age,
+                               @ApiParam(value = "性别：0女 1男") @RequestParam(required=false)  Boolean gender,
+                               @ApiParam(value = "睡觉时间") @RequestParam(required=false) @DateTimeFormat(pattern = "HH:mm:ss") Date sleepTime,
+                               @ApiParam(value = "上班时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") Date workTime,
+                               @ApiParam(value = "出生时间") @RequestParam(required=false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
+                               @ApiParam(value = "个人简介") @RequestParam(required=false)  String intro
                           ){
         TestPersonEntity entity = null;
         if(id != null){
@@ -128,7 +125,7 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "删除")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = Boolean.class)})
-    public WebResult delete(@RequestParam Long id){
+    public ResponseResult delete(@RequestParam Long id){
         boolean delete = testPersonService.removeById(id);
         return buildSuccessInfo(delete);
     }
@@ -136,7 +133,7 @@ public class PersonApiController extends BaseController {
     @ApiOperation(value = "获取详情")
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestPersonVO.class)})
-    public WebResult get(@RequestParam Long id){
+    public ResponseResult get(@RequestParam Long id){
         TestPersonEntity entity = testPersonService.getById(id);
         TestPersonVO vo = null;
         if(entity != null){
