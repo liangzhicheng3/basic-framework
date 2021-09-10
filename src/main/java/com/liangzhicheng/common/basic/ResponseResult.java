@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author liangzhicheng
  * @since 2020-07-28
  */
-@ApiModel(value = "BaseResult", description = "返回集合")
+@ApiModel(value = "ResponseResult", description = "响应结果集合")
 public class ResponseResult {
 
 	@ApiModelProperty(notes = "返回码，10000表示成功，非10000表示失败")
