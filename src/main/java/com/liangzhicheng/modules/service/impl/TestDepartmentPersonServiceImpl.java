@@ -55,7 +55,7 @@ public class TestDepartmentPersonServiceImpl extends ServiceImpl<ITestDepartment
      * @return int
      */
     private int getCountByPersonId(String personId) {
-        return baseMapper.selectCount(new QueryWrapper<TestDepartmentPersonEntity>().eq("person_id", personId));
+        return baseMapper.selectCount(new QueryWrapper<TestDepartmentPersonEntity>().eq("person_id", personId)).intValue();
     }
 
 }

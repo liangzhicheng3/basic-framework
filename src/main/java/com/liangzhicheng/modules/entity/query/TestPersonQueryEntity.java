@@ -6,7 +6,7 @@ import com.liangzhicheng.modules.entity.query.basic.BaseQueryEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @description 个人查询实体类
@@ -28,11 +28,11 @@ public class TestPersonQueryEntity extends BaseQueryEntity {
     /**
      * 开始时间
      */
-    private LocalDateTime dateStart;
+    private Date dateStart;
     /**
      * 结束时间
      */
-    private LocalDateTime dateEnd;
+    private Date dateEnd;
 
     public TestPersonQueryEntity(TestPersonDTO personDto) {
         super(personDto);

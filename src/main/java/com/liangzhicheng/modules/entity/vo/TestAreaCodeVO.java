@@ -18,10 +18,8 @@ public class TestAreaCodeVO {
 
     @ApiModelProperty("地区id")
     private String areaId;
-
     @ApiModelProperty("地区编码")
     private String areaCode;
-
     @ApiModelProperty("地区层级")
     private Integer areaLevel;
 

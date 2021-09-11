@@ -1,31 +1,28 @@
 package com.liangzhicheng.modules.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
-import com.liangzhicheng.common.utils.SysBeanUtil;
-import com.liangzhicheng.common.utils.SysSnowFlakeUtil;
-import com.liangzhicheng.common.utils.SysThreadUtil;
-import com.liangzhicheng.common.utils.SysToolUtil;
+import com.liangzhicheng.common.utils.*;
 import com.liangzhicheng.modules.entity.*;
 import com.liangzhicheng.modules.dao.ISysRoleDao;
 import com.liangzhicheng.modules.entity.dto.SysRoleDTO;
-import com.liangzhicheng.modules.entity.query.page.PageQuery;
+import com.liangzhicheng.modules.entity.query.SysRoleQueryEntity;
 import com.liangzhicheng.modules.entity.vo.SysRoleDescVO;
 import com.liangzhicheng.modules.entity.vo.SysRoleVO;
 import com.liangzhicheng.modules.service.*;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -36,7 +33,7 @@ import java.util.List;
  * @since 2021-07-07
  */
 @Service
-public class SysRoleServiceImpl extends ServiceImpl<ISysRoleDao, SysRoleEntity> implements ISysRoleService {
+public class SysRoleServiceImpl extends BaseServiceImpl<ISysRoleDao, SysRoleEntity> implements ISysRoleService {
 
     @Resource
     private ISysMenuService menuService;
@@ -52,34 +49,21 @@ public class SysRoleServiceImpl extends ServiceImpl<ISysRoleDao, SysRoleEntity> 
     /**
      * @description 角色管理
      * @param roleDTO
-     * @return IPage
+     * @return Map<String, Object>
      */
     @Override
-    public IPage listRole(SysRoleDTO roleDTO) {
-        String keyword = roleDTO.getKeyword();
-        String dateStartStr = roleDTO.getDateStart();
-        String dateEndStr = roleDTO.getDateEnd();
-        QueryWrapper<SysRoleEntity> wrapperRole = new QueryWrapper<SysRoleEntity>();
-        if(SysToolUtil.isNotBlank(keyword)){
-            wrapperRole.and(Wrapper -> Wrapper.like("id", keyword)
-                    .or().like("name", keyword));
-        }
-        if(SysToolUtil.isNotBlank(dateStartStr, dateEndStr)){
-            LocalDateTime dateStart = SysToolUtil.stringToLocalDateTime(dateStartStr, null);
-            LocalDateTime dateEnd = SysToolUtil.stringToLocalDateTime(dateEndStr, null);
-            if(dateStart.isAfter(dateEnd)){
-                throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
-            }
-            wrapperRole.between("create_date", dateStart, dateEnd);
-        }
-        IPage resultList = baseMapper.selectPage(PageQuery.queryDispose(roleDTO),
-                wrapperRole.eq(Constants.DEL_FLAG, Constants.ZERO).orderByAsc("id"));
-        List<SysRoleEntity> roleList = resultList.getRecords();
-        List<SysRoleVO> roleVOList = Lists.newArrayList();
+    public Map<String, Object> listRole(SysRoleDTO roleDTO, Pageable pageable) {
+        SysRoleQueryEntity roleQuery = new SysRoleQueryEntity(roleDTO);
+        this.getPage(pageable, roleQuery.getPage(), roleQuery.getPageSize());
+        List<SysRoleEntity> roleList = baseMapper.selectList(
+                SysQueryUtil.getQueryWrapper(SysRoleEntity.class, roleQuery));
+        PageInfo<SysRoleEntity> page = new PageInfo<>();
+        List records = Lists.newArrayList();
         if(SysToolUtil.listSizeGT(roleList)){
-            roleVOList = SysBeanUtil.copyList(roleList, SysRoleVO.class);
+            page = new PageInfo<>(roleList);
+            records = SysBeanUtil.copyList(page.getList(), SysRoleVO.class);
         }
-        return resultList.setRecords(roleVOList);
+        return this.pageResult(records, page);
     }
 
     /**

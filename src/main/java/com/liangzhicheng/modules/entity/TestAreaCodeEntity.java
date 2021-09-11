@@ -39,9 +39,8 @@ public class TestAreaCodeEntity extends Model<TestAreaCodeEntity> {
      */
     private Integer areaLevel;
 
-
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return null;
     }
 

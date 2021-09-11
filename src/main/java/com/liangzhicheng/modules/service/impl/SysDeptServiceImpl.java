@@ -1,29 +1,29 @@
 package com.liangzhicheng.modules.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
 import com.liangzhicheng.common.constant.ApiConstant;
 import com.liangzhicheng.common.constant.Constants;
 import com.liangzhicheng.common.exception.CustomizeException;
 import com.liangzhicheng.common.exception.TransactionException;
 import com.liangzhicheng.common.utils.SysBeanUtil;
+import com.liangzhicheng.common.utils.SysQueryUtil;
 import com.liangzhicheng.common.utils.SysSnowFlakeUtil;
 import com.liangzhicheng.common.utils.SysToolUtil;
 import com.liangzhicheng.modules.entity.SysDeptEntity;
 import com.liangzhicheng.modules.dao.ISysDeptDao;
 import com.liangzhicheng.modules.entity.dto.SysDeptDTO;
-import com.liangzhicheng.modules.entity.query.page.PageQuery;
+import com.liangzhicheng.modules.entity.query.SysDeptQueryEntity;
 import com.liangzhicheng.modules.entity.vo.SysDeptDescVO;
 import com.liangzhicheng.modules.entity.vo.SysDeptVO;
 import com.liangzhicheng.modules.service.ISysDeptService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -34,36 +34,26 @@ import java.util.List;
  * @since 2021-08-06
  */
 @Service
-public class SysDeptServiceImpl extends ServiceImpl<ISysDeptDao, SysDeptEntity> implements ISysDeptService {
+public class SysDeptServiceImpl extends BaseServiceImpl<ISysDeptDao, SysDeptEntity> implements ISysDeptService {
 
     /**
      * @description 部门列表
      * @param deptDTO
-     * @return IPage
+     * @return Map<String, Object>
      */
     @Override
-    public IPage listDept(SysDeptDTO deptDTO) {
-        String keyword = deptDTO.getKeyword();
-        String dateStartStr = deptDTO.getDateStart();
-        String dateEndStr = deptDTO.getDateEnd();
-        QueryWrapper<SysDeptEntity> wrapperDept = new QueryWrapper<SysDeptEntity>();
-        wrapperDept.like(SysToolUtil.isNotBlank(keyword), "name", keyword);
-        if(SysToolUtil.isNotBlank(dateStartStr, dateEndStr)){
-            LocalDateTime dateStart = SysToolUtil.stringToLocalDateTime(dateStartStr, null);
-            LocalDateTime dateEnd = SysToolUtil.stringToLocalDateTime(dateEndStr, null);
-            if(dateStart.isAfter(dateEnd)){
-                throw new TransactionException(ApiConstant.PARAM_DATE_ERROR);
-            }
-            wrapperDept.between("create_date", dateStart, dateEnd);
-        }
-        IPage resultList = baseMapper.selectPage(PageQuery.queryDispose(deptDTO),
-                wrapperDept.eq(Constants.DEL_FLAG, Constants.ZERO).orderByDesc(Constants.CREATE_DATE));
-        List<SysDeptEntity> deptList = resultList.getRecords();
-        List<SysDeptVO> deptVOList = Lists.newArrayList();
+    public Map<String, Object> listDept(SysDeptDTO deptDTO, Pageable pageable) {
+        SysDeptQueryEntity deptQuery = new SysDeptQueryEntity(deptDTO);
+        this.getPage(pageable, deptQuery.getPage(), deptQuery.getPageSize());
+        List<SysDeptEntity> deptList = baseMapper.selectList(
+                SysQueryUtil.getQueryWrapper(SysDeptEntity.class, deptQuery));
+        PageInfo<SysDeptEntity> page = new PageInfo<>();
+        List records = Lists.newArrayList();
         if(SysToolUtil.listSizeGT(deptList)){
-            deptVOList = SysBeanUtil.copyList(deptList, SysDeptVO.class);
+            page = new PageInfo<>(deptList);
+            records = SysBeanUtil.copyList(page.getList(), SysDeptVO.class);
         }
-        return resultList.setRecords(deptVOList);
+        return this.pageResult(records, page);
     }
 
     /**

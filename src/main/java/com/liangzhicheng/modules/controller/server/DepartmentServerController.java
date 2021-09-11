@@ -9,6 +9,7 @@ import com.liangzhicheng.modules.entity.vo.SysDeptDescVO;
 import com.liangzhicheng.modules.entity.vo.SysDeptVO;
 import com.liangzhicheng.modules.service.ISysDeptService;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,15 +36,16 @@ public class DepartmentServerController extends BaseController {
             "deptDTO.companyName", "deptDTO.description"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysDeptVO.class)})
-    //@LoginValidate
-    public ResponseResult listDept(@RequestBody SysDeptDTO deptDTO){
-        return buildSuccessInfo(deptService.listDept(deptDTO));
+    @LoginValidate
+    public ResponseResult listDept(@RequestBody SysDeptDTO deptDTO,
+                                   Pageable pageable){
+        return buildSuccessInfo(deptService.listDept(deptDTO, pageable));
     }
 
     @ApiOperation(value = "获取部门")
     @PostMapping(value = "/getDept")
     @ApiOperationSupport(ignoreParameters = {"deptDTO.keyword", "deptDTO.dateStart",
-            "deptDTO.dateEnd", "deptDTO.name", "deptDTO.companyId", "deptDTO.companyName",
+            "deptDTO.createDate", "deptDTO.companyId", "deptDTO.companyName",
             "deptDTO.description", "deptDTO.page", "deptDTO.pageSize"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysDeptDescVO.class)})
@@ -55,8 +57,7 @@ public class DepartmentServerController extends BaseController {
     @ApiOperation(value = "保存部门")
     @PostMapping(value = "/saveDept")
     @ApiOperationSupport(ignoreParameters = {"deptDTO.keyword",
-            "deptDTO.dateStart", "deptDTO.dateEnd",
-            "deptDTO.page", "deptDTO.pageSize"})
+            "deptDTO.createDate", "deptDTO.page", "deptDTO.pageSize"})
     @LoginValidate
     public ResponseResult saveDept(@RequestBody SysDeptDTO deptDTO){
         deptService.saveDept(deptDTO);
@@ -66,8 +67,8 @@ public class DepartmentServerController extends BaseController {
     @ApiOperation(value = "删除部门")
     @PostMapping(value = "/deleteDept")
     @ApiOperationSupport(ignoreParameters = {"deptDTO.keyword",
-            "deptDTO.dateStart", "deptDTO.dateEnd", "deptDTO.name",
-            "deptDTO.companyId", "deptDTO.companyName", "deptDTO.description",
+            "deptDTO.createDate", "deptDTO.name", "deptDTO.companyId",
+            "deptDTO.companyName", "deptDTO.description",
             "deptDTO.page", "deptDTO.pageSize"})
     @LoginValidate
     public ResponseResult deleteDept(@RequestBody SysDeptDTO deptDTO){

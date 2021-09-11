@@ -5,7 +5,11 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.OptimisticLockerInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +83,14 @@ public class DBConfig {
         if(resources != null){
             bean.setMapperLocations(resources);
         }
+        //mybatis plus配置
+        MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+        //锁机制
+        mybatisPlusInterceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        //分页机制
+        mybatisPlusInterceptor.addInnerInterceptor(new PaginationInnerInterceptor());
+        Interceptor[] interceptors = {mybatisPlusInterceptor};
+        bean.setPlugins(interceptors);
         GlobalConfig config = new GlobalConfig();
         //插入数据字段预处理
         config.setMetaObjectHandler(new MyBatisPlusObjectHandler());

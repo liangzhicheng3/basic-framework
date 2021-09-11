@@ -15,9 +15,9 @@ public class StartupRunner implements CommandLineRunner {
 
 	@Override
 	public void run(String ... args) throws Exception {
+		SysToolUtil.info("StartupRunner -> come start ...");
 		//缓存初始化
 		SysCacheUtil.init();
-		SysToolUtil.info("------ StartupRunner -> execute");
 	}
 
 }

@@ -89,14 +89,14 @@ public class SysQueryUtil {
                             queryWrapper.isNotNull(finalAttributeName);
                             break;
                         case BETWEEN:
-                            List<Object> between = new ArrayList<>((List<Object>) val);
-                            queryWrapper.between(finalAttributeName, between.get(0), between.get(1));
+                            String[] BETWEEN = ((String) val).split(",");
+                            queryWrapper.between(finalAttributeName, BETWEEN[0], BETWEEN[1]);
                             break;
                         case UNIX_TIMESTAMP:
-                            List<Object> UNIX_TIMESTAMP = new ArrayList<>((List<Object>) val);
-                            if (!UNIX_TIMESTAMP.isEmpty()) {
-                                Date start = SysToolUtil.stringToDate(UNIX_TIMESTAMP.get(0) + "", null);
-                                Date end = SysToolUtil.stringToDate(UNIX_TIMESTAMP.get(1) + "", null);
+                            String[] UNIX_TIMESTAMP = ((String) val).split(",");
+                            if (SysToolUtil.isNotNull(UNIX_TIMESTAMP)) {
+                                Date start = SysToolUtil.stringToDate(UNIX_TIMESTAMP[0], null);
+                                Date end = SysToolUtil.stringToDate(UNIX_TIMESTAMP[1], null);
                                 queryWrapper.between(finalAttributeName, start, end);
                             }
                             break;

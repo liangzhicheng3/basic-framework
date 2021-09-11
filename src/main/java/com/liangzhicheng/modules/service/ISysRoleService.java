@@ -2,9 +2,11 @@ package com.liangzhicheng.modules.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.liangzhicheng.modules.entity.SysRoleEntity;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.liangzhicheng.modules.entity.dto.SysRoleDTO;
 import com.liangzhicheng.modules.entity.vo.SysRoleDescVO;
+import org.springframework.data.domain.Pageable;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -14,14 +16,14 @@ import com.liangzhicheng.modules.entity.vo.SysRoleDescVO;
  * @author liangzhicheng
  * @since 2021-07-07
  */
-public interface ISysRoleService extends IService<SysRoleEntity> {
+public interface ISysRoleService extends IBaseService<SysRoleEntity> {
 
     /**
      * @description 角色管理
      * @param roleDTO
-     * @return IPage
+     * @return Map<String, Object>
      */
-    IPage listRole(SysRoleDTO roleDTO);
+    Map<String, Object> listRole(SysRoleDTO roleDTO, Pageable pageable);
 
     /**
      * @description 获取角色

@@ -56,7 +56,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T> extends Servic
      * @param <T>
      * @return Map<String, Object>
      */
-    protected  <T> Map<String, Object> pageResult(List<T> records, PageInfo<T> page){
+    protected <T> Map<String, Object> pageResult(List<T> records, PageInfo<T> page){
         Map<String, Object> resultMap = new LinkedHashMap<>(4);
         resultMap.put("records", records);
         resultMap.put("total", page.getTotal());

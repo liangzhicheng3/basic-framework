@@ -31,7 +31,7 @@ public class SysCacheUtil {
      * @return boolean
      */
     public static boolean expire(String key, int second){
-        SysToolUtil.info("--- SysCacheUtil expire with second : " + "key=" + key + ", second=" + second, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil expire with second : " + "key=" + key + ", second=" + second, SysCacheUtil.class);
         return redis.expire(key, second);
     }
 
@@ -41,7 +41,7 @@ public class SysCacheUtil {
      * @return Map
      */
     public static Map<String, Object> entries(String mapName) {
-        SysToolUtil.info("--- SysCacheUtil entries : " + "mapName=" + mapName, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil entries : " + "mapName=" + mapName, SysCacheUtil.class);
         return redis.entries(mapName);
     }
 
@@ -52,7 +52,7 @@ public class SysCacheUtil {
      */
     public static void set(String key, Object obj) {
         redis.set(key, obj);
-        SysToolUtil.info("--- SysCacheUtil set : " + "key=" + key + ", obj=" + obj, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil set : " + "key=" + key + ", obj=" + obj, SysCacheUtil.class);
     }
 
     /**
@@ -63,7 +63,7 @@ public class SysCacheUtil {
      */
     public static void set(String key, Object obj, int second) {
         redis.set(key, obj, second);
-        SysToolUtil.info("--- SysCacheUtil set with second : " + "key=" + key + ", obj=" + obj + ", second=" + second, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil set with second : " + "key=" + key + ", obj=" + obj + ", second=" + second, SysCacheUtil.class);
     }
 
     /**
@@ -73,7 +73,7 @@ public class SysCacheUtil {
      */
     public static void set(String key, String value, long second , TimeUnit timeUnit) {
         stringRedis.set(key, value, second, timeUnit);
-        SysToolUtil.info("--- SysCacheUtil set with second : " + "key=" + key + ", value=" + value + ", second=" + second + ", timeUnit=" + timeUnit, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil set with second : " + "key=" + key + ", value=" + value + ", second=" + second + ", timeUnit=" + timeUnit, SysCacheUtil.class);
     }
 
     /**
@@ -146,7 +146,7 @@ public class SysCacheUtil {
      */
     public static void hset(String key, String field, Object obj) {
         redis.hset(key, field, obj);
-        SysToolUtil.info("--- SysCacheUtil hset : " + "key=" + key + ", field=" + field + ", obj=" + obj, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil hset : " + "key=" + key + ", field=" + field + ", obj=" + obj, SysCacheUtil.class);
     }
 
     /**
@@ -156,7 +156,7 @@ public class SysCacheUtil {
      * @return Object
      */
     public static Object hget(String key, String field) {
-        SysToolUtil.info("--- SysCacheUtil hget : " + "key=" + key + ", field=" + field, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil hget : " + "key=" + key + ", field=" + field, SysCacheUtil.class);
         return redis.hget(key, field);
     }
 
@@ -177,17 +177,16 @@ public class SysCacheUtil {
      */
     public static void hdel(String key, String field) {
         redis.hdel(key, field);
-        SysToolUtil.info("--- SysCacheUtil hdel : " + "key=" + key + ", field=" + field, SysCacheUtil.class);
+        SysToolUtil.info("SysCacheUtil hdel : " + "key=" + key + ", field=" + field, SysCacheUtil.class);
     }
 
     /**
      * @description 初始化
      */
     public static void init() {
-        SysToolUtil.info("--- SysCacheUtil invoke init() start ...");
+        SysToolUtil.info("SysCacheUtil invoke init start ...");
         Thread cacheThread = new Thread(new CacheThread());
         cacheThread.start();
-        SysToolUtil.info("--- SysCacheUtil invoke init() end ...");
     }
 
     /**

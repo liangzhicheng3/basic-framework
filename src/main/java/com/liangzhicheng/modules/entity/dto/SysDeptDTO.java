@@ -4,6 +4,8 @@ import com.liangzhicheng.modules.entity.dto.basic.BaseDTO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @description 部门相关数据传输对象
  * @author liangzhicheng
@@ -21,10 +23,8 @@ public class SysDeptDTO extends BaseDTO {
      */
     @ApiModelProperty(value = "部门名称")
     private String keyword;
-    @ApiModelProperty(value = "创建开始日期")
-    private String dateStart;
-    @ApiModelProperty(value = "创建结束日期")
-    private String dateEnd;
+    @ApiModelProperty(value = "创建时间")
+    private String createDate;
 
     /**
      * 保存参数

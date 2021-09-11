@@ -3,15 +3,15 @@ package com.liangzhicheng.modules.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDate;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalTime;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
 @TableName("test_person")
 public class TestPersonEntity extends Model<TestPersonEntity> {
 
@@ -85,120 +85,9 @@ public class TestPersonEntity extends Model<TestPersonEntity> {
      */
     private String userNo;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-    public Boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(Boolean gender) {
-        this.gender = gender;
-    }
-    public Date getSleepTime() {
-        return sleepTime;
-    }
-
-    public void setSleepTime(Date sleepTime) {
-        this.sleepTime = sleepTime;
-    }
-    public Date getWorkTime() {
-        return workTime;
-    }
-
-    public void setWorkTime(Date workTime) {
-        this.workTime = workTime;
-    }
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public String getUserNo() {
-        return userNo;
-    }
-
-    public void setUserNo(String userNo) {
-        this.userNo = userNo;
-    }
-
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "TestPersonEntity{" +
-                "id=" + id +
-                ", avatar='" + avatar + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", age=" + age +
-                ", gender=" + gender +
-                ", sleepTime=" + sleepTime +
-                ", workTime=" + workTime +
-                ", birthday=" + birthday +
-                ", intro='" + intro + '\'' +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                ", userNo='" + userNo + '\'' +
-                '}';
-    }
 }

@@ -16,6 +16,6 @@ public class TestPersonDTO extends BaseDTO {
     private String age;
 
     @ApiModelProperty(value = "创建时间")
-    List<String> createDate;
+    private String createDate;
 
 }

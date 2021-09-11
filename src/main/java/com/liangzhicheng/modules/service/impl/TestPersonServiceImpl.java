@@ -66,10 +66,10 @@ public class TestPersonServiceImpl extends BaseServiceImpl<ITestPersonDao, TestP
 //        this.getPage(pageable, personQuery.getPage(), personQuery.getPageSize());
         List<TestPersonEntity> personList = baseMapper.selectList(
                 SysQueryUtil.getQueryWrapper(TestPersonEntity.class, personQuery));
-        PageInfo<TestPersonEntity> page = new PageInfo<TestPersonEntity>();;
+        PageInfo<TestPersonEntity> page = new PageInfo<>();
         List records = Lists.newArrayList();
         if(SysToolUtil.listSizeGT(personList)){
-            page = new PageInfo<TestPersonEntity>(personList);
+            page = new PageInfo<>(personList);
             records = SysBeanUtil.copyList(page.getList(), TestPersonVO.class);
         }
         return this.pageResult(records, page);

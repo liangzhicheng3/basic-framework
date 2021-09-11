@@ -30,7 +30,8 @@ public class AreaClientController extends BaseController {
 
     @ApiOperation(value = "地区列表")
     @PostMapping(value = "/listArea")
-    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功", response = TestAreaNameVO.class)})
+    @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE,
+            message = "成功", response = TestAreaNameVO.class)})
     public ResponseResult listArea(@RequestBody TestAreaDTO areaDto){
         PageResult resultList = areaNameService.listArea(areaDto);
         return buildSuccessInfo(resultList);

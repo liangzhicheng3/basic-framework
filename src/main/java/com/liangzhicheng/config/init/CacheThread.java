@@ -16,7 +16,7 @@ public class CacheThread implements Runnable{
 
     @Override
     public void run() {
-        SysToolUtil.info("------ CacheThread init -> start ...");
+        SysToolUtil.info("CacheThread run start ...");
         //系统权限菜单列表初始化处理
         List<SysMenuVO> permMenuVOList = SysCacheUtil.listPermMenu();
         //系统角色权限初始化处理
@@ -28,7 +28,7 @@ public class CacheThread implements Runnable{
         if(SysToolUtil.isNull(roleMap) || SysToolUtil.isNull(permMap)){
             SysCacheUtil.refreshRolePerm();
         }
-        SysToolUtil.info("------ CacheThread init -> end ...");
+        SysToolUtil.info("CacheThread run end ...");
     }
 
 }

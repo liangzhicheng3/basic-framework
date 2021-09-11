@@ -9,6 +9,7 @@ import com.liangzhicheng.modules.entity.vo.SysRoleDescVO;
 import com.liangzhicheng.modules.entity.vo.SysRoleVO;
 import com.liangzhicheng.modules.service.ISysRoleService;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,15 +36,16 @@ public class RoleServerController extends BaseController {
             "roleDTO.description", "roleDTO.menuIds", "roleDTO.permIds"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysRoleVO.class)})
-//    @LoginValidate
-    public ResponseResult listRole(@RequestBody SysRoleDTO roleDTO){
-        return buildSuccessInfo(roleService.listRole(roleDTO));
+    @LoginValidate
+    public ResponseResult listRole(@RequestBody SysRoleDTO roleDTO,
+                                   Pageable pageable){
+        return buildSuccessInfo(roleService.listRole(roleDTO, pageable));
     }
 
     @ApiOperation(value = "获取角色")
     @PostMapping(value = "/getRole")
     @ApiOperationSupport(ignoreParameters = {"roleDTO.keyword", "roleDTO.dateStart",
-            "roleDTO.dateEnd", "roleDTO.name", "roleDTO.description", "roleDTO.menuIds",
+            "roleDTO.createDate", "roleDTO.description", "roleDTO.menuIds",
             "roleDTO.permIds", "roleDTO.page", "roleDTO.pageSize"})
     @ApiResponses({@ApiResponse(code = ApiConstant.BASE_SUCCESS_CODE, message = "成功",
             response = SysRoleDescVO.class)})
@@ -55,8 +57,7 @@ public class RoleServerController extends BaseController {
     @ApiOperation(value = "保存角色")
     @PostMapping(value = "/saveRole")
     @ApiOperationSupport(ignoreParameters = {"roleDTO.keyword",
-            "roleDTO.dateStart", "roleDTO.dateEnd",
-            "roleDTO.page", "roleDTO.pageSize"})
+            "roleDTO.createDate", "roleDTO.page", "roleDTO.pageSize"})
     @LoginValidate
     public ResponseResult saveRole(@RequestBody SysRoleDTO roleDTO){
         roleService.saveRole(roleDTO);
@@ -66,9 +67,9 @@ public class RoleServerController extends BaseController {
     @ApiOperation(value = "删除角色")
     @PostMapping(value = "/deleteRole")
     @ApiOperationSupport(ignoreParameters = {"roleDTO.keyword",
-            "roleDTO.dateStart", "roleDTO.dateEnd", "roleDTO.name",
-            "roleDTO.description", "roleDTO.menuIds",
-            "roleDTO.permIds", "roleDTO.page", "roleDTO.pageSize"})
+            "roleDTO.createDate", "roleDTO.name", "roleDTO.description",
+            "roleDTO.menuIds", "roleDTO.permIds",
+            "roleDTO.page", "roleDTO.pageSize"})
     @LoginValidate
     public ResponseResult deleteRole(@RequestBody SysRoleDTO roleDTO){
         roleService.deleteRole(roleDTO);

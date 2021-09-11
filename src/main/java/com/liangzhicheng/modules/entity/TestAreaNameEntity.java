@@ -54,9 +54,8 @@ public class TestAreaNameEntity extends Model<TestAreaNameEntity> {
      */
     private String remarks;
 
-
     @Override
-    protected Serializable pkVal() {
+    public Serializable pkVal() {
         return null;
     }
 
