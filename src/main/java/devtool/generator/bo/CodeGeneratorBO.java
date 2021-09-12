@@ -62,35 +62,73 @@ public class CodeGeneratorBO {
      */
     private String[] tablePrefixes;
 
-    //controller包名
+    /**
+     * controller包名
+     */
     private String packageController;
-    //mapper包名
+
+    /**
+     * mapper包名
+     */
     private String packageMapper;
-    //mapper XML目录名
+
+    /**
+     * 包名：dao.mapper(xml)
+     */
     private String packageMapperXml;
-    //实体类包名
+
+    /**
+     * 实体类包名
+     */
     private String packageEntity;
-    //service包名
+    /**
+     * service包名
+     */
     private String packageService;
-    //serviceImpl包名
+
+    /**
+     * serviceImpl包名
+     */
     private String packageServiceImpl;
 
-    //controller文件名格式
+    /**
+     * controller文件名格式
+     */
     private String fileNamePatternController;
-    //mapper文件名格式
+
+    /**
+     * mapper文件名格式
+     */
     private String fileNamePatternMapper;
-    //mapper XML文件名格式
+
+    /**
+     * mapper XML文件名格式
+     */
     private String fileNamePatternMapperXml;
-    //实体类文件名格式
+
+    /**
+     * 实体类文件名格式
+     */
     private String fileNamePatternEntity;
-    //service文件名格式
+
+    /**
+     * service文件名格式
+     */
     private String fileNamePatternService;
-    //serviceImpl文件名格式
+
+    /**
+     * serviceImpl文件名格式
+     */
     private String fileNamePatternServiceImpl;
 
-    //逻辑删除字段
+    /**
+     * 逻辑删除字段
+     */
     private String fieldLogicDelete;
-    //乐观锁字段
+
+    /**
+     * 乐观锁字段
+     */
     private String fieldVersion;
 
 }

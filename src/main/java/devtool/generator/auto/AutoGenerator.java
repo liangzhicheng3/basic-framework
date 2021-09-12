@@ -23,6 +23,10 @@ public class AutoGenerator extends SimpleAutoGenerator {
         this.generatorBO = generatorBO;
     }
 
+    /**
+     * @description 数据源配置
+     * @return IConfigBuilder<DataSourceConfig>
+     */
     @Override
     public IConfigBuilder<DataSourceConfig> dataSourceConfigBuilder() {
         return new DataSourceConfig.Builder(
@@ -31,6 +35,10 @@ public class AutoGenerator extends SimpleAutoGenerator {
                 generatorBO.getDbPassword());
     }
 
+    /**
+     * @description 全局配置
+     * @return IConfigBuilder<GlobalConfig>
+     */
     @Override
     public IConfigBuilder<GlobalConfig> globalConfigBuilder() {
         GlobalConfig.Builder builder = new GlobalConfig.Builder();
@@ -51,6 +59,10 @@ public class AutoGenerator extends SimpleAutoGenerator {
         return builder;
     }
 
+    /**
+     * @description 包配置
+     * @return IConfigBuilder<PackageConfig>
+     */
     @Override
     public IConfigBuilder<PackageConfig> packageConfigBuilder() {
         return new PackageConfig.Builder()
@@ -64,6 +76,10 @@ public class AutoGenerator extends SimpleAutoGenerator {
                 .serviceImpl(generatorBO.getPackageServiceImpl());
     }
 
+    /**
+     * @description 策略配置
+     * @return IConfigBuilder<StrategyConfig>
+     */
     @Override
     public IConfigBuilder<StrategyConfig> strategyConfigBuilder() {
         StrategyConfig.Builder builder = new StrategyConfig.Builder();
@@ -111,6 +127,17 @@ public class AutoGenerator extends SimpleAutoGenerator {
 //        }
         return builder;
     }
+
+    /**
+     * @description 自定义配置
+     * @return IConfigBuilder<InjectionConfig>
+     */
+//    public IConfigBuilder<InjectionConfig> injectionConfigBuilder(){
+//        InjectionConfig.Builder builder = new InjectionConfig.Builder();
+//        //自定义处理
+//
+//        return builder;
+//    }
 
     /**
      * @description 处理Boolean，为空时返回false
