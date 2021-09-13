@@ -9,6 +9,19 @@ spring:
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initial-size: 3 #初始化时建立物理连接个数
+    min-idle: 3 #最小连接池数量
+    max-active: 15 #最大连接池数量
+    max-wait: 5000 #获取连接时最大等待时间
+    time-between-eviction-runs-millis: 90000 #连接有效性检测时间
+    min-evictable-idle-time-millis: 1800000 #连接保持空闲而不被驱逐的最小时间
+    validation-query: SELECT 1 FROM DUAL #用来检测连接是否有效的sql
+    test-while-idle: true #建议配置为true，申请连接时检测，如果空闲时间大于timeBetweenEvictionRunMills，执行validationQuery检测连接是否有效
+    test-on-borrow: false #申请连接时执行validationQuery检测连接是否有效
+    test-on-return: false #归还连接时执行validationQuery检测连接是否有效
+    filters: stat #配置监控统计拦截的filters（监控统计:stat 日志:log4j 防御sql注入:wall ）
+    log-slow-sql: true #慢查询配置
 
   flyway:
     enabled: false

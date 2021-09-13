@@ -27,7 +27,9 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description 数据库连接配置
@@ -53,6 +55,32 @@ public class DBConfig {
     private String password;
     @Value("${spring.datasource.driver-class-name}")
     private String driverClass;
+    @Value("${spring.datasource.type}")
+    private String type;
+    @Value("${spring.datasource.initial-size}")
+    private int initialSize;
+    @Value("${spring.datasource.min-idle}")
+    private int minIdle;
+    @Value("${spring.datasource.max-active}")
+    private int maxActive;
+    @Value("${spring.datasource.max-wait}")
+    private int maxWait;
+    @Value("${spring.datasource.time-between-eviction-runs-millis}")
+    private int timeBetweenEvictionRunsMillis;
+    @Value("${spring.datasource.min-evictable-idle-time-millis}")
+    private int minEvictableIdleTimeMillis;
+    @Value("${spring.datasource.validation-query}")
+    private String validationQuery;
+    @Value("${spring.datasource.test-while-idle}")
+    private boolean testWhileIdle;
+    @Value("${spring.datasource.test-on-borrow}")
+    private boolean testOnBorrow;
+    @Value("${spring.datasource.test-on-return}")
+    private boolean testOnReturn;
+    @Value("${spring.datasource.filters}")
+    private String filters;
+    @Value("${spring.datasource.log-slow-sql}")
+    private String logSlowSql;
 
     @Bean
     public DataSource dataSource() {
@@ -61,8 +89,19 @@ public class DBConfig {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+        dataSource.setDbType(type);
+        dataSource.setInitialSize(initialSize);
+        dataSource.setMinIdle(minIdle);
+        dataSource.setMaxActive(maxActive);
+        dataSource.setMaxWait(maxWait);
+        dataSource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        dataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        dataSource.setValidationQuery(validationQuery);
+        dataSource.setTestWhileIdle(testWhileIdle);
+        dataSource.setTestOnBorrow(testOnBorrow);
+        dataSource.setTestOnReturn(testOnReturn);
         try {
-            dataSource.setFilters("stat");
+            dataSource.setFilters(filters);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -130,6 +169,11 @@ public class DBConfig {
         ServletRegistrationBean reg = new ServletRegistrationBean();
         reg.setServlet(new StatViewServlet());
         reg.addUrlMappings("/druid/*");
+        Map<String, Object> initParams = new HashMap<String, Object>();
+        initParams.put("loginUsername", username);
+        initParams.put("loginPassword", password);
+        initParams.put("logSlowSql", logSlowSql);
+        reg.setInitParameters(initParams);
         return reg;
     }
 
