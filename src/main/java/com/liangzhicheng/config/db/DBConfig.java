@@ -23,6 +23,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
+import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -202,6 +203,14 @@ public class DBConfig {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * @description 解决druid新版本报错discard long time none received connection jdbc xxx
+     */
+    @PostConstruct
+    public void setProperties(){
+        System.setProperty("druid.mysql.usePingMethod", "false");
     }
 
 }
