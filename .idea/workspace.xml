@@ -1,152 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e74064f-80de-4379-9953-1cc6e13bda9b" name="Default" comment="" />
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
+    <list default="true" id="abfd5aff-7a0f-4aba-b1de-896740e96fc3" name="Default" comment="fix:环境定义处理">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysUserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysUserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysUserDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysMenuVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysMenuVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysUserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V20200728.1__init_sys.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V20200728.1__init_sys.sql" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LoginClientController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/LoginClientController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SysQiniuUtil.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysQiniuUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/constant/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="149" column="77" selection-start-line="149" selection-start-column="77" selection-end-line="149" selection-end-column="77" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="YML File" />
-        <option value="YML File.xml" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>liqihua</find>
-      <find>yicheng</find>
-      <find>ID</find>
-      <find>Validated</find>
-      <find>2020</find>
-      <find>PARAM_IS_NULL</find>
-      <find>SysTool</find>
-      <find>参数不能为空</find>
-      <find>environment</find>
-      <find>WebMvcConfigurer</find>
-      <find>addRe</find>
-      <find>addInterceptors</find>
-      <find>jwt</find>
-      <find>generate</find>
-      <find>服务器发生异常</find>
-      <find>isNo</find>
-      <find>json</find>
-      <find>signApp</find>
-      <find>XSSInterceptor</find>
-      <find>xml</find>
-      <find>refund</find>
-      <find>weChatMiniPayNotify</find>
-      <find>weChatAppPayNotify</find>
-      <find>LoginValidate</find>
-      <find>LoginInterceptor</find>
-      <find>LoginWebValidate</find>
+      <find>+8</find>
+      <find>PageResult</find>
+      <find>localDateTimeG</find>
+      <find>WebSocketServer</find>
+      <find>objectId</find>
+      <find>this</find>
+      <find>webs</find>
+      <find>websoc</find>
+      <find>WebSocketManager</find>
+      <find>WebSocketClientManager</find>
+      <find>FeeUtil</find>
+      <find>getCount</find>
+      <find>listArea</find>
+      <find>DDOSValidate</find>
+      <find>DDOS</find>
+      <find>ddos</find>
+      <find>sendSMS</find>
+      <find>EMAIL_FORMAT_ERROR</find>
+      <find>AccessLimit</find>
+      <find>render</find>
+      <find>getCurrentUser</find>
+      <find>SysServerUtil</find>
       <find>LoginServerValidate</find>
-      <find>LoginServerInterceptor</find>
-      <find>Web端</find>
-      <find>SysWebUtil</find>
+      <find>LoginClientValidate</find>
+      <find>UserTokenServerEnum</find>
+      <find>LoginServerin</find>
+      <find>LoginServer</find>
+      <find>PageNo</find>
+      <find>page</find>
+      <find>free</find>
     </findStrings>
+    <replaceStrings>
+      <replace>test_area_code</replace>
+      <replace>test_area_name</replace>
+    </replaceStrings>
   </component>
-  <component name="GradleLocalSettings">
-    <option name="projectSyncType">
-      <map>
-        <entry key="$PROJECT_DIR$/../pmit-apidocs" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$/../wxlite" value="PREVIEW" />
-      </map>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/UserApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/TestDepartmentWebController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/TestPersonWebController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/basic/BaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/db/DBConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/DDOSValidate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/DDOSInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/aop/RequestControllerAspect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysRedisUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginValidate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/DDOSInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/XSSInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/LoginApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/LoginApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/UserApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/UserClientController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/server/LoginClientController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysToolUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/pay/wechatpay/utils/FeeUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/pay/wechatpay/utils/SignUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/constant/ApiConstant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysSmsUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysAESUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/advice/SysControllerAdvice.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginClientValidate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysWebUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginWebInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/InterceptorConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginServerValidate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysTokenUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginClientInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginServerInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/server/LoginServerController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/LoginClientController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/PayClientController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/TestPersonDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/TestPersonService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/TestPersonDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/TestPersonEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/devtool/generator/CodeGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/DepartmentApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/PersonApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/TestPersonServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysCacheUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/TestApiController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/init/StartupRunner.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysRoleUserVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysRoleVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysUserVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysMenuDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysPermDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysRoleDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysRolePermDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysRoleUserDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/SysUserDao.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysUserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysMenuDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysPermDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysRoleDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysRolePermDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ISysRoleUserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysUserEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysMenuEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysPermEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysRoleEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysRolePermEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysRoleUserEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysMenuServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysPermServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysRolePermServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysRoleServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysMenuService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysPermService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysRolePermService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysRoleService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysRoleUserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysRoleUserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysUserLoginVO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/basic/BaseDTO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/SysUserDTO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/constant/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysQiniuUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysUserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysTokenUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysUserContext.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/InterceptorConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/TestApiController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysUserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/shiro/SysRealm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/TestAreaDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/TestPersonDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/server/LoginServerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginInterceptor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/basic/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/query/basic/BaseQueryEntity.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysToolUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/TestDepartmentPersonServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -156,22 +157,40 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="basic-framework" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="basic-framework" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="85" />
-    <option name="y" value="25" />
-    <option name="width" value="1750" />
-    <option name="height" value="970" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
+  <component name="ProjectId" id="1vHiHwiz3gZGgldmIYlcj8Uw9bu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -233,7 +252,124 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="basic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
               <item name="constant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="exception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="pay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="pay" type="462c0819:PsiDirectoryNode" />
+              <item name="alipay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="pay" type="462c0819:PsiDirectoryNode" />
+              <item name="alipay" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="pay" type="462c0819:PsiDirectoryNode" />
+              <item name="wechatpay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="pay" type="462c0819:PsiDirectoryNode" />
+              <item name="wechatpay" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="push" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="push" type="462c0819:PsiDirectoryNode" />
+              <item name="xinge" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
@@ -265,6 +401,61 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="advice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="aop" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="context" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
               <item name="init" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -276,7 +467,30 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="io" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
               <item name="mvc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="mvc" type="462c0819:PsiDirectoryNode" />
+              <item name="filter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
@@ -302,6 +516,50 @@
               <item name="mvc" type="462c0819:PsiDirectoryNode" />
               <item name="interceptor" type="462c0819:PsiDirectoryNode" />
               <item name="annotation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="shiro" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="swagger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="websocket" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
@@ -380,6 +638,79 @@
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+              <item name="basic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="query" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="query" type="462c0819:PsiDirectoryNode" />
+              <item name="basic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="vo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -444,568 +775,1101 @@
               <item name="db" type="462c0819:PsiDirectoryNode" />
               <item name="migration" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="basic-framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="basic-framework" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="liangzhicheng" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-excluded-files" value="false" />
       </pane>
-      <pane id="Scope" />
     </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../abcd/basic-framework" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.liangzhicheng.common.utils" />
-      <recent name="com.liangzhicheng.config.init" />
-      <recent name="com.liangzhicheng.config.mvc.interceptor" />
-      <recent name="com.liangzhicheng.config.mvc.interceptor.annotation" />
-      <recent name="com.liangzhicheng.modules.controller" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\xiaomageJAVA\IdeaProjects-18\basic-framework\src\main\java\com\liangzhicheng\common\pay\wechatpay\utils" />
-      <recent name="D:\xiaomageJAVA\IdeaProjects-18\basic-framework\src\main\resources" />
-      <recent name="D:\xiaomageJAVA\IdeaProjects-18\basic-framework\src\main\java\com\liangzhicheng\modules\department\entity\vo" />
-      <recent name="D:\xiaomageJAVA\IdeaProjects-18\basic-framework\src\main\java\com\liangzhicheng\modules\department\service\impl" />
-      <recent name="D:\xiaomageJAVA\IdeaProjects-18\basic-framework\src\main\java\com\liangzhicheng\modules\department\service" />
+      <recent name="D:\WorkDirectory\IdeaProjects\basic-framework\src\main\resources\dozer" />
+      <recent name="D:\WorkDirectory\IdeaProjects\basic-framework\src\main\java\com\liangzhicheng\modules\entity\vo" />
+      <recent name="D:\WorkDirectory\IdeaProjects\basic-framework\src\main\java\com\liangzhicheng\modules\service" />
+      <recent name="D:\WorkDirectory\IdeaProjects\basic-framework\src\main\java\com\liangzhicheng\modules\service\impl" />
+      <recent name="D:\WorkDirectory\IdeaProjects\basic-framework\src\main\java\com\liangzhicheng\modules\entity" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.liangzhicheng.modules.service.impl" />
+      <recent name="com.liangzhicheng.modules.service" />
+      <recent name="devtool.generator.constant" />
+      <recent name="devtool.generator.auto" />
+      <recent name="devtool.generator.enums" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.Run">
+    <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.liangzhicheng.Run" />
+      <module name="basic-framework" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liangzhicheng.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.liangzhicheng.modules.controller.Test" />
+      <module name="basic-framework" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liangzhicheng.modules.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CodeGenerator.generate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="basic-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="devtool.generator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="devtool.generator" />
+      <option name="MAIN_CLASS_NAME" value="devtool.generator.CodeGenerator" />
+      <option name="METHOD_NAME" value="generate" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CodeGenerator.generator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="basic-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="devtool.generator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="devtool.generator" />
+      <option name="MAIN_CLASS_NAME" value="devtool.generator.CodeGenerator" />
+      <option name="METHOD_NAME" value="generator" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
+      <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="Run" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="Run" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="basic-framework" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.liangzhicheng.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.liangzhicheng.Run" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
+    <configuration default="true" type="TestNG">
       <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
+      <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Run" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="JUnit.CodeGenerator.generate" />
+      <item itemvalue="JUnit.CodeGenerator.generator" />
+      <item itemvalue="Spring Boot.Run" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Run" />
+        <item itemvalue="JUnit.CodeGenerator.generator" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="JUnit.CodeGenerator.generate" />
+        <item itemvalue="Application.Run" />
+      </list>
+    </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
-    <configuration>C:\Users\yiche\AppData\Roaming\Subversion</configuration>
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6e74064f-80de-4379-9953-1cc6e13bda9b" name="Default" comment="" />
-      <created>1595905269034</created>
+      <changelist id="abfd5aff-7a0f-4aba-b1de-896740e96fc3" name="Default" comment="" />
+      <created>1611629629972</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1595905269034</updated>
-      <workItem from="1595905273599" duration="20540000" />
-      <workItem from="1595986338031" duration="773000" />
-      <workItem from="1595987205048" duration="24603000" />
-      <workItem from="1596071779845" duration="11517000" />
-      <workItem from="1596159088149" duration="7787000" />
-      <workItem from="1596187453029" duration="3288000" />
-      <workItem from="1596421444402" duration="379000" />
-      <workItem from="1596421855058" duration="1060000" />
-      <workItem from="1596422941534" duration="3146000" />
-      <workItem from="1596436332402" duration="11049000" />
-      <workItem from="1596504777621" duration="770000" />
-      <workItem from="1596506425950" duration="319000" />
-      <workItem from="1596507419522" duration="5541000" />
-      <workItem from="1596522297476" duration="7306000" />
-      <workItem from="1596529744923" duration="7241000" />
-      <workItem from="1596590496037" duration="17405000" />
-      <workItem from="1596676717331" duration="14704000" />
-      <workItem from="1596763610233" duration="9171000" />
-      <workItem from="1597022965013" duration="24335000" />
-      <workItem from="1597109772208" duration="18853000" />
-      <workItem from="1597135213477" duration="52000" />
-      <workItem from="1597135620619" duration="19000" />
-      <workItem from="1597137877407" duration="443000" />
-      <workItem from="1597140880186" duration="59000" />
-      <workItem from="1597195749225" duration="3615000" />
-      <workItem from="1597282004540" duration="11366000" />
-      <workItem from="1597368298576" duration="9073000" />
-      <workItem from="1597644636559" duration="4522000" />
-      <workItem from="1597720155878" duration="2790000" />
-      <workItem from="1597912693310" duration="587000" />
-      <workItem from="1597972540450" duration="1792000" />
+      <updated>1611629629972</updated>
+      <workItem from="1611629633519" duration="38133000" />
+      <workItem from="1614670685683" duration="478000" />
+      <workItem from="1614827115692" duration="32515000" />
+      <workItem from="1615867751358" duration="2918000" />
+      <workItem from="1616047472921" duration="33000" />
+      <workItem from="1616061351132" duration="204000" />
+      <workItem from="1616061884126" duration="28000" />
+      <workItem from="1616061924691" duration="200000" />
+      <workItem from="1616124490280" duration="811000" />
+      <workItem from="1616126153692" duration="90000" />
+      <workItem from="1616126250980" duration="17000" />
+      <workItem from="1616212780084" duration="300000" />
+      <workItem from="1616570742040" duration="1718000" />
+      <workItem from="1616831753615" duration="328000" />
+      <workItem from="1617084120548" duration="19000" />
+      <workItem from="1617776352155" duration="1574000" />
+      <workItem from="1617783761997" duration="70000" />
+      <workItem from="1617936533170" duration="2035000" />
+      <workItem from="1618537746395" duration="2061000" />
+      <workItem from="1619503493743" duration="8006000" />
+      <workItem from="1620270196791" duration="664000" />
+      <workItem from="1620370823715" duration="178000" />
+      <workItem from="1620442138372" duration="1099000" />
+      <workItem from="1620444628498" duration="395000" />
+      <workItem from="1620446227112" duration="23000" />
+      <workItem from="1620610634428" duration="2281000" />
+      <workItem from="1620628350187" duration="620000" />
+      <workItem from="1620697300576" duration="10000" />
+      <workItem from="1620869172506" duration="420000" />
+      <workItem from="1620870327109" duration="20000" />
+      <workItem from="1620871080253" duration="699000" />
+      <workItem from="1620871859900" duration="301000" />
+      <workItem from="1620873616056" duration="1304000" />
+      <workItem from="1620887946869" duration="17000" />
+      <workItem from="1620888255320" duration="22000" />
+      <workItem from="1620974798056" duration="972000" />
+      <workItem from="1621305910538" duration="4900000" />
+      <workItem from="1621325078505" duration="2248000" />
+      <workItem from="1621332133252" duration="1748000" />
+      <workItem from="1621992668008" duration="22000" />
+      <workItem from="1622087285281" duration="347000" />
+      <workItem from="1622269619929" duration="255000" />
+      <workItem from="1622886863550" duration="360000" />
+      <workItem from="1624526562945" duration="2786000" />
+      <workItem from="1625475807919" duration="189000" />
+      <workItem from="1625479115121" duration="21000" />
+      <workItem from="1625647047388" duration="10142000" />
+      <workItem from="1625726919561" duration="1666000" />
+      <workItem from="1625792840740" duration="95000" />
+      <workItem from="1626225332915" duration="2167000" />
+      <workItem from="1626248463024" duration="1201000" />
+      <workItem from="1626335341317" duration="11000" />
+      <workItem from="1626853514768" duration="1200000" />
+      <workItem from="1627293106456" duration="899000" />
+      <workItem from="1627349165647" duration="618000" />
+      <workItem from="1627369136188" duration="876000" />
+      <workItem from="1628211708686" duration="10978000" />
+      <workItem from="1628245593885" duration="197000" />
+      <workItem from="1628474372396" duration="299000" />
+      <workItem from="1628475196335" duration="19024000" />
+      <workItem from="1628661577979" duration="17353000" />
+      <workItem from="1628750141819" duration="2636000" />
+      <workItem from="1628756853039" duration="1666000" />
+      <workItem from="1628759164106" duration="1495000" />
+      <workItem from="1628817533825" duration="4823000" />
+      <workItem from="1628839801630" duration="3832000" />
+      <workItem from="1629442326693" duration="51000" />
+      <workItem from="1631090741287" duration="249000" />
+      <workItem from="1631149558403" duration="40976000" />
+      <workItem from="1631253495540" duration="48384000" />
+      <workItem from="1631430848561" duration="31000" />
+      <workItem from="1631433020083" duration="11542000" />
+      <workItem from="1631513808752" duration="8414000" />
+      <workItem from="1631584568158" duration="2224000" />
+      <workItem from="1631600490384" duration="218000" />
+      <workItem from="1631843223039" duration="1132000" />
+      <workItem from="1631933965453" duration="12590000" />
+      <workItem from="1633743643757" duration="447000" />
+      <workItem from="1635408070100" duration="146000" />
+      <workItem from="1635487465465" duration="603000" />
+      <workItem from="1635489781394" duration="34000" />
+      <workItem from="1636193251941" duration="706000" />
+      <workItem from="1636597606389" duration="121000" />
+      <workItem from="1637042606792" duration="114000" />
+      <workItem from="1637044098675" duration="977000" />
+      <workItem from="1637051798465" duration="327000" />
+      <workItem from="1637116127805" duration="123000" />
+      <workItem from="1637116364935" duration="83000" />
+      <workItem from="1637143770411" duration="2948000" />
+      <workItem from="1637218238431" duration="894000" />
+      <workItem from="1637388613921" duration="2311000" />
+      <workItem from="1637739671865" duration="848000" />
+      <workItem from="1639031234582" duration="2157000" />
     </task>
+    <task id="LOCAL-00019" summary="refactor:代码优化">
+      <created>1616571996690</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1616571996690</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat:方法新增">
+      <created>1616572401636</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1616572401636</updated>
+    </task>
+    <task id="LOCAL-00021" summary="feat:方法新增">
+      <created>1616832048023</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1616832048023</updated>
+    </task>
+    <task id="LOCAL-00022" summary="feat:方法新增">
+      <created>1617777893256</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1617777893256</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix:分页测试处理">
+      <created>1617938546708</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1617938546708</updated>
+    </task>
+    <task id="LOCAL-00024" summary="refactor:代码优化">
+      <created>1618537887280</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1618537887280</updated>
+    </task>
+    <task id="LOCAL-00025" summary="refactor:代码优化">
+      <created>1619507574518</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1619507574518</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat:websocket功能新增">
+      <created>1619574086266</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1619574086266</updated>
+    </task>
+    <task id="LOCAL-00027" summary="refactor:代码优化">
+      <created>1620443108525</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1620443108525</updated>
+    </task>
+    <task id="LOCAL-00028" summary="refactor:代码优化">
+      <created>1620444717232</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1620444717232</updated>
+    </task>
+    <task id="LOCAL-00029" summary="refactor:代码优化">
+      <created>1620612342488</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1620612342488</updated>
+    </task>
+    <task id="LOCAL-00030" summary="style:注释处理">
+      <created>1620869370590</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1620869370590</updated>
+    </task>
+    <task id="LOCAL-00031" summary="refactor:代码优化">
+      <created>1620871479891</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1620871479891</updated>
+    </task>
+    <task id="LOCAL-00032" summary="refactor:代码优化">
+      <created>1620871935720</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1620871935720</updated>
+    </task>
+    <task id="LOCAL-00033" summary="refactor:代码优化">
+      <created>1620875071101</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1620875071101</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat:单元测试新增">
+      <created>1620975330510</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1620975330510</updated>
+    </task>
+    <task id="LOCAL-00035" summary="refactor:访问限制拦截优化">
+      <created>1621322137570</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1621322137570</updated>
+    </task>
+    <task id="LOCAL-00036" summary="refactor:代码优化">
+      <created>1621326159747</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1621326159747</updated>
+    </task>
+    <task id="LOCAL-00037" summary="refactor:代码优化">
+      <created>1622087598110</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1622087598110</updated>
+    </task>
+    <task id="LOCAL-00038" summary="refactor:代码优化">
+      <created>1622269821543</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1622269821543</updated>
+    </task>
+    <task id="LOCAL-00039" summary="refactor:代码优化">
+      <created>1622887132151</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1622887132151</updated>
+    </task>
+    <task id="LOCAL-00040" summary="refactor:代码优化">
+      <created>1624527547597</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1624527547597</updated>
+    </task>
+    <task id="LOCAL-00041" summary="refactor:代码优化">
+      <created>1624534896593</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1624534896593</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fix:登录验证配置处理">
+      <created>1625651092023</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1625651092023</updated>
+    </task>
+    <task id="LOCAL-00043" summary="feat:权限功能模块新增">
+      <created>1625710413073</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1625710413073</updated>
+    </task>
+    <task id="LOCAL-00044" summary="feat:分页参数方法新增">
+      <created>1625729327008</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1625729327008</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix:环境定义处理">
+      <created>1626225980898</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1626225980898</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat:分页查询类新增">
+      <created>1626226537304</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1626226537304</updated>
+    </task>
+    <task id="LOCAL-00047" summary="feat:角色权限id主键新增">
+      <created>1626249778220</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1626249778220</updated>
+    </task>
+    <task id="LOCAL-00048" summary="refactor:注解逻辑优化">
+      <created>1627293962028</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1627293962028</updated>
+    </task>
+    <task id="LOCAL-00049" summary="refactor:注解逻辑优化">
+      <created>1627294004689</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1627294004689</updated>
+    </task>
+    <task id="LOCAL-00050" summary="docs:去除注释">
+      <created>1627369249987</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1627369249988</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fix:权限逻辑相关处理">
+      <created>1628222427227</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1628222427227</updated>
+    </task>
+    <task id="LOCAL-00052" summary="feat:参数保存有误异常捕获处理">
+      <created>1628245780298</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1628245780298</updated>
+    </task>
+    <task id="LOCAL-00053" summary="style:类名修改">
+      <created>1628474598454</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1628474598454</updated>
+    </task>
+    <task id="LOCAL-00054" summary="refactor:方法优化">
+      <created>1628475402395</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1628475402395</updated>
+    </task>
+    <task id="LOCAL-00055" summary="style:去除无用代码">
+      <created>1628589166414</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1628589166414</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fix:sql语句更新">
+      <created>1628589598340</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1628589598340</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fix:字段长度处理">
+      <created>1628661654039</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1628661654039</updated>
+    </task>
+    <task id="LOCAL-00058" summary="docs:接口参数忽略注解新增">
+      <created>1628665914511</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1628665914512</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix:账号管理列表查询处理">
+      <created>1628669682571</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1628669682571</updated>
+    </task>
+    <task id="LOCAL-00060" summary="refactor:列表查询优化">
+      <created>1631182395685</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1631182395685</updated>
+    </task>
+    <task id="LOCAL-00061" summary="docs:版本升级">
+      <created>1631237303896</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1631237303896</updated>
+    </task>
+    <task id="LOCAL-00062" summary="style:类名修改">
+      <created>1631246185577</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1631246185578</updated>
+    </task>
+    <task id="LOCAL-00063" summary="docs:描述修改">
+      <created>1631256767065</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1631256767065</updated>
+    </task>
+    <task id="LOCAL-00064" summary="fix:mybatis-plus版本升级处理">
+      <created>1631356590599</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1631356590600</updated>
+    </task>
+    <task id="LOCAL-00065" summary="docs:注释添加">
+      <created>1631410316566</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1631410316566</updated>
+    </task>
+    <task id="LOCAL-00066" summary="fix:druid配置处理">
+      <created>1631523921010</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1631523921011</updated>
+    </task>
+    <task id="LOCAL-00067" summary="fix:配置处理">
+      <created>1631600607957</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1631600607957</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CodeGenerator_make - 2020.08.04 at 15h 55m 32s.xml">
-      <configuration name="CodeGenerator.make" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CodeGenerator_make - 2020.08.04 at 15h 57m 43s.xml">
-      <configuration name="CodeGenerator.make" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CodeGenerator_make - 2020.08.04 at 16h 54m 12s.xml">
-      <configuration name="CodeGenerator.make" configurationId="JUnit" />
+    <history-entry file="CodeGenerator_generate - 2021.07.07 at 18h 12m 07s.xml">
+      <configuration name="CodeGenerator.generate" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="224105000" />
+    <option name="totallyTimeSpent" value="130165000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" weight="0.32876712" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="1" sideWeight="0.49791232" weight="0.16176471" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="1" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="5" />
-      <window_info anchor="right" id="Structure" order="10" side_tool="true" weight="0.12734585" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.27260274" />
+      <window_info id="Capture Tool" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info anchor="right" id="Database" order="2" sideWeight="0.49895614" weight="0.3298887" />
+      <window_info anchor="right" id="Structure" order="10" sideWeight="0.5020877" side_tool="true" weight="0.1581876" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.31800467" />
       <window_info anchor="bottom" id="TODO" order="13" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Image Layers" order="4" />
-      <window_info anchor="bottom" id="Java Enterprise" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="3" weight="0.39452055" />
-      <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2580429" />
-      <window_info anchor="right" id="Bean Validation" order="8" />
-      <window_info id="Web" order="5" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.32969603" />
+      <window_info anchor="bottom" id="Version Control" order="5" weight="0.32969603" />
+      <window_info anchor="bottom" id="Spring" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" sideWeight="0.49961028" visible="true" weight="0.18879174" />
+      <window_info anchor="right" id="Bean Validation" order="5" />
+      <window_info id="Web" order="4" side_tool="true" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.32876712" />
-      <window_info anchor="bottom" id="Message" order="9" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="10" weight="0.32876712" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32969603" />
+      <window_info anchor="bottom" id="Message" order="8" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.32969603" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor:代码优化" />
+    <MESSAGE value="fix:登录验证配置处理" />
+    <MESSAGE value="feat:权限功能模块新增" />
+    <MESSAGE value="feat:分页参数方法新增" />
+    <MESSAGE value="fix:环境定义处理" />
+    <MESSAGE value="feat:分页查询类新增" />
+    <MESSAGE value="feat:角色权限id主键新增" />
+    <MESSAGE value="refactor:注解逻辑优化" />
+    <MESSAGE value="docs:去除注释" />
+    <MESSAGE value="fix:权限逻辑相关处理" />
+    <MESSAGE value="feat:参数保存有误异常捕获处理" />
+    <MESSAGE value="refactor:方法优化" />
+    <MESSAGE value="style:去除无用代码" />
+    <MESSAGE value="fix:sql语句更新" />
+    <MESSAGE value="fix:字段长度处理" />
+    <MESSAGE value="docs:接口参数忽略注解新增" />
+    <MESSAGE value="fix:账号管理列表查询处理" />
+    <MESSAGE value="refactor:列表查询优化" />
+    <MESSAGE value="docs:版本升级" />
+    <MESSAGE value="style:类名修改" />
+    <MESSAGE value="docs:描述修改" />
+    <MESSAGE value="fix:mybatis-plus版本升级处理" />
+    <MESSAGE value="docs:注释添加" />
+    <MESSAGE value="fix:druid配置处理" />
+    <MESSAGE value="fix:配置处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:配置处理" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="15" />
-    </breakpoint-manager>
     <watches-manager>
-      <configuration name="Application">
-        <watch expression="voList" />
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="fields" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/logs/info.log">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysMenuService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="1969" column="95" lean-forward="true" selection-start-line="1969" selection-start-column="95" selection-end-line="1969" selection-end-column="95" />
+        <state relative-caret-position="42">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/DDOSValidate.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysPermService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="30" />
+        <state relative-caret-position="42">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/swagger/swagger-annotations/1.5.13/swagger-annotations-1.5.13.jar!/io/swagger/annotations/ApiOperation.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysRolePermService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        <state relative-caret-position="42">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/validation/validation-api/2.0.1.Final/validation-api-2.0.1.Final.jar!/javax/validation/Valid.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysRoleService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        <state relative-caret-position="42">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ITestDepartmentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.0.9.RELEASE/spring-context-5.0.9.RELEASE.jar!/org/springframework/validation/BindingResult.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/basic/WebResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/aop/RequestBodyValidateAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/aop/RequestControllerAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="98" selection-start-line="98" selection-end-line="98" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/DDOSInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/LoginApiController.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/XSSInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/pay/wechatpay/utils/FeeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/pay/wechatpay/utils/MD5Util.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/pay/wechatpay/utils/XmlUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/pay/wechatpay/utils/SignUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysBeanUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysFileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysOrderNoUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysRedisUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="162" selection-start-line="162" selection-end-line="162" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysToolUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-63">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysSmsUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/constant/ApiConstant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="79" column="28" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysAESUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="677">
-          <caret line="165" column="7" lean-forward="true" selection-start-line="165" selection-start-column="7" selection-end-line="165" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/advice/SysControllerAdvice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="41" column="77" selection-start-line="41" selection-start-column="77" selection-end-line="41" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginClientValidate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysServerUtil.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/InterceptorConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="25" column="9" lean-forward="true" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginServerValidate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysTokenUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="145" column="44" lean-forward="true" selection-start-line="145" selection-start-column="44" selection-end-line="145" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginServerInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="30" column="74" selection-start-line="30" selection-start-column="74" selection-end-line="30" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginClientInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/TestPersonEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="185" column="18" selection-start-line="185" selection-start-column="18" selection-end-line="185" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/devtool/generator/CodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/PayClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-86">
-          <caret line="364" column="73" selection-start-line="364" selection-start-column="73" selection-end-line="364" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/UserClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/server/LoginServerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ITestPersonDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/TestPersonDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/TestPersonServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ITestPersonService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/PersonApiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="141" column="46" lean-forward="true" selection-start-line="141" selection-start-column="46" selection-end-line="141" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/DepartmentApiController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysPermEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
-          <caret line="110" column="59" selection-start-line="110" selection-start-column="59" selection-end-line="110" selection-end-column="59" />
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/TestApiController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysUserLoginVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="119" column="5" selection-start-line="119" selection-start-column="5" selection-end-line="119" selection-end-column="5" />
+        <state relative-caret-position="504">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysCacheUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/vo/SysUserVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2431">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+        <state relative-caret-position="294">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/init/StartupRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/basic/BaseDTO.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/TestLoginClientDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
+        <state relative-caret-position="210">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/SysUserDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="233" column="17" selection-start-line="233" selection-start-column="17" selection-end-line="233" selection-end-column="17" />
+        <state relative-caret-position="147">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/LoginClientController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysRoleUserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
+        <state relative-caret-position="630">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysRoleUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/constant/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="149" column="77" selection-start-line="149" selection-start-column="77" selection-end-line="149" selection-end-column="77" />
+        <state relative-caret-position="441">
+          <caret line="21" column="64" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysQiniuUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/enums/UserTokenServerEnum.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginServerInterceptor.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginServerValidate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/InterceptorConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="118" column="46" selection-start-line="118" selection-start-column="46" selection-end-line="118" selection-end-column="46" />
+        <state relative-caret-position="546">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysTokenUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="178" column="57" selection-start-line="178" selection-start-column="57" selection-end-line="178" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/SysUserEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0.jar!/org/apache/shiro/authz/SimpleAuthorizationInfo.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/TestPersonDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="42" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/dto/TestAreaDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/LoginInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="71" selection-start-line="35" selection-start-column="71" selection-end-line="35" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/mvc/interceptor/annotation/LoginValidate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ISysUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/exception/BusinessException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/basic/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="40" lean-forward="true" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/advice/SysControllerAdvice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="142" column="24" lean-forward="true" selection-start-line="142" selection-start-column="24" selection-end-line="142" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/AreaClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/entity/query/basic/BaseQueryEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/server/LoginServerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="56" column="49" selection-start-line="56" selection-start-column="49" selection-end-line="56" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysCacheUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="103" column="25" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/db/MyBatisPlusObjectHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V20200728.1__init_sys.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysUserContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/PayClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/shiro/ShiroConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/config/shiro/SysRealm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/SysUserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="71" column="18" selection-start-line="71" selection-start-column="18" selection-end-line="71" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/UserClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/TestApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1680">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/mapper/TestPersonDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1023">
+          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/dao/ITestPersonDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/TestPersonServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ITestPersonService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/PersonApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="893">
+          <caret line="86" column="61" selection-start-line="86" selection-start-column="61" selection-end-line="86" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/common/utils/SysToolUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="1270" column="42" selection-start-line="1270" selection-start-column="42" selection-end-line="1270" selection-end-column="42" />
+          <folding>
+            <element signature="e#4102#4103#0" expanded="true" />
+            <element signature="e#4139#4140#0" expanded="true" />
+            <element signature="e#4464#4465#0" expanded="true" />
+            <element signature="e#4501#4502#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/ITestDepartmentPersonService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/controller/client/WebSocketClientManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="69" column="41" lean-forward="true" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/liangzhicheng/modules/service/impl/TestDepartmentPersonServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="56" column="29" lean-forward="true" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1015,10 +1879,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>basic-framework:war</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1049,7 +1915,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
