@@ -3,6 +3,8 @@ package com.liangzhicheng.modules.dao;
 import com.liangzhicheng.modules.entity.SysUserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 账号信息表 Mapper 接口
@@ -12,5 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2021-07-07
  */
 public interface ISysUserDao extends BaseMapper<SysUserEntity> {
+
+    List<String> selectListByUserMenu(String accountId);
 
 }

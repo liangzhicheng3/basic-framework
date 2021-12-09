@@ -58,4 +58,8 @@ public class SysMenuVO implements Serializable {
     @ApiModelProperty("权限列表")
     private List<SysPermVO> permList;
 
+
+    @ApiModelProperty("子菜单列表")
+    private List<SysMenuVO> children;
+
 }

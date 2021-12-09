@@ -27,8 +27,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -410,76 +413,115 @@ public class SysUserServiceImpl extends ServiceImpl<ISysUserDao, SysUserEntity> 
      * @param accountId
      * @return List<SysMenuVO>
      */
+//    private List<SysMenuVO> listPermMenu(String accountId){
+//        //一级菜单
+//        List<SysMenuVO> oneVOList = Lists.newArrayList();
+//        //二级菜单
+//        List<SysMenuTwoVO> twoVOList = Lists.newArrayList();
+//        //三级菜单
+//        List<SysMenuThreeVO> threeVOList = Lists.newArrayList();
+//        //四级菜单
+//        List<SysMenuFourVO> fourVOList = Lists.newArrayList();
+//        //缓存中权限菜单
+//        List<SysMenuVO> cacheListPermMenu = SysCacheUtil.listPermMenu();
+//        if(SysToolUtil.listSizeGT(cacheListPermMenu)){
+//            List<SysRoleUserEntity> roleUserList = roleUserService.list("account_id", accountId);
+//            if(SysToolUtil.listSizeGT(roleUserList)){
+//                for(SysRoleUserEntity roleUser : roleUserList){
+//                    List<SysRoleMenuEntity> roleMenuList = roleMenuService.list("role_id", roleUser.getRoleId());
+//                    if(SysToolUtil.listSizeGT(roleMenuList)){
+//                        //缓存中菜单与该账号角色菜单匹配
+//                        for(SysMenuVO cacheOneVO : cacheListPermMenu){
+//                            for(SysRoleMenuEntity oneRoleMenu : roleMenuList){
+//                                if(cacheOneVO.getId().equals(oneRoleMenu.getMenuId())){
+//                                    SysMenuVO menuOneVO = cacheOneVO;
+//                                    List<SysMenuTwoVO> cacheTwoList = cacheOneVO.getChildrenList();
+//                                    if(SysToolUtil.listSizeGT(cacheTwoList)){
+//                                        twoVOList = Lists.newArrayList();
+//                                        for(SysMenuTwoVO cacheTwoVO : cacheTwoList){
+//                                            for(SysRoleMenuEntity twoRoleMenu : roleMenuList){
+//                                                if(cacheTwoVO.getId().equals(twoRoleMenu.getMenuId())){
+//                                                    SysMenuTwoVO menuTwoVO = cacheTwoVO;
+//                                                    List<SysMenuThreeVO> cacheThreeList = cacheTwoVO.getChildrenList();
+//                                                    if(SysToolUtil.listSizeGT(cacheThreeList)){
+//                                                        threeVOList = Lists.newArrayList();
+//                                                        for(SysMenuThreeVO cacheThreeVO : cacheThreeList){
+//                                                            for(SysRoleMenuEntity threeRoleMenu : roleMenuList){
+//                                                                if(cacheThreeVO.getId().equals(threeRoleMenu.getMenuId())){
+//                                                                    SysMenuThreeVO menuThreeVO = cacheThreeVO;
+//                                                                    List<SysMenuFourVO> cacheFourList = cacheThreeVO.getChildrenList();
+//                                                                    if(SysToolUtil.listSizeGT(cacheFourList)){
+//                                                                        fourVOList = Lists.newArrayList();
+//                                                                        for(SysMenuFourVO cacheFourVO : cacheFourList){
+//                                                                            for(SysRoleMenuEntity fourRoleMenu : roleMenuList){
+//                                                                                if(cacheFourVO.getId().equals(fourRoleMenu.getMenuId())){
+//                                                                                    SysMenuFourVO menuFourVO = cacheFourVO;
+//                                                                                    fourVOList.add(menuFourVO);
+//                                                                                }
+//                                                                            }
+//                                                                        }
+//                                                                    }
+//                                                                    menuThreeVO.setChildrenList(fourVOList);
+//                                                                    threeVOList.add(menuThreeVO);
+//                                                                }
+//                                                            }
+//                                                        }
+//                                                    }
+//                                                    menuTwoVO.setChildrenList(threeVOList);
+//                                                    twoVOList.add(menuTwoVO);
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                    menuOneVO.setChildrenList(twoVOList);
+//                                    oneVOList.add(menuOneVO);
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return oneVOList;
+//    }
+    //优化后
     private List<SysMenuVO> listPermMenu(String accountId){
-        //一级菜单
-        List<SysMenuVO> oneVOList = Lists.newArrayList();
-        //二级菜单
-        List<SysMenuTwoVO> twoVOList = Lists.newArrayList();
-        //三级菜单
-        List<SysMenuThreeVO> threeVOList = Lists.newArrayList();
-        //四级菜单
-        List<SysMenuFourVO> fourVOList = Lists.newArrayList();
-        //缓存中权限菜单
-        List<SysMenuVO> cacheListPermMenu = SysCacheUtil.listPermMenu();
-        if(SysToolUtil.listSizeGT(cacheListPermMenu)){
-            List<SysRoleUserEntity> roleUserList = roleUserService.list("account_id", accountId);
-            if(SysToolUtil.listSizeGT(roleUserList)){
-                for(SysRoleUserEntity roleUser : roleUserList){
-                    List<SysRoleMenuEntity> roleMenuList = roleMenuService.list("role_id", roleUser.getRoleId());
-                    if(SysToolUtil.listSizeGT(roleMenuList)){
-                        //缓存中菜单与该账号角色菜单匹配
-                        for(SysMenuVO cacheOneVO : cacheListPermMenu){
-                            for(SysRoleMenuEntity oneRoleMenu : roleMenuList){
-                                if(cacheOneVO.getId().equals(oneRoleMenu.getMenuId())){
-                                    SysMenuVO menuOneVO = cacheOneVO;
-                                    List<SysMenuTwoVO> cacheTwoList = cacheOneVO.getChildrenList();
-                                    if(SysToolUtil.listSizeGT(cacheTwoList)){
-                                        twoVOList = Lists.newArrayList();
-                                        for(SysMenuTwoVO cacheTwoVO : cacheTwoList){
-                                            for(SysRoleMenuEntity twoRoleMenu : roleMenuList){
-                                                if(cacheTwoVO.getId().equals(twoRoleMenu.getMenuId())){
-                                                    SysMenuTwoVO menuTwoVO = cacheTwoVO;
-                                                    List<SysMenuThreeVO> cacheThreeList = cacheTwoVO.getChildrenList();
-                                                    if(SysToolUtil.listSizeGT(cacheThreeList)){
-                                                        threeVOList = Lists.newArrayList();
-                                                        for(SysMenuThreeVO cacheThreeVO : cacheThreeList){
-                                                            for(SysRoleMenuEntity threeRoleMenu : roleMenuList){
-                                                                if(cacheThreeVO.getId().equals(threeRoleMenu.getMenuId())){
-                                                                    SysMenuThreeVO menuThreeVO = cacheThreeVO;
-                                                                    List<SysMenuFourVO> cacheFourList = cacheThreeVO.getChildrenList();
-                                                                    if(SysToolUtil.listSizeGT(cacheFourList)){
-                                                                        fourVOList = Lists.newArrayList();
-                                                                        for(SysMenuFourVO cacheFourVO : cacheFourList){
-                                                                            for(SysRoleMenuEntity fourRoleMenu : roleMenuList){
-                                                                                if(cacheFourVO.getId().equals(fourRoleMenu.getMenuId())){
-                                                                                    SysMenuFourVO menuFourVO = cacheFourVO;
-                                                                                    fourVOList.add(menuFourVO);
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    menuThreeVO.setChildrenList(fourVOList);
-                                                                    threeVOList.add(menuThreeVO);
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                    menuTwoVO.setChildrenList(threeVOList);
-                                                    twoVOList.add(menuTwoVO);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    menuOneVO.setChildrenList(twoVOList);
-                                    oneVOList.add(menuOneVO);
-                                }
-                            }
-                        }
-                    }
+        //获取用户所拥有的菜单
+        List<String> userMenuIdList = baseMapper.selectListByUserMenu(accountId);
+        //缓存中获取所有菜单
+        List<SysMenuVO> menuList = SysCacheUtil.listPermMenu();
+        //用户所拥有的菜单与所有菜单匹配得到菜单对象
+        List<SysMenuVO> userMenuList = new ArrayList<>(userMenuIdList.size());
+        for(Iterator<String> userMenuIds = userMenuIdList.iterator(); userMenuIds.hasNext();){
+            String userMenuId = userMenuIds.next();
+            for(Iterator<SysMenuVO> menus = menuList.iterator(); menus.hasNext();){
+                SysMenuVO menu = menus.next();
+                if(userMenuId.equals(menu.getId())){
+                    userMenuList.add(menu);
                 }
             }
         }
-        return oneVOList;
+        //过滤顶级菜单并递归获取子菜单
+        List<SysMenuVO> resultList = userMenuList.stream()
+                .filter(menu -> menu.getParentId().equals("0"))
+                .map(menu -> this.convert(menu, menuList))
+                .collect(Collectors.toList());
+        return resultList;
+    }
+
+    /**
+     * 将菜单转换为有子级的菜单对象，当找不到子级菜单时候map操作不会再递归调用covert
+     * @param menu 菜单对象
+     * @param menuList 菜单集合
+     * @return 返回目录菜单按钮结果集
+     */
+    private SysMenuVO convert(SysMenuVO menu, List<SysMenuVO> menuList) {
+        List<SysMenuVO> childrenList = menuList.stream()
+                .filter(subMenu -> subMenu.getParentId().equals(menu.getId()))
+                .map(subMenu -> this.convert(subMenu, menuList))
+                .collect(Collectors.toList());
+        menu.setChildren(childrenList);
+        return menu;
     }
 
 }

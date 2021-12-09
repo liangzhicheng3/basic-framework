@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu` (
   `id`                   VARCHAR(19) NOT NULL COMMENT '菜单id(主键)',
   `level`                VARCHAR(1) NOT NULL COMMENT '菜单级别：1一级菜单，2二级菜单，3三级菜单，4四级菜单',
-  `parent_id`            VARCHAR(19) DEFAULT '' COMMENT '父级id',
+  `parent_id`            VARCHAR(19) NOT NULL DEFAULT '0' COMMENT '父级id',
   `name`                 VARCHAR(30) NOT NULL COMMENT '菜单名称',
   `component`            VARCHAR(100) DEFAULT '' COMMENT '父组件',
   `router_path`          VARCHAR(100) DEFAULT '' COMMENT '路由路径',
